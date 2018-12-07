@@ -8,28 +8,18 @@ Software Requirements
 
 Specification Document
 
-
-
-
-
-
-
-
-
-
-
 07/12/2018
 
 **Table of Contents**
 
-| **        3** |
+||
 | --- |
 | 1.1 Purpose        |
 | 1.2 Scope &amp; Problem Statement        |
 | 1.3 Definitions        |
 | 1.4 References        |
 | 1.5 Overview:        |
-| **        6** |
+||
 | 2.1 Product        |
 | 2.2 Interfaces        |
 | 2.3 Hardware Interfaces        |
@@ -37,7 +27,7 @@ Specification Document
 | 2.5 Product Functions        |
 | 2.6 User Characteristics        |
 | 2.7 Constraints        |
-| **        10** |
+||
 | 3.1 User Interfaces        |
 | 3.2 Hardware Interfaces        |
 | 3.3 Communications Interfaces        |
@@ -46,9 +36,9 @@ Specification Document
 | 3.6 Availability        |
 | 3.7 Security        |
 | 3.8 Maintainability        |
-| **        15** |
+||
 | 4.1 Class Diagram        |
-| **        16** |
+||
 | 5.1 Preliminary Schedule        |
 
 #
@@ -109,7 +99,7 @@ Steam: https://store.steampowered.com
 
 SteamAPI: [https://steamcommunity.com/dev](https://steamcommunity.com/dev)
 
-        **Firebase:** [https://firebase.com/](https://firebase.com/)
+**Firebase:** [https://firebase.com/](https://firebase.com/)
 
 **Xamarin:** [https://visualstudio.microsoft.com/xamarin/](https://visualstudio.microsoft.com/xamarin/)
 
@@ -230,11 +220,11 @@ The Firebase API will handle communication to and from the database. We will hav
 
 **Game:**
 
-        Methods:
+Methods:
 
 None
 
-        Attributes:
+Attributes:
 
 GameId: Used to give the Game object a unique ID to be stored in the database.
 
@@ -248,19 +238,19 @@ A Game class object will be used during a game search or when a beacon is create
 
 Methods:
 
-                Delete() : Remove the Gamesearch object from the Firebase database
+Delete() : Remove the Gamesearch object from the Firebase database
 
-                Insert() : Insert a new gamesearch object into the database
+Insert() : Insert a new gamesearch object into the database
 
 Update() : Update the gamesearch object when a change has been made        to it.
 
 Attributes:
 
-                Game: Game object.
+Game: Game object.
 
-                CurrentSearchers: Users currently searching for this game.
+CurrentSearchers: Users currently searching for this game.
 
-        Functional Requirements:
+Functional Requirements:
 
 A new GameSearch object will be created when a user starts to search for a game. This will allow the user to find other game searches based on the Game in the SearchGame object.
 
@@ -268,89 +258,88 @@ A new GameSearch object will be created when a user starts to search for a game.
 
 **User:**
 
-        Methods:
+Methods:
 
-                Delete() : Remove the User object from the Firebase database.
+Delete() : Remove the User object from the Firebase database.
 
-                Update() : Update the user (when a change is made to any of its                                 attributes).
+Update() : Update the user (when a change is made to any of its attributes).
 
-        Insert() : Used for when the account is to be created and sent to the                                database.
+Insert() : Used for when the account is to be created and sent to the database.
 
-        Attributes:
+Attributes:
 
-                Username : Username chosen by the user to identify themselves
+Username : Username chosen by the user to identify themselves
 
-                Following : An array of users who this user follows
+Following : An array of users who this user follows
 
-                Description : A description added by a user to its own profile
+Description : A description added by a user to its own profile
 
-                AccountId : Assigns the user a unique ID
+AccountId : Assigns the user a unique ID
 
-                Gamesearches : The game which the user is currently searching for.
+Gamesearches : The game which the user is currently searching for.
 
-        Functional Requirements:
+Functional Requirements:
 
 The User class will be initiated when the &#39;Account&#39; logs in or registers. We can use the user class methods to update the current state of the object and send it to the database. For example, we can send to the database the user&#39;s current GameSearch when they begin searching for a game, making it possible for other users to see them. Or, we can update who they are following when the user taps &#39;Follow&#39; by simply calling the Update method after a new user is added to their &#39;Following&#39; list.
 
 **Account:**
 
-        Methods:
+Methods:
 
 None
 
-        Attributes:
+Attributes:
 
-                AccountId: Assigns a unique account ID to the account.
+AccountId: Assigns a unique account ID to the account.
 
-                Email : The account&#39;s email address.
+Email : The account&#39;s email address.
 
-                Password : User&#39;s password.
+Password : User&#39;s password.
 
-        Functional Requirements:
+Functional Requirements:
 
 The account class is created when the user registers. This will then be used to model the User class from the Account until the &#39;Account&#39; user creates their profile.
 
 **Beacon:**
 
-        Methods:
+Methods:
 
-                Delete() : Remove the beacon using the Firebase API.
+Delete() : Remove the beacon using the Firebase API.
 
-                Insert() : Insert a new beacon object to the Firebase API.
+Insert() : Insert a new beacon object to the Firebase API.
 
-        Attributes:
+Attributes:
 
-                Game : Game object the beacon will be created from.
+Game : Game object the beacon will be created from.
 
-                Expires : Expiry date (10 minutes from creation)
+Expires : Expiry date (10 minutes from creation)
 
-                BeaconId: Unique beacon ID number.
+BeaconId: Unique beacon ID number.
 
-                User: User who created the beacon.
+User: User who created the beacon.
 
-        Functional Requirements:
+Functional Requirements:
 
 Creates a new beacon object which will trigger a function, sending a notification to all players who are in the User&#39;s followers list.
 
 **Chat:**
 
-        Methods:
+Methods:
 
-                Delete(): Remove from database using the Firebase API.
+Delete(): Remove from database using the Firebase API.
 
-                Update(): Update the Firebase database with the new Messages objects.
+Update(): Update the Firebase database with the new Messages objects.
 
-                Insert(): Insert a new chat object using the Firebase API.
+Insert(): Insert a new chat object using the Firebase API.
+Attributes:
 
-        Attributes:
+ChatId : Assigns the Chat a unique ID.
 
-                ChatId : Assigns the Chat a unique ID.
-
-                Messages : A list of messages sent to this chat.
+Messages : A list of messages sent to this chat.
 
 Game : Game associated with this chat.
 
-        Functional Requirements:
+Functional Requirements:
 
 A chat class containing all messages sent to this specific game chat room. The Delete method can be called when there are no players left in the chat room and it will be updated or created using the respective methods.
 
@@ -358,11 +347,11 @@ A chat class containing all messages sent to this specific game chat room. The D
 
 **ChatMessage:**
 
-        Methods:
+Methods:
 
 Insert (): Creates ChatMessage in the database using Firebase API.
 
-        Attributes:
+Attributes:
 
 MessageId : A unique message ID to the chat.
 
@@ -370,7 +359,7 @@ Date : The date/time the message was created.
 
 User:  The user who created the message.
 
-        Functional Requirements:
+Functional Requirements:
 
 A new chat message is created with the Insert method and is added to the Chat object &#39;messages&#39; list. This will come with the user who sent the message and the date it was sent.
 
