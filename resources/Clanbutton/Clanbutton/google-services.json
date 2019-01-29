@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "919865743689",
+    "firebase_url": "https://clanbutton-f45a0.firebaseio.com",
+    "project_id": "clanbutton-f45a0",
+    "storage_bucket": "clanbutton-f45a0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:919865743689:android:1fe97b73ab40e488",
+        "android_client_info": {
+          "package_name": "Clanbutton.Clanbutton"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "919865743689-bsbbirv71ggn5l4l6og0tk314l4rhbi8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "Clanbutton.Clanbutton",
+            "certificate_hash": "cccdb36207d90b19a30c75a48feb4b49519eb9ef"
+          }
+        },
+        {
+          "client_id": "919865743689-s9vijpacn3ji5k1aofh0c8u7tjgqpo3c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQocMpHy0US_A21ykjkxVXaY44pEkolIY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "919865743689-s9vijpacn3ji5k1aofh0c8u7tjgqpo3c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
