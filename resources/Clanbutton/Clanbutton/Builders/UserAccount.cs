@@ -2,6 +2,7 @@
 using Firebase.Database;
 using Firebase.Xamarin.Database;
 using Firebase.Xamarin.Database.Query;
+using System.Collections;
 
 namespace Clanbutton.Builders
 {
@@ -11,6 +12,7 @@ namespace Clanbutton.Builders
         public string Email { get; set; }
         public string Message { get; set; }
         public string Username { get; set; }
+        private ArrayList PastGameSearches = new ArrayList();
 
         public string CurrentGameSearch { get; set; }
 

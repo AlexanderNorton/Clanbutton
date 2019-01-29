@@ -15,7 +15,7 @@ using Clanbutton.Builders;
 namespace Clanbutton.Activities
 {
     [Activity(Label = "Clanbutton", MainLauncher = true, Icon = "@drawable/icon", Theme = "@style/Theme.AppCompat.Light.NoActionBar")]
-
+    public class AuthenticationActivity : AppCompatActivity, IOnCompleteListener
     {
         FirebaseAuth auth;
         int MyResultCode = 1;
