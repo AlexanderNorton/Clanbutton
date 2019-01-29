@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:backgroundTint="#ff000000"
+    app:backgroundTintMode="src_in">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/mainbutton"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:backgroundTint="#ffdc143c"
+            android:textSize="50px"
+            android:textStyle="bold"
+            android:hint="[Logo]"
+            android:backgroundTintMode="src_over"
+            android:text="Clanbutton" />
+        <Button
+            android:id="@+id/chatroom_button"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:textSize="30px"
+            android:textStyle="bold"
+            android:backgroundTintMode="src_over"
+            android:text="Enter chat room" />
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/playerslist" />
+    </LinearLayout>
+</RelativeLayout>
