@@ -201,13 +201,6 @@
     <GoogleServicesJson Include="google-services.json" />
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup>
-    <XamarinComponentReference Include="xamandroidsupportv7appcompat">
-      <Visible>False</Visible>
-      <Version>25.1.1.0</Version>
-      <InstallationInProgress>True</InstallationInProgress>
-    </XamarinComponentReference>
-  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
