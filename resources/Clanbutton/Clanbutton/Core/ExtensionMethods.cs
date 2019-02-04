@@ -27,6 +27,20 @@ namespace Clanbutton.Core
             context.StartActivity(new Android.Content.Intent(context, typeof(ProfileActivity)));
         }
 
+        public static async Task<bool> AccountExistsAsync(string userId, FirebaseClient firebaseclient)
+        {
+            var accounts = await firebaseclient.Child("accounts").OnceAsync<UserAccount>();
+
+            foreach (var account in accounts)
+            {
+                if (account.Object.SteamId.ToString() == userId)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public static async Task<UserAccount> GetAccountAsync(string userId, FirebaseClient firebaseclient)
         {
 

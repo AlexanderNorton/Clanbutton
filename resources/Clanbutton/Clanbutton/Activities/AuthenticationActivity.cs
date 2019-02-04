@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Web;
+using System.Collections.Generic;
 
 using Android.App;
 using Android.OS;
@@ -11,25 +13,32 @@ using Firebase.Database;
 using Firebase.Xamarin.Database;
 
 using Clanbutton.Builders;
+using Clanbutton.Core;
+
+using Android.Webkit;
+using Android.Graphics;
+
+using SteamWebAPI2.Interfaces;
 
 namespace Clanbutton.Activities
 {
     [Activity(Label = "Clanbutton", MainLauncher = true, Icon = "@drawable/icon", Theme = "@style/Theme.AppCompat.Light.NoActionBar")]
     public class AuthenticationActivity : AppCompatActivity, IOnCompleteListener
     {
+
+        ulong UserId;
         FirebaseAuth auth;
-        int MyResultCode = 1;
 
         public async void OnComplete(Task task)
         {
             if (task.IsSuccessful)
             {
                 FirebaseClient firebase = new FirebaseClient(GetString(Resource.String.firebase_database_url));
-                var AccountCreation = await firebase.Child("accounts").PostAsync(new UserAccount(auth.CurrentUser.Uid.ToString(), auth.CurrentUser.Email));
+                var AccountCreation = await firebase.Child("accounts").PostAsync(new UserAccount(auth.CurrentUser.Uid.ToString(), UserId.ToString(), auth.CurrentUser.Email));
 
                 Toast.MakeText(this, "Account created. Welcome to the Clanbutton.", ToastLength.Short).Show();
 
-                StartActivityForResult(new Android.Content.Intent(this, typeof(SearchActivity)), MyResultCode);
+                StartActivity(new Android.Content.Intent(this, typeof(SearchActivity)));
             }
 
             else
@@ -39,22 +48,70 @@ namespace Clanbutton.Activities
             }
         }
 
-        protected override void OnCreate(Bundle savedInstanceState)
+        public async void SteamAuth(ulong userid)
+        {
+            UserId = userid;
+            auth = FirebaseAuth.Instance;
+            if (await ExtensionMethods.AccountExistsAsync(UserId.ToString(), new FirebaseClient(GetString(Resource.String.firebase_database_url))))
+            {
+                auth.SignInWithEmailAndPassword($"{UserId.ToString()}@clanbutton.com", "nopass");
+                StartActivity(new Android.Content.Intent(this, typeof(SearchActivity)));
+            }
+            else
+            {
+                auth.CreateUserWithEmailAndPassword($"{UserId.ToString()}@clanbutton.com", "nopass").AddOnCompleteListener(this);
+            }
+        }
+
+        protected override async void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.Authentication_Layout);
 
-            auth = FirebaseAuth.Instance;
-
-            var edtEmail = FindViewById<EditText>(Resource.Id.edtEmail);
-            var edtPassword = FindViewById<EditText>(Resource.Id.edtPassword);
-            var btnRegister = FindViewById<Button>(Resource.Id.btnRegister);
-
-            btnRegister.Click += delegate
+            FirebaseUser user = FirebaseAuth.Instance.CurrentUser;
+            if (user != null)
             {
-                auth.CreateUserWithEmailAndPassword(edtEmail.Text, edtPassword.Text).AddOnCompleteListener(this);
+                //User is signed in already.
+                StartActivity(new Android.Content.Intent(this, typeof(SearchActivity)));
+                return;
+            }
+
+            var btnLogin = FindViewById<Button>(Resource.Id.btnLogin);
+            string steam_url = "https://steamcommunity.com/openid/login?openid.claimed_id=http://specs.openid.net/auth/2.0/identifier_select&openid.identity=http://specs.openid.net/auth/2.0/identifier_select&openid.mode=checkid_setup&openid.ns=http://specs.openid.net/auth/2.0&openid.realm=https://clanbutton&openid.return_to=https://clanbutton/signin/";
+
+            btnLogin.Click += delegate
+            {
+                WebView webView;
+                webView = FindViewById<WebView>(Resource.Id.webView);
+                ExtendedWebViewClient webClient = new ExtendedWebViewClient();
+                webClient.steamAuthentication = this;
+                webView.SetWebViewClient(webClient);
+                webView.LoadUrl(steam_url);
+
+                WebSettings webSettings = webView.Settings;
+                webSettings.JavaScriptEnabled = true;
             };
 
+        }
+    }
+
+    internal class ExtendedWebViewClient : WebViewClient
+    {
+        public AuthenticationActivity steamAuthentication;
+
+
+
+        public override async void OnPageStarted(WebView view, string url, Bitmap favicon)
+        {
+            Uri Url = new Uri(url);
+
+            if (Url.Authority.Equals("clanbutton"))
+            {
+                Uri userAccountUrl = new Uri(HttpUtility.ParseQueryString(Url.Query).Get("openid.identity"));
+                ulong SteamUserId = ulong.Parse(userAccountUrl.Segments[userAccountUrl.Segments.Length - 1]);
+                steamAuthentication.SteamAuth(SteamUserId);
+                view.StopLoading();
+            };
         }
     }
 }

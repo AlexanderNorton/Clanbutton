@@ -5,44 +5,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:backgroundTint="#ff000000"
     app:backgroundTintMode="src_in">
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_centerInParent="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:backgroundTint="#ffdc143c"
-            android:textSize="50px"
-            android:textStyle="bold"
-            android:hint="[Logo]"
-            android:backgroundTintMode="src_over" />
-        <EditText
-            android:id="@+id/edtEmail"
-            android:inputType="textEmailAddress"
-            android:hint="Enter your Email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@string/abc_font_family_body_1_material" />
-        <EditText
-            android:id="@+id/edtPassword"
-            android:inputType="textPassword"
-            android:hint="Enter your Password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@string/abc_font_family_body_1_material" />
-        <Button
-            android:id="@+id/btnRegister"
-            android:text="LOG IN"
-            android:layout_width="match_parent"
-            android:backgroundTint="#ff8a2be2"
-            android:layout_height="70dp" />
-        <Button
-            android:text="REGISTER"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:backgroundTint="#ff00fa9a"
-            android:layout_marginTop="-10dp" />
-    </LinearLayout>
+	<LinearLayout
+		android:orientation="vertical"
+		android:layout_centerInParent="true"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
+		<Button
+			android:layout_width="match_parent"
+			android:layout_height="300dp"
+			android:backgroundTint="#ffdc143c"
+			android:textSize="50px"
+			android:textStyle="bold"
+			android:hint="[Logo]"
+			android:backgroundTintMode="src_over" />
+		<Button
+			android:id="@+id/btnLogin"
+			android:text="Sign-in with Steam"
+			android:layout_width="match_parent"
+			android:backgroundTint="#ff8a2be2"
+			android:layout_height="70dp" />
+		<WebView
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:id="@+id/webView"/>
+	</LinearLayout>
 </RelativeLayout>

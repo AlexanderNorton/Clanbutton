@@ -9,6 +9,7 @@ namespace Clanbutton.Builders
     public class UserAccount
     {
         public string UserId { get; set; }
+        public string SteamId { get; set; }
         public string Email { get; set; }
         public string Message { get; set; }
         public string Username { get; set; }
@@ -18,9 +19,10 @@ namespace Clanbutton.Builders
 
         public UserAccount() { }
 
-        public UserAccount(string userid, string email)
+        public UserAccount(string userid, string steamid, string email)
         {
             UserId = userid;
+            SteamId = steamid;
             Email = email;
             Username = "Guest";
         }
