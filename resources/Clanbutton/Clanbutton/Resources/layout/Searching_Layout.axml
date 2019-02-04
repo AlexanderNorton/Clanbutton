@@ -20,6 +20,14 @@
             android:hint="[Logo]"
             android:backgroundTintMode="src_over"
             android:text="Clanbutton" />
+		<Button
+            android:id="@+id/logoff_button"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:textSize="30px"
+            android:textStyle="bold"
+            android:backgroundTintMode="src_over"
+            android:text="Logoff (debugging)" />
         <AutoCompleteTextView
             android:id="@+id/searchbar"
             android:layout_width="fill_parent"

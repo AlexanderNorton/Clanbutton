@@ -21,10 +21,10 @@ namespace Clanbutton.Core
             SteamInterface = new SteamUser("D31F5813BEA5A009B33CF688883F9CD5");
         }
 
-        public SteamUser SteamInterface { get; set; }
+        public static SteamUser SteamInterface { get; set; }
 
         // Obtain userId info from API.
-        public async Task<PlayerSummaryModel> GetPlayerSummary(ulong userId)
+        public async Task<PlayerSummaryModel> GetPlayerSummaryAsync(ulong userId)
         {
             var playerSummaryResponse = await SteamInterface.GetPlayerSummaryAsync(userId);
             return playerSummaryResponse.Data;

@@ -34,7 +34,7 @@ namespace Clanbutton.Activities
             if (task.IsSuccessful)
             {
                 FirebaseClient firebase = new FirebaseClient(GetString(Resource.String.firebase_database_url));
-                var AccountCreation = await firebase.Child("accounts").PostAsync(new UserAccount(auth.CurrentUser.Uid.ToString(), UserId.ToString(), auth.CurrentUser.Email));
+                var AccountCreation = await firebase.Child("accounts").PostAsync(new UserAccount(auth.CurrentUser.Uid.ToString(), UserId, auth.CurrentUser.Email));
 
                 Toast.MakeText(this, "Account created. Welcome to the Clanbutton.", ToastLength.Short).Show();
 

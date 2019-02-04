@@ -2160,8 +2160,8 @@ namespace Clanbutton
 			// aapt resource value: 0x7f09007f
 			public const int cancel_action = 2131296383;
 			
-			// aapt resource value: 0x7f090090
-			public const int chatroom_button = 2131296400;
+			// aapt resource value: 0x7f090091
+			public const int chatroom_button = 2131296401;
 			
 			// aapt resource value: 0x7f090057
 			public const int checkbox = 2131296343;
@@ -2274,14 +2274,17 @@ namespace Clanbutton
 			// aapt resource value: 0x7f09007a
 			public const int list_of_messages = 2131296378;
 			
+			// aapt resource value: 0x7f09008f
+			public const int logoff_button = 2131296399;
+			
 			// aapt resource value: 0x7f09008e
 			public const int mainbutton = 2131296398;
 			
 			// aapt resource value: 0x7f090081
 			public const int media_actions = 2131296385;
 			
-			// aapt resource value: 0x7f090092
-			public const int message = 2131296402;
+			// aapt resource value: 0x7f090093
+			public const int message = 2131296403;
 			
 			// aapt resource value: 0x7f090076
 			public const int message_text = 2131296374;
@@ -2322,20 +2325,20 @@ namespace Clanbutton
 			// aapt resource value: 0x7f090049
 			public const int parentPanel = 2131296329;
 			
-			// aapt resource value: 0x7f090091
-			public const int playerslist = 2131296401;
-			
-			// aapt resource value: 0x7f090095
-			public const int profile_edit_button = 2131296405;
-			
-			// aapt resource value: 0x7f090093
-			public const int profile_image = 2131296403;
+			// aapt resource value: 0x7f090092
+			public const int playerslist = 2131296402;
 			
 			// aapt resource value: 0x7f090096
-			public const int profile_logout_button = 2131296406;
+			public const int profile_edit_button = 2131296406;
 			
 			// aapt resource value: 0x7f090094
-			public const int profile_username = 2131296404;
+			public const int profile_image = 2131296404;
+			
+			// aapt resource value: 0x7f090097
+			public const int profile_logout_button = 2131296407;
+			
+			// aapt resource value: 0x7f090095
+			public const int profile_username = 2131296405;
 			
 			// aapt resource value: 0x7f090006
 			public const int progress_circular = 2131296262;
@@ -2394,8 +2397,8 @@ namespace Clanbutton
 			// aapt resource value: 0x7f09006d
 			public const int search_voice_btn = 2131296365;
 			
-			// aapt resource value: 0x7f09008f
-			public const int searchbar = 2131296399;
+			// aapt resource value: 0x7f090090
+			public const int searchbar = 2131296400;
 			
 			// aapt resource value: 0x7f09006e
 			public const int select_dialog_listview = 2131296366;
