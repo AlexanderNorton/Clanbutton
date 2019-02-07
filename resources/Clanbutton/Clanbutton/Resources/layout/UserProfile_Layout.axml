@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:backgroundTint="#ffdc143c"
-            android:src="@drawable/abc_list_longpressed_holo"
+            android:src="@drawable/icon"
             android:backgroundTintMode="src_over" />
         <TextView
             android:id="@+id/profile_username"
@@ -23,8 +23,20 @@
             android:layout_height="wrap_content"
             android:textSize="27dp"
             android:gravity="center_horizontal" />
+		<Button
+            android:text="VISIT STEAM PROFILE"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/profile_visit_steam_button"
+            android:layout_marginTop="0.0dp" />
+		<TextView
+            android:id="@+id/profile_about"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="11dp"
+            android:gravity="center_horizontal" />
         <Button
-            android:text="EDIT"
+            android:text="EDIT BIO"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/profile_edit_button"
@@ -35,5 +47,10 @@
             android:layout_height="wrap_content"
             android:id="@+id/profile_logout_button"
             android:layout_marginTop="0.0dp" />
+		<WebView
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:id="@+id/webViewProfile"
+			android:layout_marginBottom="0.5dp" />
     </LinearLayout>
 </RelativeLayout>

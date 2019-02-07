@@ -97,11 +97,10 @@ namespace Clanbutton.Activities
 
             await firebase.Child("gamesearches").PostAsync(new GameSearch(SearchContent.Text, Account.UserId.ToString(), Account.Username));
             var gamesearch = await firebase.Child("gamesearches").OnceAsync<GameSearch>();
-             
 
             foreach (var u in gamesearch)
             {
-                if (u.Object.GameName == SearchContent.Text)
+                if (u.Object.GameName == SearchContent.Text && u.Object.Username.Length > 1)
                 {
                     UserList.Add(u.Object.Username);
                     CurrentSearchers.Add(u.Object);

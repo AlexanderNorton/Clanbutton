@@ -55,6 +55,7 @@ namespace Clanbutton.Core
                     acc.UserId = account.Object.UserId.ToString();
                     acc.Email = account.Object.Email;
                     acc.SteamId = account.Object.SteamId;
+                    acc.About = account.Object.About;
                     await acc.FillSteamData();
 
                     return acc;

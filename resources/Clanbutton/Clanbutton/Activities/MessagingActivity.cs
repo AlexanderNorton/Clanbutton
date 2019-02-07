@@ -31,13 +31,14 @@ namespace Clanbutton
 
         public int MyResultCode = 1;
 
-        protected override void OnCreate(Bundle bundle)
+        protected override async void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
             SetContentView(Resource.Layout.Messaging_Layout);
 
             firebase = new FirebaseClient(GetString(Resource.String.firebase_database_url));
             FirebaseDatabase.Instance.GetReference("chats").AddValueEventListener(this);
+            FirebaseUser user = FirebaseAuth.Instance.CurrentUser;
 
             sendButton = FindViewById<Button>(Resource.Id.sendbutton);
             edtChat = FindViewById<EditText>(Resource.Id.input);
@@ -48,13 +49,15 @@ namespace Clanbutton
                 PostMessage();
             };
 
-            if (FirebaseAuth.Instance.CurrentUser == null)
+            if (user == null)
             {
                 StartActivityForResult(new Intent(this, typeof(AuthenticationActivity)), MyResultCode);
             }
             else
             {
-                Toast.MakeText(this, "Welcome " + FirebaseAuth.Instance.CurrentUser.Email, ToastLength.Short).Show();
+                UserAccount Account = await ExtensionMethods.GetAccountAsync(user.Uid.ToString(), firebase);
+
+                Toast.MakeText(this, "Welcome " + Account.Username, ToastLength.Short).Show();
                 DisplayChatMessage();
             }
 
@@ -79,7 +82,7 @@ namespace Clanbutton
                     CurrentGameSearch = game.Object.GameName;
                 }
             }
-            var Items = await firebase.Child("chats").PostAsync(new MessageContent(FirebaseAuth.Instance.CurrentUser.Email, edtChat.Text, CurrentGameSearch));
+            var Items = await firebase.Child("chats").PostAsync(new MessageContent(Account.Username, edtChat.Text, CurrentGameSearch));
             edtChat.Text = "";
         }
 

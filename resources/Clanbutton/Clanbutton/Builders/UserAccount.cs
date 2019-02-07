@@ -18,6 +18,7 @@ namespace Clanbutton.Builders
         public ulong SteamId { get; set; }
         public string Email { get; set; }
         public string Message { get; set; }
+        public string About { get; set; }
 
         public string Username { get; set; }
         public string Avatar { get; set; }
@@ -36,6 +37,7 @@ namespace Clanbutton.Builders
             SteamId = steamid;
             Email = email;
             Username = "Guest";
+            About = "Add me on Steam and let's play some games!";
         }
 
         public async void Update(FirebaseClient firebase)
