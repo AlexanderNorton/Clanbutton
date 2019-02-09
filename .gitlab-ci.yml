@@ -16,6 +16,6 @@ tests 1:
    stage: test
    script: 
    - echo "Starting test stage 1."
-   - cd resources/Clanbutton.UnitTests/bin/Release
-   - '"C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE\MSTest.exe" /testcontainer:Clanbutton.UnitTests.dll'
+   - cd resources/Clanbutton.UnitTests/bin/Debug
+   - '"C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE\MSTest.exe" Clanbutton.UnitTests.dll'
    - echo "Test stage 1 completed."
