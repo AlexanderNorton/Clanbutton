@@ -11,11 +11,12 @@ build:
   - echo "Release build..."
   - '"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\msbuild.exe" resources/Clanbutton/Clanbutton.sln'
   artifacts:
-     paths:
-        untracked: true
+     untracked: true
 
 tests 1:
    stage: test
    script: 
+   - # cd resources/Clanbutton/ClanbuttonTests/bin/Release
+   - # '"C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE\MSTest.exe" /testcontainer:ClanbuttonTests.dll'
    - echo "Starting test stage 1."
    - echo "No tests to run at the moment."
