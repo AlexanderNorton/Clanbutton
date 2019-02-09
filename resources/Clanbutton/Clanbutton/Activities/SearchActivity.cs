@@ -25,6 +25,7 @@ namespace Clanbutton.Activities
 
         private Button MainButton;
         private Button ChatroomButton;
+        private Button LogoffButton;
         private AutoCompleteTextView SearchContent;
         private List<string> GameList = new List<string>();
         private List<GameSearch> CurrentSearchers = new List<GameSearch>();
@@ -35,11 +36,12 @@ namespace Clanbutton.Activities
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.Searching_Layout);
+            // ExtensionMethods.UpdateAccountData();
 
             firebase = new FirebaseClient(GetString(Resource.String.firebase_database_url));
-
             MainButton = FindViewById<Button>(Resource.Id.mainbutton);
             SearchContent = FindViewById<AutoCompleteTextView>(Resource.Id.searchbar);
+            LogoffButton = FindViewById<Button>(Resource.Id.logoff_button);
 
             var items = await firebase.Child("games").OnceAsync<string>();
 
@@ -54,6 +56,13 @@ namespace Clanbutton.Activities
             MainButton.Click += delegate
             {
                 StartSearching();
+            };
+
+            LogoffButton.Click += delegate
+            {
+                auth = FirebaseAuth.Instance;
+                auth.SignOut();
+                StartActivity(new Android.Content.Intent(this, typeof(AuthenticationActivity)));
             };
 
         }
@@ -88,11 +97,10 @@ namespace Clanbutton.Activities
 
             await firebase.Child("gamesearches").PostAsync(new GameSearch(SearchContent.Text, Account.UserId.ToString(), Account.Username));
             var gamesearch = await firebase.Child("gamesearches").OnceAsync<GameSearch>();
-             
 
             foreach (var u in gamesearch)
             {
-                if (u.Object.GameName == SearchContent.Text)
+                if (u.Object.GameName == SearchContent.Text && u.Object.Username.Length > 1)
                 {
                     UserList.Add(u.Object.Username);
                     CurrentSearchers.Add(u.Object);

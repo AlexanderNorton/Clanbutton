@@ -22,7 +22,8 @@ namespace Clanbutton.Activities
     {
         private FirebaseClient firebase;
         private Button save_changes_button;
-        private EditText edit_username;
+        private EditText edit_about;
+        private static TextView Profile_Username;
 
         public UserAccount Account;
 
@@ -39,9 +40,11 @@ namespace Clanbutton.Activities
                 Account = await ExtensionMethods.GetAccountAsync(user.Uid.ToString(), firebase);
 
                 save_changes_button = FindViewById<Button>(Resource.Id.edit_profile_savechanges);
-                edit_username = FindViewById<EditText>(Resource.Id.edit_profile_username);
+                edit_about = FindViewById<EditText>(Resource.Id.edit_profile_about);
+                Profile_Username = FindViewById<TextView>(Resource.Id.edit_profile_username);
 
-                edit_username.Text = Account.Username;
+                edit_about.Text = Account.About;
+                Profile_Username.Text = Account.Username;
 
                 save_changes_button.Click += delegate
                 {
@@ -58,7 +61,7 @@ namespace Clanbutton.Activities
         {
             try
             {
-                Account.Username = edit_username.Text;
+                Account.About = edit_about.Text;
 
                 Account.Update(firebase);
 

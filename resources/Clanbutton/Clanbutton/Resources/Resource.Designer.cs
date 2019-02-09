@@ -2151,8 +2151,8 @@ namespace Clanbutton
 			// aapt resource value: 0x7f090037
 			public const int bottom = 2131296311;
 			
-			// aapt resource value: 0x7f090071
-			public const int btnRegister = 2131296369;
+			// aapt resource value: 0x7f09006f
+			public const int btnLogin = 2131296367;
 			
 			// aapt resource value: 0x7f090047
 			public const int buttonPanel = 2131296327;
@@ -2160,8 +2160,8 @@ namespace Clanbutton
 			// aapt resource value: 0x7f090080
 			public const int cancel_action = 2131296384;
 			
-			// aapt resource value: 0x7f090091
-			public const int chatroom_button = 2131296401;
+			// aapt resource value: 0x7f090092
+			public const int chatroom_button = 2131296402;
 			
 			// aapt resource value: 0x7f090057
 			public const int checkbox = 2131296343;
@@ -2193,23 +2193,20 @@ namespace Clanbutton
 			// aapt resource value: 0x7f09001b
 			public const int disableHome = 2131296283;
 			
-			// aapt resource value: 0x7f090072
-			public const int edit_profile_image = 2131296370;
+			// aapt resource value: 0x7f090073
+			public const int edit_profile_about = 2131296371;
+			
+			// aapt resource value: 0x7f090071
+			public const int edit_profile_image = 2131296369;
 			
 			// aapt resource value: 0x7f090074
 			public const int edit_profile_savechanges = 2131296372;
 			
-			// aapt resource value: 0x7f090073
-			public const int edit_profile_username = 2131296371;
+			// aapt resource value: 0x7f090072
+			public const int edit_profile_username = 2131296370;
 			
 			// aapt resource value: 0x7f090062
 			public const int edit_query = 2131296354;
-			
-			// aapt resource value: 0x7f09006f
-			public const int edtEmail = 2131296367;
-			
-			// aapt resource value: 0x7f090070
-			public const int edtPassword = 2131296368;
 			
 			// aapt resource value: 0x7f09002a
 			public const int end = 2131296298;
@@ -2280,14 +2277,17 @@ namespace Clanbutton
 			// aapt resource value: 0x7f09007b
 			public const int list_of_messages = 2131296379;
 			
+			// aapt resource value: 0x7f090090
+			public const int logoff_button = 2131296400;
+			
 			// aapt resource value: 0x7f09008f
 			public const int mainbutton = 2131296399;
 			
 			// aapt resource value: 0x7f090082
 			public const int media_actions = 2131296386;
 			
-			// aapt resource value: 0x7f090093
-			public const int message = 2131296403;
+			// aapt resource value: 0x7f090094
+			public const int message = 2131296404;
 			
 			// aapt resource value: 0x7f090077
 			public const int message_text = 2131296375;
@@ -2328,17 +2328,26 @@ namespace Clanbutton
 			// aapt resource value: 0x7f090049
 			public const int parentPanel = 2131296329;
 			
-			// aapt resource value: 0x7f090092
-			public const int playerslist = 2131296402;
+			// aapt resource value: 0x7f090093
+			public const int playerslist = 2131296403;
 			
-			// aapt resource value: 0x7f090096
-			public const int profile_edit_button = 2131296406;
+			// aapt resource value: 0x7f090098
+			public const int profile_about = 2131296408;
 			
-			// aapt resource value: 0x7f090094
-			public const int profile_image = 2131296404;
+			// aapt resource value: 0x7f090099
+			public const int profile_edit_button = 2131296409;
 			
 			// aapt resource value: 0x7f090095
-			public const int profile_username = 2131296405;
+			public const int profile_image = 2131296405;
+			
+			// aapt resource value: 0x7f09009a
+			public const int profile_logout_button = 2131296410;
+			
+			// aapt resource value: 0x7f090096
+			public const int profile_username = 2131296406;
+			
+			// aapt resource value: 0x7f090097
+			public const int profile_visit_steam_button = 2131296407;
 			
 			// aapt resource value: 0x7f090006
 			public const int progress_circular = 2131296262;
@@ -2397,8 +2406,8 @@ namespace Clanbutton
 			// aapt resource value: 0x7f09006d
 			public const int search_voice_btn = 2131296365;
 			
-			// aapt resource value: 0x7f090090
-			public const int searchbar = 2131296400;
+			// aapt resource value: 0x7f090091
+			public const int searchbar = 2131296401;
 			
 			// aapt resource value: 0x7f09006e
 			public const int select_dialog_listview = 2131296366;
@@ -2486,6 +2495,12 @@ namespace Clanbutton
 			
 			// aapt resource value: 0x7f090020
 			public const int useLogo = 2131296288;
+			
+			// aapt resource value: 0x7f090070
+			public const int webView = 2131296368;
+			
+			// aapt resource value: 0x7f09009b
+			public const int webViewProfile = 2131296411;
 			
 			// aapt resource value: 0x7f090014
 			public const int wide = 2131296276;

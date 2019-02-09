@@ -17,8 +17,14 @@
             android:backgroundTint="#ffdc143c"
             android:src="@drawable/abc_list_longpressed_holo"
             android:backgroundTintMode="src_over" />
-        <EditText
+		<TextView
             android:id="@+id/edit_profile_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="27dp"
+            android:gravity="center_horizontal" />
+        <EditText
+            android:id="@+id/edit_profile_about"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="27dp"
