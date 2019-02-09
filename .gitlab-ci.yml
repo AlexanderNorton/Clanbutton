@@ -7,7 +7,6 @@ build:
   script:
   - echo "Restoring NuGet Packages..."
   - '"c:\nuget\nuget.exe" restore "resources/Clanbutton/Clanbutton.sln"'
-  - ''
   - echo "Release build..."
   - '"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\msbuild.exe" resources/Clanbutton/Clanbutton.sln'
   artifacts:
@@ -17,4 +16,6 @@ tests 1:
    stage: test
    script: 
    - echo "Starting test stage 1."
-   - echo "No tests to run at the moment."
+   - cd resources/Clanbutton.UnitTests/bin/Release
+   - '"C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE\MSTest.exe" /testcontainer:Clanbutton.UnitTests.dll'
+   - echo "Test stage 1 completed."
