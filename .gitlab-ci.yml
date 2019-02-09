@@ -1,7 +1,8 @@
 stages:
   - build
+  - test
 
-job:
+build:
   stage: build
   script:
   - echo "Restoring NuGet Packages..."
@@ -9,6 +10,12 @@ job:
   - ''
   - echo "Release build..."
   - '"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\msbuild.exe" resources/Clanbutton/Clanbutton.sln'
-  tags: 
-  except:
-  - tags
+  artifacts:
+     paths:
+        - build/
+
+tests 1:
+   stage: test
+   script: 
+   - echo "Starting test stage 1."
+   - echo "No tests to run at the moment."
