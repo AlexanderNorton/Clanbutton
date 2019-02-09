@@ -8,7 +8,7 @@ job:
   - '"c:\nuget\nuget.exe" restore "resources/Clanbutton/Clanbutton.sln"'
   - ''
   - echo "Release build..."
-  - '"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\msbuild.exe"' /consoleloggerparameters:ErrorsOnly /maxcpucount /nologo /property:Configuration=Release /verbosity:quiet "resources/Clanbutton/Clanbutton.sln"
+  - C:\"Program Files (x86)"\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\msbuild.exe /consoleloggerparameters:ErrorsOnly /maxcpucount /nologo /property:Configuration=Release /verbosity:quiet resources/Clanbutton/Clanbutton.sln
   tags: 
   except:
   - tags
