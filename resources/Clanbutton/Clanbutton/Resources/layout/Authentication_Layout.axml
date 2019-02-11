@@ -12,6 +12,7 @@
 		android:layout_height="wrap_content"
 		android:backgroundTint="#2c2f33">
 		<Button
+			android:id="@+id/btnLogo"
 			android:layout_width="match_parent"
 			android:layout_height="300dp"
 			android:backgroundTint="#ffdc143c"

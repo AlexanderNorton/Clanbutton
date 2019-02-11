@@ -78,9 +78,12 @@ namespace Clanbutton.Activities
 
             var btnLogin = FindViewById<Button>(Resource.Id.btnLogin);
             string steam_url = "https://steamcommunity.com/openid/login?openid.claimed_id=http://specs.openid.net/auth/2.0/identifier_select&openid.identity=http://specs.openid.net/auth/2.0/identifier_select&openid.mode=checkid_setup&openid.ns=http://specs.openid.net/auth/2.0&openid.realm=https://clanbutton&openid.return_to=https://clanbutton/signin/";
-
+			
             btnLogin.Click += delegate
             {
+				var btnLogo = FindViewById<Button>(Resource.Id.btnLogo);
+				btnLogin.Visibility = Android.Views.ViewStates.Gone;
+				btnLogo.Visibility = Android.Views.ViewStates.Gone;
                 WebView webView;
                 webView = FindViewById<WebView>(Resource.Id.webView);
                 ExtendedWebViewClient webClient = new ExtendedWebViewClient();
