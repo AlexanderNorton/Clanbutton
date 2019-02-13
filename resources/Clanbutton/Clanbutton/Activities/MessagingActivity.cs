@@ -1,5 +1,4 @@
-﻿#region usings
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 using Android.App;
 using Android.Widget;
@@ -10,35 +9,34 @@ using Android.Runtime;
 
 using Firebase.Database;
 using Firebase.Auth;
-using Firebase.Xamarin.Database;
 
 using Clanbutton.Builders;
-using Clanbutton.Activities;
 using Clanbutton.Core;
-#endregion
 
 namespace Clanbutton
 {
     [Activity(Label = "Clanbutton", Theme = "@style/Theme.AppCompat.Light.NoActionBar")]
     public class MessagingActivity : AppCompatActivity, IValueEventListener
     {
-        private FirebaseClient firebase;
+        private DatabaseHandler firebase_database;
+        private FirebaseUser user;
+        private UserAccount account;
 
         private List<MessageContent> lstMessage = new List<MessageContent>();
         private ListView lstChat;
         private EditText edtChat;
         private Button sendButton;
 
-        public int MyResultCode = 1;
-
         protected override async void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
             SetContentView(Resource.Layout.Messaging_Layout);
 
-            firebase = new FirebaseClient(GetString(Resource.String.firebase_database_url));
+            firebase_database = new DatabaseHandler();
+
             FirebaseDatabase.Instance.GetReference("chats").AddValueEventListener(this);
-            FirebaseUser user = FirebaseAuth.Instance.CurrentUser;
+            user = FirebaseAuth.Instance.CurrentUser;
+            account = await firebase_database.GetAccountAsync(user.Uid.ToString());
 
             sendButton = FindViewById<Button>(Resource.Id.sendbutton);
             edtChat = FindViewById<EditText>(Resource.Id.input);
@@ -49,18 +47,7 @@ namespace Clanbutton
                 PostMessage();
             };
 
-            if (user == null)
-            {
-                StartActivityForResult(new Intent(this, typeof(AuthenticationActivity)), MyResultCode);
-            }
-            else
-            {
-                UserAccount Account = await ExtensionMethods.GetAccountAsync(user.Uid.ToString(), firebase);
-
-                Toast.MakeText(this, "Welcome " + Account.Username, ToastLength.Short).Show();
-                DisplayChatMessage();
-            }
-
+            DisplayChatMessage();
         }
 
         protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
@@ -70,19 +57,18 @@ namespace Clanbutton
 
         private async void PostMessage()
         {
-            FirebaseUser user = FirebaseAuth.Instance.CurrentUser;
-            UserAccount Account = await ExtensionMethods.GetAccountAsync(user.Uid.ToString(), firebase);
+            var GameSearches = await firebase_database.GetGameSearchesAsync();
 
-            var GameSearches = await firebase.Child("gamesearches").OnceAsync<GameSearch>();
             var CurrentGameSearch = "";
             foreach (var game in GameSearches)
             {
-                if (game.Object.UserId == Account.UserId)
+                if (game.Object.UserId == account.UserId)
                 {
                     CurrentGameSearch = game.Object.GameName;
                 }
             }
-            var Items = await firebase.Child("chats").PostAsync(new MessageContent(Account.Username, edtChat.Text, CurrentGameSearch));
+
+            firebase_database.PostChatMessage(account.Username, edtChat.Text, CurrentGameSearch);
             edtChat.Text = "";
         }
 
@@ -99,20 +85,20 @@ namespace Clanbutton
         private async void DisplayChatMessage()
         {
             lstMessage.Clear();
-            FirebaseUser user = FirebaseAuth.Instance.CurrentUser;
-            UserAccount Account = await ExtensionMethods.GetAccountAsync(user.Uid.ToString(), firebase);
 
-            var GameSearches = await firebase.Child("gamesearches").OnceAsync<GameSearch>();
+            var GameSearches = await firebase_database.GetGameSearchesAsync();
+
             var CurrentGameSearch = "";
             foreach(var game in GameSearches)
             {
-                if (game.Object.UserId == Account.UserId)
+                if (game.Object.UserId == account.UserId)
                 {
                     CurrentGameSearch = game.Object.GameName;
                 }
             }
 
-            var items = await firebase.Child("chats").OnceAsync<MessageContent>();
+            var items = await firebase_database.GetAllChatMessages();
+
             foreach (var item in items)
             {
                 if (CurrentGameSearch == item.Object.Game)

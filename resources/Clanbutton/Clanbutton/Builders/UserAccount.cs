@@ -40,11 +40,11 @@ namespace Clanbutton.Builders
             About = "Add me on Steam and let's play some games!";
         }
 
-        public async void Update(FirebaseClient firebase)
+        public async void Update()
         {
-            //Delete current account
             string userid = FirebaseAuth.Instance.CurrentUser.Uid;
-            var accounts = await firebase.Child("accounts").OnceAsync<UserAccount>();
+            DatabaseHandler firebase_database = new DatabaseHandler();
+            var accounts = await firebase_database.GetAllAccounts();
             string key = "";
 
             foreach(var acc in accounts)
@@ -54,9 +54,7 @@ namespace Clanbutton.Builders
                     key = acc.Key;
                 }
             }
-            await firebase.Child("accounts").Child(key).PutAsync(this);
-
-            //Add 'new' account.
+            firebase_database.SaveAccount(this, key);
         }
 
         public async Task FillSteamData()
@@ -64,7 +62,7 @@ namespace Clanbutton.Builders
             PlayerSummaryModel SteamAccountModel = await client.GetPlayerSummaryAsync(SteamId);
 
             Username = SteamAccountModel.Nickname;
-            Avatar = SteamAccountModel.AvatarUrl;
+            Avatar = SteamAccountModel.AvatarFullUrl;
             PlayingGameName = SteamAccountModel.PlayingGameName;
             CountryCode = SteamAccountModel.CountryCode;
         }

@@ -2,34 +2,46 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:backgroundTint="#ff000000"
-    app:backgroundTintMode="src_in">
+    android:layout_height="match_parent"
+	android:background="#24303d">
     <LinearLayout
-        android:orientation="vertical"
-        android:layout_centerInParent="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <Button
-            android:id="@+id/mainbutton"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:backgroundTint="#ffdc143c"
-            android:textSize="50px"
-            android:textStyle="bold"
-            android:hint="[Logo]"
-            android:backgroundTintMode="src_over"
-            android:text="Clanbutton" />
+		android:orientation="vertical"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+		<ImageButton
+			android:id="@+id/mainbutton"
+			android:src="@drawable/clanbutton"
+			android:layout_gravity="center"
+			android:layout_width="200dp"
+			android:scaleType="fitCenter"
+			android:background="#24303d"
+			android:layout_height="200dp"/>
 		<Button
-            android:id="@+id/logoff_button"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:textSize="30px"
-            android:textStyle="bold"
-            android:backgroundTintMode="src_over"
-            android:text="Logoff (debugging)" />
+			android:id="@+id/current_game_button"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:textSize="40px"
+			android:visibility="gone"
+			android:background="#ff3939"
+			android:textColor="#24303d"
+			android:padding="10dp"
+			android:layout_marginBottom="10dp" />
+		<Button
+            android:id="@+id/specific_game_button"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:textSize="40px"
+			android:visibility="visible"
+			android:padding="10dp"
+			android:background="#ff3939"
+			android:textColor="#24303d"
+			android:layout_marginBottom="10dp"
+			android:text="Search for a game"/>
         <AutoCompleteTextView
             android:id="@+id/searchbar"
+			android:visibility="gone"
             android:layout_width="fill_parent"
             android:hint="Search for any game.."
             android:layout_height="wrap_content"

@@ -3,13 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:padding="16dp"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+	android:background="#24303d">
     <Button
+        android:id="@+id/sendbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
-        android:id="@+id/sendbutton"
-        android:tint="@android:color/white"
+        android:background="#ff3939"
+		android:textColor="#24303d"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:text="Send" />

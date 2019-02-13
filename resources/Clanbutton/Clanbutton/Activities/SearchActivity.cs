@@ -1,84 +1,114 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections;
-using System.Diagnostics;
+using System.Timers;
 
 using Android.App;
 using Android.OS;
 using Android.Widget;
 using Android.Support.V7.App;
 
-using Firebase.Xamarin.Database;
 using Firebase.Auth;
 
 using Clanbutton.Builders;
 using Clanbutton.Core;
-using System;
 
 namespace Clanbutton.Activities
 {
     [Activity(Label = "Clanbutton", Theme = "@style/Theme.AppCompat.Light.NoActionBar")]
     public class SearchActivity : AppCompatActivity
     {
-        private FirebaseClient firebase;
-        FirebaseAuth auth;
-        int MyResultCode = 1;
+        private DatabaseHandler firebase_database;
+        private FirebaseAuth auth;
+        private FirebaseUser user;
+        private SteamClient steam_client;
 
-        private Button MainButton;
+        // Layout
+        ImageButton MainButton;
         private Button ChatroomButton;
-        private Button LogoffButton;
+        private Button CurrentGameButton;
+        private Button SpecificGameButton;
         private AutoCompleteTextView SearchContent;
         private List<string> GameList = new List<string>();
         private List<GameSearch> CurrentSearchers = new List<GameSearch>();
         private ArrayList UserList = new ArrayList();
         private ListView PlayerList;
 
+        private string current_game;
+        private UserAccount uaccount;
+
         protected async override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            // Start the Searching layout.
             SetContentView(Resource.Layout.Searching_Layout);
-            // ExtensionMethods.UpdateAccountData();
 
-            firebase = new FirebaseClient(GetString(Resource.String.firebase_database_url));
-            MainButton = FindViewById<Button>(Resource.Id.mainbutton);
+            // Get references to layout items.
+            MainButton = FindViewById<ImageButton>(Resource.Id.mainbutton);
             SearchContent = FindViewById<AutoCompleteTextView>(Resource.Id.searchbar);
-            LogoffButton = FindViewById<Button>(Resource.Id.logoff_button);
+            CurrentGameButton = FindViewById<Button>(Resource.Id.current_game_button);
+            SpecificGameButton = FindViewById<Button>(Resource.Id.specific_game_button);
 
-            var items = await firebase.Child("games").OnceAsync<string>();
+            steam_client = new SteamClient();
+            auth = FirebaseAuth.Instance;
+            user = auth.CurrentUser;
 
-            foreach (var game in items)
+            firebase_database = new DatabaseHandler();
+            uaccount = await firebase_database.GetAccountAsync(user.Uid);
+
+            CurrentGameButton.Click += delegate
             {
-                GameList.Add(game.Object.ToString());
-            }
+                // Start the search for the current game.
+                StartSearching(uaccount.PlayingGameName);
+            };
 
-            ArrayAdapter autoCompleteAdapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleDropDownItem1Line, GameList);
-            SearchContent.Adapter = autoCompleteAdapter;
+            SpecificGameButton.Click += async delegate
+            {
+                // Get list of all games in the database.
+                var items = await steam_client.GetAllSteamGames();
+
+                foreach (var game in items)
+                {
+                    GameList.Add(game.Name);
+                }
+
+                // Fill the auto completer with the list of games.
+                ArrayAdapter autoCompleteAdapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleDropDownItem1Line, GameList);
+                SearchContent.Adapter = autoCompleteAdapter;
+
+                // Stop showing the specific game button and show the search bar.
+                SearchContent.Visibility = Android.Views.ViewStates.Visible;
+                SpecificGameButton.Visibility = Android.Views.ViewStates.Gone;
+            };
 
             MainButton.Click += delegate
             {
                 StartSearching();
             };
 
-            LogoffButton.Click += delegate
+            if (uaccount.PlayingGameName != null && uaccount.PlayingGameName != "")
             {
-                auth = FirebaseAuth.Instance;
-                auth.SignOut();
-                StartActivity(new Android.Content.Intent(this, typeof(AuthenticationActivity)));
-            };
-
+                // Check if player is currently playing a game and add it as a search option.
+                CurrentGameButton.Visibility = Android.Views.ViewStates.Visible;
+                CurrentGameButton.Text = $"Search for '{uaccount.PlayingGameName}'";
+            }
         }
 
-        public async void StartSearching()
+        public async void StartSearching(string current_game = null)
         {
-
-            if (SearchContent.Text.Length == 0)
+            string search_game;
+            if (current_game != null)
             {
-                Toast.MakeText(this, $"Enter a game title before searching.", ToastLength.Short).Show();
-                return;
+                search_game = current_game;
+            }
+            else
+            {
+                search_game = SearchContent.Text;
             }
 
-            if (SearchContent.Text.Length < 2)
+            if (SearchContent.Text.Length == 0 && current_game == null)
             {
-                Toast.MakeText(this, $"The title you entered is too short.", ToastLength.Short).Show();
+                Toast.MakeText(this, $"Enter a game title before searching.", ToastLength.Short).Show();
                 return;
             }
 
@@ -91,16 +121,15 @@ namespace Clanbutton.Activities
                 StartActivity(new Android.Content.Intent(this, typeof(MessagingActivity)));
             };
 
-            FirebaseUser user = FirebaseAuth.Instance.CurrentUser;
+            // Get all the gamesearches that = the game the user is searching.
+            firebase_database = new DatabaseHandler();
+            GameSearch game = new GameSearch(search_game, uaccount.UserId.ToString(), uaccount.Username);
+            firebase_database.PostGameSearchAsync(game);
+            var gamesearches = await firebase_database.GetGameSearchesAsync();
 
-            UserAccount Account = await ExtensionMethods.GetAccountAsync(user.Uid.ToString(), firebase);
-
-            await firebase.Child("gamesearches").PostAsync(new GameSearch(SearchContent.Text, Account.UserId.ToString(), Account.Username));
-            var gamesearch = await firebase.Child("gamesearches").OnceAsync<GameSearch>();
-
-            foreach (var u in gamesearch)
+            foreach (var u in gamesearches)
             {
-                if (u.Object.GameName == SearchContent.Text && u.Object.Username.Length > 1)
+                if (u.Object.GameName == search_game && u.Object.Username.Length > 1)
                 {
                     UserList.Add(u.Object.Username);
                     CurrentSearchers.Add(u.Object);
@@ -112,7 +141,6 @@ namespace Clanbutton.Activities
             PlayerList.Adapter = AddPlayerAdapter;
             PlayerList.ItemClick += PlayerList_ItemClick;
             PlayerList.PerformClick();
-            //Start the search..
         }
 
         private async void PlayerList_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
@@ -121,9 +149,9 @@ namespace Clanbutton.Activities
             {
                 GameSearch SelectedSearch = CurrentSearchers[e.Position];
 
-                UserAccount Account = await ExtensionMethods.GetAccountAsync(SelectedSearch.UserId.ToString(), firebase);
+                UserAccount account = await firebase_database.GetAccountAsync(user.Uid);
 
-                ExtensionMethods.OpenUserProfile(Account, this);
+                ExtensionMethods.OpenUserProfile(account, this);
             }
             catch(Exception exception)
             {
