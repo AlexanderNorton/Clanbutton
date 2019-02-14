@@ -1,10 +1,11 @@
-# stages:
-#  - build
-#  - test
+stages:
+  - build
+  - test
 
-# build:
-#  stage: build
-#  script:
+build:
+  stage: build
+  script:
+  - echo "This would be a build stage."
 #  - echo "Restoring NuGet Packages..."
 #  - '"c:\nuget\nuget.exe" restore "resources/Clanbutton/Clanbutton.sln"'
 #  - echo "Release build..."
@@ -12,8 +13,8 @@
 #  artifacts:
 #     untracked: true
 
-# tests 1:
-#   stage: test
-#   script: 
-#   - echo "Starting test stage 1."
-#   - echo "Test stage 1 completed."
+tests 1:
+   stage: test
+   script: 
+   - echo "Starting test stage 1."
+   - echo "Test stage 1 completed."
