@@ -2,15 +2,17 @@ stages:
   - build
   - test
 
-build:
+job:
   stage: build
   script:
   - echo "Restoring NuGet Packages..."
   - '"c:\nuget\nuget.exe" restore "resources/Clanbutton/Clanbutton.sln"'
+  - ''
   - echo "Release build..."
-  - '"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\msbuild.exe" /consoleloggerparameters:ErrorsOnly /maxcpucount /nologo /property:Configuration=Release resources/Clanbutton/Clanbutton.sln'
-  artifacts:
-    untracked: true
+  - '"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\msbuild.exe" resources/Clanbutton/Clanbutton.sln'
+  tags: 
+  except:
+  - tags
 
 tests 1:
   stage: test
