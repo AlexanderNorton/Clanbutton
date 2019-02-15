@@ -25,6 +25,7 @@ namespace Clanbutton.Activities
 
         // Layout
         ImageButton MainButton;
+		private Button ProfileButton;
         private Button ChatroomButton;
         private Button CurrentGameButton;
         private Button SpecificGameButton;
@@ -48,8 +49,10 @@ namespace Clanbutton.Activities
             SearchContent = FindViewById<AutoCompleteTextView>(Resource.Id.searchbar);
             CurrentGameButton = FindViewById<Button>(Resource.Id.current_game_button);
             SpecificGameButton = FindViewById<Button>(Resource.Id.specific_game_button);
+			ProfileButton = FindViewById<Button>(Resource.Id.profile_button);
 
-            steam_client = new SteamClient();
+
+			steam_client = new SteamClient();
             auth = FirebaseAuth.Instance;
             user = auth.CurrentUser;
 
@@ -92,7 +95,12 @@ namespace Clanbutton.Activities
                 CurrentGameButton.Visibility = Android.Views.ViewStates.Visible;
                 CurrentGameButton.Text = $"Search for '{uaccount.PlayingGameName}'";
             }
-        }
+			ProfileButton.Click += delegate
+			{
+				ExtensionMethods.OpenUserProfile(uaccount, this);
+			};
+
+		}
 
         public async void StartSearching(string current_game = null)
         {
@@ -157,6 +165,7 @@ namespace Clanbutton.Activities
             {
                 System.Diagnostics.Debug.WriteLine($"ERROR: {exception.Message}");
             }
+
         }
     }
 }
