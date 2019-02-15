@@ -1,9 +1,10 @@
-#stages:
-#  - build
-#
-#job:
-#  stage: build
-#  script:
+stages:
+  - build
+
+job:
+  stage: build
+  script:
+  - echo "Would build.."
 #  - echo "Restoring NuGet Packages..."
 #  - '"c:\nuget\nuget.exe" restore "resources/Clanbutton/Clanbutton.sln"'
 #  - ''
