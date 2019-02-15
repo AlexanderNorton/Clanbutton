@@ -5,16 +5,15 @@ stages:
 build:
   stage: build
   script:
-  - echo "This would be a build stage."
-#  - echo "Restoring NuGet Packages..."
-#  - '"c:\nuget\nuget.exe" restore "resources/Clanbutton/Clanbutton.sln"'
-#  - echo "Release build..."
-#  - '"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\msbuild.exe" /consoleloggerparameters:ErrorsOnly /maxcpucount /nologo /property:Configuration=Release resources/Clanbutton/Clanbutton.sln'
-#  artifacts:
-#     untracked: true
+  - echo "Restoring NuGet Packages..."
+  - '"c:\nuget\nuget.exe" restore "resources/Clanbutton/Clanbutton.sln"'
+  - echo "Release build..."
+  - '"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\msbuild.exe" /consoleloggerparameters:ErrorsOnly /maxcpucount /nologo /property:Configuration=Release resources/Clanbutton/Clanbutton.sln'
+  artifacts:
+    untracked: true
 
 tests 1:
-   stage: test
-   script: 
-   - echo "Starting test stage 1."
-   - echo "Test stage 1 completed."
+  stage: test
+  script: 
+  - echo "Starting test stage 1."
+  - echo "Test stage 1 completed."
