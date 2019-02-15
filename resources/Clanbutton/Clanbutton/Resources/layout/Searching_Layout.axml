@@ -8,18 +8,16 @@
 		android:orientation="vertical"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent">
-		<Button
+		<ImageButton
             android:id="@+id/profile_button"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_gravity="right"
-			android:textSize="30px"
 			android:visibility="visible"
 			android:padding="10dp"
 			android:background="#ff3939"
-			android:textColor="#24303d"
 			android:layout_marginBottom="10dp"
-			android:text="My Profile"/>
+			android:src="@drawable/icon"/>
 		<ImageButton
 			android:id="@+id/mainbutton"
 			android:src="@drawable/clanbutton"
@@ -58,5 +56,23 @@
             android:hint="Search for any game.."
             android:layout_height="wrap_content"
             android:fontFamily="@string/abc_font_family_body_1_material" />
+        <Button
+            android:id="@+id/chatroom_button"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:textSize="40px"
+			android:visibility="gone"
+			android:padding="10dp"
+			android:background="#ff3939"
+			android:textColor="#24303d"
+			android:layout_marginBottom="10dp"
+            android:text="Enter chat room" />
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+			android:background="#ff3939"
+			android:visibility="gone"
+            android:id="@+id/playerslist" />
     </LinearLayout>
 </RelativeLayout>
