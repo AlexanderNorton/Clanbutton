@@ -1,14 +1,14 @@
 stages:
-  - build
+   - build
 
 job:
   stage: build
   script:
-  - echo "Would build.."
-  - echo "Restoring NuGet Packages..."
-  - '"c:\nuget\nuget.exe" restore "resources/Clanbutton"'
-  - echo "Release build..."
-  - '"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\msbuild.exe" resources/Clanbutton'
-  tags: 
-  except:
-  - tags
+  - echo "Building.."
+#  - echo "Restoring NuGet Packages..."
+#  - '"c:\nuget\nuget.exe" restore "resources/Clanbutton"'
+#  - echo "Release build..."
+#  - '"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\msbuild.exe" resources/Clanbutton'
+#  tags: 
+#  except:
+#  - tags
