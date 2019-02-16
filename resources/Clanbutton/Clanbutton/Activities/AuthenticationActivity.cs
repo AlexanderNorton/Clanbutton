@@ -21,7 +21,7 @@ namespace Clanbutton.Activities
     {
 
         ulong SteamUserId;
-
+    
         FirebaseAuth auth;
         FirebaseUser user;
         DatabaseHandler firebase_database;
