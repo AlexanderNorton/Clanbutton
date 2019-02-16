@@ -12,6 +12,7 @@ using Firebase.Auth;
 
 using Clanbutton.Builders;
 using Clanbutton.Core;
+using System.Net;
 
 namespace Clanbutton.Activities
 {
@@ -24,8 +25,8 @@ namespace Clanbutton.Activities
         private SteamClient steam_client;
 
         // Layout
-        ImageButton MainButton;
-		private Button ProfileButton;
+        private ImageButton MainButton;
+		private ImageButton ProfileButton;
         private Button ChatroomButton;
         private Button CurrentGameButton;
         private Button SpecificGameButton;
@@ -41,16 +42,19 @@ namespace Clanbutton.Activities
         protected async override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+			
+
             // Start the Searching layout.
             SetContentView(Resource.Layout.Searching_Layout);
 
-            // Get references to layout items.
-            MainButton = FindViewById<ImageButton>(Resource.Id.mainbutton);
+			// Get references to layout items.
+			MainButton = FindViewById<ImageButton>(Resource.Id.mainbutton);
             SearchContent = FindViewById<AutoCompleteTextView>(Resource.Id.searchbar);
             CurrentGameButton = FindViewById<Button>(Resource.Id.current_game_button);
             SpecificGameButton = FindViewById<Button>(Resource.Id.specific_game_button);
-			ProfileButton = FindViewById<Button>(Resource.Id.profile_button);
-
+			ProfileButton = FindViewById<ImageButton>(Resource.Id.profile_button);
+			PlayerList = FindViewById<ListView>(Resource.Id.playerslist);
+			ChatroomButton = FindViewById<Button>(Resource.Id.chatroom_button);
 
 			steam_client = new SteamClient();
             auth = FirebaseAuth.Instance;
@@ -95,6 +99,31 @@ namespace Clanbutton.Activities
                 CurrentGameButton.Visibility = Android.Views.ViewStates.Visible;
                 CurrentGameButton.Text = $"Search for '{uaccount.PlayingGameName}'";
             }
+			// Download profile picture.
+			WebClient web = new WebClient();
+			web.DownloadDataCompleted += new DownloadDataCompletedEventHandler(web_DownloadDataCompleted);
+			web.DownloadDataAsync(new Uri(uaccount.Avatar));
+
+			void web_DownloadDataCompleted(object sender, DownloadDataCompletedEventArgs e)
+			{
+				// Set profile picture.
+				if (e.Error != null)
+				{
+					RunOnUiThread(() =>
+								  Toast.MakeText(this, e.Error.Message, ToastLength.Short).Show());
+				}
+				else
+				{
+
+					Android.Graphics.Bitmap bm = Android.Graphics.BitmapFactory.DecodeByteArray(e.Result, 0, e.Result.Length);
+
+					RunOnUiThread(() =>
+					{
+						ProfileButton.SetImageBitmap(bm);
+					});
+				}
+			}
+			// Open User Profile
 			ProfileButton.Click += delegate
 			{
 				ExtensionMethods.OpenUserProfile(uaccount, this);
@@ -120,11 +149,13 @@ namespace Clanbutton.Activities
                 return;
             }
 
-            SetContentView(Resource.Layout.SearchProcess_Layout);
-            PlayerList = FindViewById<ListView>(Resource.Id.playerslist);
-            ChatroomButton = FindViewById<Button>(Resource.Id.chatroom_button);
 
-            ChatroomButton.Click += delegate
+			ChatroomButton.Visibility = Android.Views.ViewStates.Visible;
+			PlayerList.Visibility = Android.Views.ViewStates.Visible;
+			SearchContent.Visibility = Android.Views.ViewStates.Gone;
+			CurrentGameButton.Visibility = Android.Views.ViewStates.Gone;
+			SpecificGameButton.Visibility = Android.Views.ViewStates.Gone;
+			ChatroomButton.Click += delegate
             {
                 StartActivity(new Android.Content.Intent(this, typeof(MessagingActivity)));
             };

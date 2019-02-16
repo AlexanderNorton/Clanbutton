@@ -2166,8 +2166,8 @@ namespace Clanbutton
 			// aapt resource value: 0x7f09007c
 			public const int cancel_action = 2131296380;
 			
-			// aapt resource value: 0x7f090091
-			public const int chatroom_button = 2131296401;
+			// aapt resource value: 0x7f090090
+			public const int chatroom_button = 2131296400;
 			
 			// aapt resource value: 0x7f090057
 			public const int checkbox = 2131296343;
@@ -2328,8 +2328,8 @@ namespace Clanbutton
 			// aapt resource value: 0x7f090049
 			public const int parentPanel = 2131296329;
 			
-			// aapt resource value: 0x7f090092
-			public const int playerslist = 2131296402;
+			// aapt resource value: 0x7f090091
+			public const int playerslist = 2131296401;
 			
 			// aapt resource value: 0x7f090098
 			public const int profile_about = 2131296408;
@@ -2412,8 +2412,8 @@ namespace Clanbutton
 			// aapt resource value: 0x7f09008f
 			public const int searchbar = 2131296399;
 			
-			// aapt resource value: 0x7f090090
-			public const int searching_button = 2131296400;
+			// aapt resource value: 0x7f090092
+			public const int searching_button = 2131296402;
 			
 			// aapt resource value: 0x7f09006e
 			public const int select_dialog_listview = 2131296366;
