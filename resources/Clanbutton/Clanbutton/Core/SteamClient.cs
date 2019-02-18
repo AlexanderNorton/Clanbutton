@@ -15,10 +15,12 @@ namespace Clanbutton.Core
         public SteamClient()
         {
             SteamUserInterface = new SteamUser("D31F5813BEA5A009B33CF688883F9CD5");
+            SteamPlayerInterface = new PlayerService("D31F5813BEA5A009B33CF688883F9CD5");
             SteamAppsInterface = new SteamApps("D31F5813BEA5A009B33CF688883F9CD5");
         }
 
         public static SteamUser SteamUserInterface { get; set; }
+        public static PlayerService SteamPlayerInterface { get; set; }
         public static SteamApps SteamAppsInterface { get; set; }
 
         // Obtain userId info from API.
@@ -32,6 +34,12 @@ namespace Clanbutton.Core
         {
             var userFriendsResponse = await SteamUserInterface.GetFriendsListAsync(userId);
             return userFriendsResponse.Data;
+        }
+
+        public async Task<RecentlyPlayedGamesResultModel> GetRecentlyPlayed(ulong userId)
+        {
+            var recentlyPlayedResponse = await SteamPlayerInterface.GetRecentlyPlayedGamesAsync(userId);
+            return recentlyPlayedResponse.Data;
         }
 
         public async Task<IReadOnlyCollection<SteamAppModel>> GetAllSteamGames()
