@@ -18,14 +18,16 @@ namespace Clanbutton.Builders
         public ulong SteamId { get; set; }
         public string Email { get; set; }
         public string Message { get; set; }
-        public string About { get; set; }
-
         public string Username { get; set; }
         public string Avatar { get; set; }
         public string PlayingGameName { get; set; }
         public string CountryCode { get; set; }
+		public string Discord { get; set; }
+		public string Twitch { get; set; }
+		public string Origin { get; set; }
 
-        private ArrayList PastGameSearches = new ArrayList();
+
+		private ArrayList PastGameSearches = new ArrayList();
 
         public string CurrentGameSearch { get; set; }
 
@@ -37,7 +39,6 @@ namespace Clanbutton.Builders
             SteamId = steamid;
             Email = email;
             Username = "Guest";
-            About = "Add me on Steam and let's play some games!";
         }
 
         public async void Update()
