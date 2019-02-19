@@ -13,6 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:src="@drawable/icon"
+			android:layout_margin="10dp"
             android:backgroundTintMode="src_over"/>
         <TextView
             android:id="@+id/profile_username"
@@ -20,8 +21,7 @@
             android:layout_height="wrap_content"
 			android:layout_gravity="center"
             android:textSize="27dp"
-			android:layout_marginBottom="10dp"/>
-			
+			android:layout_marginBottom="10dp"/>			
 		<Button
 			android:id="@+id/profile_visit_steam_button"
             android:text="VISIT STEAM PROFILE"
@@ -43,7 +43,101 @@
 			android:padding="10dp"
 			android:textColor="#24303d"
 			android:layout_marginBottom="10dp"/>
+		<GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"    
+        android:rowCount="4"
+        android:columnCount="3"
+		android:layout_gravity="center">
+			<ImageView
+				android:id="@+id/Discord"
+				android:padding="10dp"
+				android:src="@drawable/Discord"
+				android:layout_width="50dp"
+				android:layout_height="50dp"
+				android:visibility="gone"/>
+			<TextView
+				android:id="@+id/profile_discord"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:textSize="40px"
+				android:padding="10dp"
+				android:visibility="gone"
+				android:textColor="#ff3939"/>
+			<EditText
+				android:id="@+id/discord_edit"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"
+				android:textSize="40px"
+				android:visibility="gone"
+				android:padding="10dp"
+				android:textColor="#ff3939"
+				android:layout_marginBottom="10dp"/>
+			<ImageView
+				android:id="@+id/Twitch"
+				android:padding="10dp"
+				android:src="@drawable/twitch"
+				android:layout_width="50dp"
+				android:layout_height="50dp"
+				android:visibility="gone"/>
+			<TextView
+				android:id="@+id/profile_twitch"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:textSize="40px"
+				android:padding="10dp"
+				android:visibility="gone"
+				android:textColor="#ff3939"/>
+			<EditText
+				android:id="@+id/twitch_edit"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"
+				android:textSize="40px"
+				android:visibility="gone"
+				android:padding="10dp"
+				android:textColor="#ff3939"
+				android:layout_marginBottom="10dp"/>
+			<ImageView
+				android:id="@+id/Origin"
+				android:padding="10dp"
+				android:layout_width="50dp"
+				android:layout_height="50dp"
+				android:src="@drawable/origin"
+				android:visibility="gone"/>
+			<TextView
+				android:id="@+id/profile_origin"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:textSize="40px"
+				android:padding="10dp"
+				android:visibility="gone"
+				android:textColor="#ff3939"/>
+			<EditText
+				android:id="@+id/origin_edit"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"
+				android:textSize="40px"
+				android:visibility="gone"
+				android:padding="10dp"
+				android:textColor="#ff3939"
+				android:layout_marginBottom="10dp"/>
+		</GridLayout>
         <Button
+            android:id="@+id/profile_edit_button"
+            android:text="EDIT SOCIALS"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:textSize="40px"
+			android:padding="10dp"
+			android:background="#ff3939"
+			android:textColor="#24303d"
+			android:layout_marginBottom="10dp"
+			android:visibility="gone"/>	
+		<Button
 			android:id="@+id/edit_profile_savechanges"
             android:text="SAVE CHANGES"
 			android:layout_width="wrap_content"
@@ -55,24 +149,6 @@
 			android:textColor="#24303d"
 			android:visibility="gone"
 			android:layout_marginBottom="10dp"/>
-		<TextView
-            android:id="@+id/profile_about"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-			android:textSize="30px"
-			android:padding="10dp"
-			android:textColor="#24303d"/>
-        <Button
-            android:id="@+id/profile_edit_button"
-            android:text="EDIT BIO"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_gravity="center"
-			android:textSize="40px"
-			android:padding="10dp"
-			android:background="#ff3939"
-			android:textColor="#24303d"
-			android:visibility="gone"/>
 		<Button
             android:id="@+id/profile_logout_button"
             android:text="LOG OUT"
@@ -84,11 +160,5 @@
 			android:background="#ff3939"
 			android:textColor="#24303d"
 			android:visibility="gone"/>
-		<WebView
-			android:layout_width="fill_parent"
-			android:layout_height="fill_parent"
-			android:id="@+id/webViewProfile"
-			android:layout_marginBottom="0.5dp" />
-
     </LinearLayout>
 </RelativeLayout>

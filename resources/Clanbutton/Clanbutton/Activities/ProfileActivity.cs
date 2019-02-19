@@ -23,15 +23,23 @@ namespace Clanbutton.Activities
         // Initialize layout variables.
         private static UserAccount account;
         private static TextView Profile_Username;
-        private static TextView Profile_About;
         private static Button Profile_EditButton;
         private static Button Profile_LogoutButton;
         private static Button Profile_VisitSteamProfile;
         private static Button Profile_SaveChanges;
-        private static EditText Profile_EditAbout;
         private static ImageView Profile_Avatar;
- 
-        protected override void OnCreate(Bundle savedInstanceState)
+		private static EditText Profile_EditDiscord;
+		private static EditText Profile_EditTwitch;
+		private static EditText Profile_EditOrigin;
+		private static TextView Profile_Discord;
+		private static TextView Profile_Twitch;
+		private static TextView Profile_Origin;
+		private static ImageView Logo_Origin;
+		private static ImageView Logo_Twitch;
+		private static ImageView Logo_Discord;
+
+
+		protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             // Set the view to UserProfile.
@@ -39,20 +47,43 @@ namespace Clanbutton.Activities
 
             // Add references to layout variables.
             Profile_Username = FindViewById<TextView>(Resource.Id.profile_username);
-            Profile_About = FindViewById<TextView>(Resource.Id.profile_about);
             Profile_EditButton = FindViewById<Button>(Resource.Id.profile_edit_button);
             Profile_LogoutButton = FindViewById<Button>(Resource.Id.profile_logout_button);
             Profile_VisitSteamProfile = FindViewById<Button>(Resource.Id.profile_visit_steam_button);
             Profile_SaveChanges = FindViewById<Button>(Resource.Id.edit_profile_savechanges);
-            Profile_EditAbout = FindViewById<EditText>(Resource.Id.edit_profile_about);
             Profile_Avatar = FindViewById<ImageView>(Resource.Id.profile_image);
+			Profile_EditOrigin = FindViewById<EditText>(Resource.Id.origin_edit);
+			Profile_EditTwitch = FindViewById<EditText>(Resource.Id.twitch_edit);
+			Profile_EditDiscord = FindViewById<EditText>(Resource.Id.discord_edit);
+			Profile_Discord = FindViewById<TextView>(Resource.Id.profile_discord);
+			Profile_Twitch = FindViewById<TextView>(Resource.Id.profile_twitch);
+			Profile_Origin = FindViewById<TextView>(Resource.Id.profile_origin);
+			Logo_Discord = FindViewById<ImageView>(Resource.Id.Discord);
+			Logo_Twitch = FindViewById<ImageView>(Resource.Id.Twitch);
+			Logo_Origin = FindViewById<ImageView>(Resource.Id.Origin);
 
-            //SET PROFILE DATA
-            Profile_Username.Text = account.Username;
-            Profile_About.Text = account.About;
+			//SET PROFILE DATA
+			Profile_Username.Text = account.Username;
+			if (account.Discord?.Length > 0 ) {
+				Profile_Discord.Text = account.Discord;
+				Profile_Discord.Visibility = Android.Views.ViewStates.Visible;
+				Logo_Discord.Visibility = Android.Views.ViewStates.Visible;
+			}
+			if (account.Twitch?.Length > 0)
+			{
+				Profile_Twitch.Text = account.Twitch;
+				Profile_Twitch.Visibility = Android.Views.ViewStates.Visible;
+				Logo_Twitch.Visibility = Android.Views.ViewStates.Visible;
+			}
+			if (account.Origin?.Length > 0)
+			{
+				Profile_Origin.Text = account.Origin;
+				Profile_Origin.Visibility = Android.Views.ViewStates.Visible;
+				Logo_Origin.Visibility = Android.Views.ViewStates.Visible;
+			}
 
-            // Download profile picture.
-            WebClient web = new WebClient();
+			// Download profile picture.
+			WebClient web = new WebClient();
             web.DownloadDataCompleted += new DownloadDataCompletedEventHandler(web_DownloadDataCompleted);
             web.DownloadDataAsync(new Uri(account.Avatar));
 
@@ -85,21 +116,31 @@ namespace Clanbutton.Activities
 
             Profile_EditButton.Click += delegate
             {
-                // Show the edit bar and save changes button.
-                Profile_EditAbout.Visibility = Android.Views.ViewStates.Visible;
-                Profile_SaveChanges.Visibility = Android.Views.ViewStates.Visible;
+				// Show the edit bar and save changes button.
+				Profile_Origin.Visibility = Android.Views.ViewStates.Gone;
+				Profile_Twitch.Visibility = Android.Views.ViewStates.Gone;
+				Profile_Discord.Visibility = Android.Views.ViewStates.Gone;
+				Logo_Origin.Visibility = Android.Views.ViewStates.Visible;
+				Logo_Twitch.Visibility = Android.Views.ViewStates.Visible;
+				Logo_Discord.Visibility = Android.Views.ViewStates.Visible;
+				Profile_EditOrigin.Visibility = Android.Views.ViewStates.Visible;
+				Profile_EditTwitch.Visibility = Android.Views.ViewStates.Visible;
+				Profile_EditDiscord.Visibility = Android.Views.ViewStates.Visible;
+				Profile_SaveChanges.Visibility = Android.Views.ViewStates.Visible;
                 Profile_EditButton.Visibility = Android.Views.ViewStates.Gone;
-                Profile_EditAbout.Text = account.About;
-            };
+				Profile_EditDiscord.Text = account.Discord;
+				Profile_EditOrigin.Text = account.Origin;
+				Profile_EditTwitch.Text = account.Twitch;
+			};
 
             Profile_SaveChanges.Click += delegate
             {
                 // Save the profile changes.
                 // Remove edit bar and save changes button.
                 SaveProfileChanges();
-                Profile_EditAbout.Visibility = Android.Views.ViewStates.Gone;
-                Profile_SaveChanges.Visibility = Android.Views.ViewStates.Gone;
-                Profile_EditButton.Visibility = Android.Views.ViewStates.Visible;
+				ExtensionMethods.OpenUserProfile(account, this);
+				Finish();
+				
 
             };
 
@@ -111,9 +152,11 @@ namespace Clanbutton.Activities
 
             Profile_VisitSteamProfile.Click += delegate
             {
-                // Open WebView with Steam profile.
+				// Open WebView with Steam profile.
+				SetContentView(Resource.Layout.WebView_Layout);
                 WebView webView;
                 webView = FindViewById<WebView>(Resource.Id.webViewProfile);
+				webView.Visibility = Android.Views.ViewStates.Visible;
                 ExtendedWebViewClient webClient = new ExtendedWebViewClient();
                 webView.SetWebViewClient(webClient);
                 webView.LoadUrl("https://steamcommunity.com/profiles/" + account.SteamId);
@@ -135,9 +178,11 @@ namespace Clanbutton.Activities
             // Save profile changes and update the account.
             try
             {
-                account.About = Profile_EditAbout.Text;
+				account.Origin = Profile_EditOrigin.Text;
+				account.Twitch = Profile_EditTwitch.Text;
+				account.Discord = Profile_EditDiscord.Text;
 
-                account.Update();
+				account.Update();
             }
             catch (Exception e)
             {

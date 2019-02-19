@@ -56,6 +56,7 @@ namespace Clanbutton.Activities
                 string steam_url = "https://steamcommunity.com/openid/login?openid.claimed_id=http://specs.openid.net/auth/2.0/identifier_select&openid.identity=http://specs.openid.net/auth/2.0/identifier_select&openid.mode=checkid_setup&openid.ns=http://specs.openid.net/auth/2.0&openid.realm=https://clanbutton&openid.return_to=https://clanbutton/signin/";
                 WebView webView;
                 webView = FindViewById<WebView>(Resource.Id.webView);
+				webView.Visibility = Android.Views.ViewStates.Visible;
                 ExtendedWebViewClient webClient = new ExtendedWebViewClient();
                 webClient.steamAuthentication = this;
                 webView.SetWebViewClient(webClient);
