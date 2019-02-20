@@ -11,6 +11,7 @@ using Android.Gms.Tasks;
 using Clanbutton.Builders;
 using Firebase.Xamarin.Database;
 using Firebase.Xamarin.Database.Query;
+using Firebase.Database;
 
 namespace Clanbutton.Core
 {
@@ -80,6 +81,11 @@ namespace Clanbutton.Core
         internal async void PostGameSearchAsync(GameSearch game)
         {
             await firebase.Child("gamesearches").PostAsync(game);
+        }
+
+        internal async void RemoveGameSearchAsync(string key)
+        {
+            await firebase.Child("gamesearches").Child(key).DeleteAsync();
         }
 
         internal async Task<IReadOnlyCollection<FirebaseObject<GameSearch>>> GetGameSearchesAsync()

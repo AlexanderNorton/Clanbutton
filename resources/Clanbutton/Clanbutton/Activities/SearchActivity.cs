@@ -26,7 +26,7 @@ namespace Clanbutton.Activities
 
         // Layout
         private ImageButton MainButton;
-		private ImageButton ProfileButton;
+        private ImageButton ProfileButton;
         private Button ChatroomButton;
         private Button CurrentGameButton;
         private Button SpecificGameButton;
@@ -36,27 +36,26 @@ namespace Clanbutton.Activities
         private ArrayList UserList = new ArrayList();
         private ListView PlayerList;
 
-        private string current_game;
         private UserAccount uaccount;
 
         protected async override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-			
+
 
             // Start the Searching layout.
             SetContentView(Resource.Layout.Searching_Layout);
 
-			// Get references to layout items.
-			MainButton = FindViewById<ImageButton>(Resource.Id.mainbutton);
+            // Get references to layout items.
+            MainButton = FindViewById<ImageButton>(Resource.Id.mainbutton);
             SearchContent = FindViewById<AutoCompleteTextView>(Resource.Id.searchbar);
             CurrentGameButton = FindViewById<Button>(Resource.Id.current_game_button);
             SpecificGameButton = FindViewById<Button>(Resource.Id.specific_game_button);
-			ProfileButton = FindViewById<ImageButton>(Resource.Id.profile_button);
-			PlayerList = FindViewById<ListView>(Resource.Id.playerslist);
-			ChatroomButton = FindViewById<Button>(Resource.Id.chatroom_button);
+            ProfileButton = FindViewById<ImageButton>(Resource.Id.profile_button);
+            PlayerList = FindViewById<ListView>(Resource.Id.playerslist);
+            ChatroomButton = FindViewById<Button>(Resource.Id.chatroom_button);
 
-			steam_client = new SteamClient();
+            steam_client = new SteamClient();
             auth = FirebaseAuth.Instance;
             user = auth.CurrentUser;
 
@@ -99,37 +98,37 @@ namespace Clanbutton.Activities
                 CurrentGameButton.Visibility = Android.Views.ViewStates.Visible;
                 CurrentGameButton.Text = $"Search for '{uaccount.PlayingGameName}'";
             }
-			// Download profile picture.
-			WebClient web = new WebClient();
-			web.DownloadDataCompleted += new DownloadDataCompletedEventHandler(web_DownloadDataCompleted);
-			web.DownloadDataAsync(new Uri(uaccount.Avatar));
+            // Download profile picture.
+            WebClient web = new WebClient();
+            web.DownloadDataCompleted += new DownloadDataCompletedEventHandler(web_DownloadDataCompleted);
+            web.DownloadDataAsync(new Uri(uaccount.Avatar));
 
-			void web_DownloadDataCompleted(object sender, DownloadDataCompletedEventArgs e)
-			{
-				// Set profile picture.
-				if (e.Error != null)
-				{
-					RunOnUiThread(() =>
-								  Toast.MakeText(this, e.Error.Message, ToastLength.Short).Show());
-				}
-				else
-				{
+            void web_DownloadDataCompleted(object sender, DownloadDataCompletedEventArgs e)
+            {
+                // Set profile picture.
+                if (e.Error != null)
+                {
+                    RunOnUiThread(() =>
+                                  Toast.MakeText(this, e.Error.Message, ToastLength.Short).Show());
+                }
+                else
+                {
 
-					Android.Graphics.Bitmap bm = Android.Graphics.BitmapFactory.DecodeByteArray(e.Result, 0, e.Result.Length);
+                    Android.Graphics.Bitmap bm = Android.Graphics.BitmapFactory.DecodeByteArray(e.Result, 0, e.Result.Length);
 
-					RunOnUiThread(() =>
-					{
-						ProfileButton.SetImageBitmap(bm);
-					});
-				}
-			}
-			// Open User Profile
-			ProfileButton.Click += delegate
-			{
-				ExtensionMethods.OpenUserProfile(uaccount, this);
-			};
+                    RunOnUiThread(() =>
+                    {
+                        ProfileButton.SetImageBitmap(bm);
+                    });
+                }
+            }
+            // Open User Profile
+            ProfileButton.Click += delegate
+            {
+                ExtensionMethods.OpenUserProfile(uaccount, this);
+            };
 
-		}
+        }
 
         public async void StartSearching(string current_game = null)
         {
@@ -150,30 +149,36 @@ namespace Clanbutton.Activities
             }
 
 
-			ChatroomButton.Visibility = Android.Views.ViewStates.Visible;
-			PlayerList.Visibility = Android.Views.ViewStates.Visible;
-			SearchContent.Visibility = Android.Views.ViewStates.Gone;
-			CurrentGameButton.Visibility = Android.Views.ViewStates.Gone;
-			SpecificGameButton.Visibility = Android.Views.ViewStates.Gone;
-			ChatroomButton.Click += delegate
+            ChatroomButton.Visibility = Android.Views.ViewStates.Visible;
+            PlayerList.Visibility = Android.Views.ViewStates.Visible;
+            SearchContent.Visibility = Android.Views.ViewStates.Gone;
+            CurrentGameButton.Visibility = Android.Views.ViewStates.Gone;
+            SpecificGameButton.Visibility = Android.Views.ViewStates.Gone;
+            ChatroomButton.Click += delegate
             {
                 StartActivity(new Android.Content.Intent(this, typeof(MessagingActivity)));
             };
 
-            // Get all the gamesearches that = the game the user is searching.
             firebase_database = new DatabaseHandler();
-            GameSearch game = new GameSearch(search_game, uaccount.UserId.ToString(), uaccount.Username);
-            firebase_database.PostGameSearchAsync(game);
             var gamesearches = await firebase_database.GetGameSearchesAsync();
+
+            // Get all the gamesearches that = the game the user is searching.
+            GameSearch game = new GameSearch(search_game, uaccount.UserId.ToString(), uaccount.Username);
 
             foreach (var u in gamesearches)
             {
-                if (u.Object.GameName == search_game && u.Object.Username.Length > 1)
+                if (u.Object.UserId == uaccount.UserId)
+                {
+                    firebase_database.RemoveGameSearchAsync(u.Key);
+                }
+                if (u.Object.GameName == search_game)
                 {
                     UserList.Add(u.Object.Username);
                     CurrentSearchers.Add(u.Object);
                 }
             }
+
+            firebase_database.PostGameSearchAsync(game);
 
             ArrayAdapter AddPlayerAdapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleExpandableListItem1, UserList);
 
@@ -192,7 +197,7 @@ namespace Clanbutton.Activities
 
                 ExtensionMethods.OpenUserProfile(account, this);
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 System.Diagnostics.Debug.WriteLine($"ERROR: {exception.Message}");
             }
