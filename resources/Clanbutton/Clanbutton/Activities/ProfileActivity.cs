@@ -23,10 +23,13 @@ namespace Clanbutton.Activities
         // Initialize layout variables.
         private static UserAccount account;
         private static TextView Profile_Username;
+        private static TextView Profile_Followers;
         private static Button Profile_EditButton;
         private static Button Profile_LogoutButton;
         private static Button Profile_VisitSteamProfile;
         private static Button Profile_SaveChanges;
+        private static Button Profile_Follow;
+        private static Button Profile_Unfollow;
         private static ImageView Profile_Avatar;
 		private static EditText Profile_EditDiscord;
 		private static EditText Profile_EditTwitch;
@@ -39,7 +42,9 @@ namespace Clanbutton.Activities
 		private static ImageView Logo_Discord;
 		private static TextView Current_Game;
 
-		protected override void OnCreate(Bundle savedInstanceState)
+        private UserAccount uaccount;
+
+        protected override async void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             // Set the view to UserProfile.
@@ -47,10 +52,13 @@ namespace Clanbutton.Activities
 
             // Add references to layout variables.
             Profile_Username = FindViewById<TextView>(Resource.Id.profile_username);
+            Profile_Followers = FindViewById<TextView>(Resource.Id.profile_followers);
             Profile_EditButton = FindViewById<Button>(Resource.Id.profile_edit_button);
             Profile_LogoutButton = FindViewById<Button>(Resource.Id.profile_logout_button);
             Profile_VisitSteamProfile = FindViewById<Button>(Resource.Id.profile_visit_steam_button);
             Profile_SaveChanges = FindViewById<Button>(Resource.Id.edit_profile_savechanges);
+            Profile_Follow = FindViewById<Button>(Resource.Id.profile_follow_button);
+            Profile_Unfollow = FindViewById<Button>(Resource.Id.profile_unfollow_button);
             Profile_Avatar = FindViewById<ImageView>(Resource.Id.profile_image);
 			Profile_EditOrigin = FindViewById<EditText>(Resource.Id.origin_edit);
 			Profile_EditTwitch = FindViewById<EditText>(Resource.Id.twitch_edit);
@@ -63,9 +71,17 @@ namespace Clanbutton.Activities
 			Logo_Origin = FindViewById<ImageView>(Resource.Id.Origin);
 			Current_Game = FindViewById<TextView>(Resource.Id.current_game);
 
-			//SET PROFILE DATA
-			Profile_Username.Text = account.Username;
-			if (account.Discord?.Length > 0 ) {
+
+            firebase_database = new DatabaseHandler();
+            // Get the account of the current user (not the profile user)
+            uaccount = await firebase_database.GetAccountAsync(FirebaseAuth.Instance.CurrentUser.Uid);
+
+            //SET PROFILE DATA
+            var followers = await firebase_database.GetUserFollowers(account);
+            Profile_Username.Text = account.Username;
+            Profile_Followers.Text = $"Followers: {followers.Count}";
+
+            if (account.Discord?.Length > 0 ) {
 				Profile_Discord.Text = account.Discord;
 				Profile_Discord.Visibility = Android.Views.ViewStates.Visible;
 				Logo_Discord.Visibility = Android.Views.ViewStates.Visible;
@@ -113,17 +129,27 @@ namespace Clanbutton.Activities
                 }
             }
 
+            if (uaccount.IsFollowing(account))
+            {
+                Profile_Follow.Visibility = Android.Views.ViewStates.Gone;
+                Profile_Unfollow.Visibility = Android.Views.ViewStates.Visible;
+            }
+
             if (account.UserId == FirebaseAuth.Instance.CurrentUser.Uid)
             {
                 // If the profile is owned by the user, show the edit and logout buttons.
                 Profile_EditButton.Visibility = Android.Views.ViewStates.Visible;
                 Profile_LogoutButton.Visibility = Android.Views.ViewStates.Visible;
+                Profile_Follow.Visibility = Android.Views.ViewStates.Gone;
+                Profile_Unfollow.Visibility = Android.Views.ViewStates.Gone;
             }
 
             Profile_EditButton.Click += delegate
             {
-				// Show the edit bar and save changes button.
-				Profile_Origin.Visibility = Android.Views.ViewStates.Gone;
+                // Show the edit bar and save changes button.
+                Profile_Follow.Visibility = Android.Views.ViewStates.Gone;
+                Profile_Unfollow.Visibility = Android.Views.ViewStates.Gone;
+                Profile_Origin.Visibility = Android.Views.ViewStates.Gone;
 				Profile_Twitch.Visibility = Android.Views.ViewStates.Gone;
 				Profile_Discord.Visibility = Android.Views.ViewStates.Gone;
 				Logo_Origin.Visibility = Android.Views.ViewStates.Visible;
@@ -148,6 +174,26 @@ namespace Clanbutton.Activities
 				Finish();
 				
 
+            };
+
+            Profile_Follow.Click += delegate
+            {
+                // Add the uid to the followers of the current account.
+                uaccount.Following.Add(account.UserId);
+                Profile_Follow.Visibility = Android.Views.ViewStates.Gone;
+                Profile_Unfollow.Visibility = Android.Views.ViewStates.Visible;
+                uaccount.Update();
+                Profile_Followers.Text = $"Followers: {followers.Count}";
+            };
+
+            Profile_Unfollow.Click += delegate
+            {
+                // Remove the uid from the followers of the current account.
+                uaccount.Following.Remove(account.UserId);
+                Profile_Unfollow.Visibility = Android.Views.ViewStates.Gone;
+                Profile_Follow.Visibility = Android.Views.ViewStates.Visible;
+                uaccount.Update();
+                Profile_Followers.Text = $"Followers: {followers.Count - 1}";
             };
 
             Profile_LogoutButton.Click += delegate
