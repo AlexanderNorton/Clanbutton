@@ -193,7 +193,7 @@ namespace Clanbutton.Activities
             {
                 GameSearch SelectedSearch = CurrentSearchers[e.Position];
 
-                UserAccount account = await firebase_database.GetAccountAsync(user.Uid);
+                UserAccount account = await firebase_database.GetAccountAsync(SelectedSearch.UserId);
 
                 ExtensionMethods.OpenUserProfile(account, this);
             }

@@ -12,6 +12,7 @@ using Clanbutton.Builders;
 using Firebase.Xamarin.Database;
 using Firebase.Xamarin.Database.Query;
 using Firebase.Database;
+using System.Collections;
 
 namespace Clanbutton.Core
 {
@@ -60,6 +61,7 @@ namespace Clanbutton.Core
 					acc.Twitch = account.Object.Twitch;
 					acc.Discord = account.Object.Discord;
 					acc.Origin = account.Object.Origin;
+                    if (account.Object.Following != null) { acc.Following.AddRange(account.Object.Following); } else { acc.Following = new ArrayList(); }
                     await acc.FillSteamData();
 
                     return acc;
@@ -107,6 +109,20 @@ namespace Clanbutton.Core
         {
             var chats = await firebase.Child("chats").OnceAsync<MessageContent>();
             return chats;
+        }
+
+        internal async Task<ArrayList> GetUserFollowers(UserAccount account)
+        {
+            ArrayList followers = new ArrayList();
+            var accounts = await GetAllAccounts();
+            foreach (var uaccount in accounts)
+            {
+                if (uaccount.Object.Following == null) { return followers; }
+                if (uaccount.Object.Following.Contains(account.UserId)){
+                    followers.Add(account.UserId);
+                }
+            } 
+            return followers;
         }
     }
 }

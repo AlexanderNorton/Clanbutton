@@ -25,13 +25,16 @@ namespace Clanbutton.Builders
 		public string Discord { get; set; }
 		public string Twitch { get; set; }
 		public string Origin { get; set; }
-
+        public ArrayList Following { get; set; }
 
 		private ArrayList PastGameSearches = new ArrayList();
 
         public string CurrentGameSearch { get; set; }
 
-        public UserAccount() { }
+        public UserAccount()
+        {
+            Following = new ArrayList();
+        }
 
         public UserAccount(string userid, ulong steamid, string email)
         {
@@ -39,6 +42,7 @@ namespace Clanbutton.Builders
             SteamId = steamid;
             Email = email;
             Username = "Guest";
+            Following = new ArrayList();
         }
 
         public async void Update()
@@ -66,6 +70,13 @@ namespace Clanbutton.Builders
             Avatar = SteamAccountModel.AvatarFullUrl;
             PlayingGameName = SteamAccountModel.PlayingGameName;
             CountryCode = SteamAccountModel.CountryCode;
+        }
+
+        public bool IsFollowing(UserAccount account)
+        {
+            if (Following == null) { return false; }
+            if (Following.Contains(account.UserId)) { return true; }
+            else { return false; }
         }
     }
 }
