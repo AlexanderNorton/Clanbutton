@@ -104,7 +104,7 @@ namespace Clanbutton
                 if (CurrentGameSearch == item.Object.Game)
                 {
                     lstMessage.Add(item.Object);
-                    ListViewAdapter.ListViewAdapter adapter = new ListViewAdapter.ListViewAdapter(this, lstMessage);
+                    ListViewAdapter adapter = new ListViewAdapter(this, lstMessage);
                     lstChat.Adapter = adapter;
                 }
             }

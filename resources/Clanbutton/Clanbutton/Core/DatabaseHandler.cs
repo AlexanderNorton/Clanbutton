@@ -105,6 +105,11 @@ namespace Clanbutton.Core
             await firebase.Child("chats").PostAsync(message);
         }
 
+        internal async void CreateActivity(UserActivity activity)
+        {
+            await firebase.Child("activities").PostAsync(activity);
+        }
+
         internal async Task<IReadOnlyCollection<FirebaseObject<MessageContent>>> GetAllChatMessages()
         {
             var chats = await firebase.Child("chats").OnceAsync<MessageContent>();
@@ -123,6 +128,12 @@ namespace Clanbutton.Core
                 }
             } 
             return followers;
+        }
+
+        internal async Task<IReadOnlyCollection<FirebaseObject<UserActivity>>> GetAllActivities()
+        {
+            var activities = await firebase.Child("activities").OnceAsync<UserActivity>();
+            return activities;
         }
     }
 }

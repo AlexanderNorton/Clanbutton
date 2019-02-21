@@ -9,6 +9,7 @@ using Android.Widget;
 using Android.Support.V7.App;
 
 using Firebase.Auth;
+using Firebase.Database;
 
 using Clanbutton.Builders;
 using Clanbutton.Core;
@@ -17,7 +18,7 @@ using System.Net;
 namespace Clanbutton.Activities
 {
     [Activity(Label = "Clanbutton", Theme = "@style/Theme.AppCompat.Light.NoActionBar")]
-    public class SearchActivity : AppCompatActivity
+    public class SearchActivity : AppCompatActivity, IValueEventListener
     {
         private DatabaseHandler firebase_database;
         private FirebaseAuth auth;
@@ -35,6 +36,8 @@ namespace Clanbutton.Activities
         private List<GameSearch> CurrentSearchers = new List<GameSearch>();
         private ArrayList UserList = new ArrayList();
         private ListView PlayerList;
+        private List<UserActivity> lstActivities = new List<UserActivity>();
+        private ListView lstActivityView;
 
         private UserAccount uaccount;
 
@@ -54,6 +57,7 @@ namespace Clanbutton.Activities
             ProfileButton = FindViewById<ImageButton>(Resource.Id.profile_button);
             PlayerList = FindViewById<ListView>(Resource.Id.playerslist);
             ChatroomButton = FindViewById<Button>(Resource.Id.chatroom_button);
+            lstActivityView = FindViewById<ListView>(Resource.Id.list_of_activities);
 
             steam_client = new SteamClient();
             auth = FirebaseAuth.Instance;
@@ -122,6 +126,11 @@ namespace Clanbutton.Activities
                     });
                 }
             }
+
+            // Latest user activity section.
+            FirebaseDatabase.Instance.GetReference("activities").AddValueEventListener(this);
+            DisplayActivities();
+
             // Open User Profile
             ProfileButton.Click += delegate
             {
@@ -179,6 +188,9 @@ namespace Clanbutton.Activities
             }
 
             firebase_database.PostGameSearchAsync(game);
+            
+            // Create the game search activity.
+            new UserActivity(uaccount.UserId, $"Started searching for '{search_game}'").Create();
 
             ArrayAdapter AddPlayerAdapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleExpandableListItem1, UserList);
 
@@ -202,6 +214,34 @@ namespace Clanbutton.Activities
                 System.Diagnostics.Debug.WriteLine($"ERROR: {exception.Message}");
             }
 
+        }
+
+        private async void DisplayActivities()
+        {
+            lstActivities.Clear();
+
+            var UserActivities = await firebase_database.GetAllActivities();
+
+            foreach (var item in UserActivities)
+            {
+                // Check if the activity's user ID is in the current user's account followers.
+                if (uaccount.Following.Contains(item.Object.UserId) || uaccount.UserId == item.Object.UserId)
+                {
+                    lstActivities.Add(item.Object);
+                    ActivityListAdapter adapter = new ActivityListAdapter(this, lstActivities);
+                    lstActivityView.Adapter = adapter;
+                }
+            }
+        }
+
+        public void OnCancelled(DatabaseError error)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void OnDataChange(DataSnapshot snapshot)
+        {
+            DisplayActivities();
         }
     }
 }

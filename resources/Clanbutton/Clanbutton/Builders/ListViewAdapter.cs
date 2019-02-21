@@ -7,7 +7,7 @@ using Java.Lang;
 
 using Clanbutton.Builders;
 
-namespace Clanbutton.ListViewAdapter
+namespace Clanbutton.Builders
 {
     internal class ListViewAdapter : BaseAdapter
     {

@@ -183,6 +183,8 @@
   <ItemGroup>
     <Compile Include="Activities\ProfileActivity.cs" />
     <Compile Include="Activities\SearchActivity.cs" />
+    <Compile Include="Builders\ActivityListAdapter.cs" />
+    <Compile Include="Builders\UserActivity.cs" />
     <Compile Include="Builders\ListViewAdapter.cs" />
     <Compile Include="Activities\MessagingActivity.cs" />
     <Compile Include="Builders\GameSearch.cs" />
@@ -209,9 +211,6 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\Messaging_Layout.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-    <AndroidResource Include="Resources\layout\SearchProcess_Layout.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\Searching_Layout.axml">
@@ -247,6 +246,10 @@
     <AndroidResource Include="Resources\drawable\origin.png" />
     <AndroidResource Include="Resources\drawable\twitch.png" />
     <AndroidResource Include="Resources\drawable\Discord.png" />
+    <AndroidResource Include="Resources\layout\Activity_ListItem.axml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <Content Include="THIRD-PARTY-NOTICES.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
