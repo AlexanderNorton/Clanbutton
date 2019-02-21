@@ -98,6 +98,7 @@ namespace Clanbutton.Activities
 				Profile_Origin.Visibility = Android.Views.ViewStates.Visible;
 				Logo_Origin.Visibility = Android.Views.ViewStates.Visible;
 			}
+			Current_Game.Visibility = Android.Views.ViewStates.Gone;
 			if (account.PlayingGameName != null && account.PlayingGameName != "")
 			{
 				// Check if player is currently playing a game and add it as a search option.

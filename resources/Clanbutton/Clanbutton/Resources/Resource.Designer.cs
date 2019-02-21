@@ -2232,8 +2232,8 @@ namespace Clanbutton
 			// aapt resource value: 0x7f09009e
 			public const int discord_edit = 2131296414;
 			
-			// aapt resource value: 0x7f0900a6
-			public const int edit_profile_savechanges = 2131296422;
+			// aapt resource value: 0x7f0900a4
+			public const int edit_profile_savechanges = 2131296420;
 			
 			// aapt resource value: 0x7f090062
 			public const int edit_query = 2131296354;
@@ -2370,11 +2370,11 @@ namespace Clanbutton
 			// aapt resource value: 0x7f09009d
 			public const int profile_discord = 2131296413;
 			
-			// aapt resource value: 0x7f0900a5
-			public const int profile_edit_button = 2131296421;
+			// aapt resource value: 0x7f090097
+			public const int profile_follow_button = 2131296407;
 			
-			// aapt resource value: 0x7f09009a
-			public const int profile_follow_button = 2131296410;
+			// aapt resource value: 0x7f090095
+			public const int profile_followers = 2131296405;
 			
 			// aapt resource value: 0x7f090098
 			public const int profile_followers = 2131296408;
@@ -2388,17 +2388,14 @@ namespace Clanbutton
 			// aapt resource value: 0x7f0900a3
 			public const int profile_origin = 2131296419;
 			
-			// aapt resource value: 0x7f0900a0
-			public const int profile_twitch = 2131296416;
+			// aapt resource value: 0x7f090098
+			public const int profile_unfollow_button = 2131296408;
 			
 			// aapt resource value: 0x7f09009b
 			public const int profile_unfollow_button = 2131296411;
 			
 			// aapt resource value: 0x7f090096
-			public const int profile_username = 2131296406;
-			
-			// aapt resource value: 0x7f090099
-			public const int profile_visit_steam_button = 2131296409;
+			public const int profile_visit_steam_button = 2131296406;
 			
 			// aapt resource value: 0x7f090006
 			public const int progress_circular = 2131296262;

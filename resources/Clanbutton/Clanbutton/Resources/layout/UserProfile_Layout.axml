@@ -38,6 +38,7 @@
             android:layout_height="wrap_content"
 			android:layout_gravity="center"
             android:textSize="17dp"
+			android:textColor="#ffffff"
 			android:layout_marginBottom="10dp"/>
 		<Button
 			android:id="@+id/profile_visit_steam_button"
@@ -48,7 +49,7 @@
 			android:textSize="40px"
 			android:padding="10dp"
 			android:background="#ff3939"
-			android:textColor="#24303d"
+			android:textColor="#ffffff"
 			android:layout_marginBottom="10dp"/>
 		<Button
 			android:id="@+id/profile_follow_button"
@@ -59,7 +60,7 @@
 			android:textSize="40px"
 			android:padding="10dp"
 			android:background="#ff3939"
-			android:textColor="#24303d"
+			android:textColor="#ffffff"
 			android:layout_marginBottom="10dp"/>
 		<Button
 			android:id="@+id/profile_unfollow_button"

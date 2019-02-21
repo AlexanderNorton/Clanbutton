@@ -15,6 +15,7 @@
 			android:layout_gravity="right"
 			android:visibility="visible"
 			android:background="#24303d"
+			android:padding="10dp"
 			android:src="@drawable/icon"/>
 		<ImageButton
 			android:id="@+id/mainbutton"
