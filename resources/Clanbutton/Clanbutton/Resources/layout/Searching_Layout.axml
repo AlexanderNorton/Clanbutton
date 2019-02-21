@@ -14,9 +14,7 @@
 			android:layout_height="wrap_content"
 			android:layout_gravity="right"
 			android:visibility="visible"
-			android:padding="10dp"
-			android:background="#ff3939"
-			android:layout_marginBottom="10dp"
+			android:background="#24303d"
 			android:src="@drawable/icon"/>
 		<ImageButton
 			android:id="@+id/mainbutton"
@@ -34,7 +32,7 @@
 			android:textSize="40px"
 			android:visibility="gone"
 			android:background="#ff3939"
-			android:textColor="#24303d"
+			android:textColor="#ffffff"
 			android:padding="10dp"
 			android:layout_marginBottom="10dp" />
 		<Button
@@ -46,7 +44,7 @@
 			android:visibility="visible"
 			android:padding="10dp"
 			android:background="#ff3939"
-			android:textColor="#24303d"
+			android:textColor="#ffffff"
 			android:layout_marginBottom="10dp"
 			android:text="Search for a game"/>
         <AutoCompleteTextView
@@ -65,7 +63,7 @@
 			android:visibility="gone"
 			android:padding="10dp"
 			android:background="#ff3939"
-			android:textColor="#24303d"
+			android:textColor="#ffffff"
 			android:layout_marginBottom="10dp"
             android:text="Enter chat room" />
         <ListView

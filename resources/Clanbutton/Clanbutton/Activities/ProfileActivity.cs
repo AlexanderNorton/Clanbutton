@@ -37,7 +37,7 @@ namespace Clanbutton.Activities
 		private static ImageView Logo_Origin;
 		private static ImageView Logo_Twitch;
 		private static ImageView Logo_Discord;
-
+		private static TextView Current_Game;
 
 		protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -61,6 +61,7 @@ namespace Clanbutton.Activities
 			Logo_Discord = FindViewById<ImageView>(Resource.Id.Discord);
 			Logo_Twitch = FindViewById<ImageView>(Resource.Id.Twitch);
 			Logo_Origin = FindViewById<ImageView>(Resource.Id.Origin);
+			Current_Game = FindViewById<TextView>(Resource.Id.current_game);
 
 			//SET PROFILE DATA
 			Profile_Username.Text = account.Username;
@@ -81,7 +82,12 @@ namespace Clanbutton.Activities
 				Profile_Origin.Visibility = Android.Views.ViewStates.Visible;
 				Logo_Origin.Visibility = Android.Views.ViewStates.Visible;
 			}
-
+			if (account.PlayingGameName != null && account.PlayingGameName != "")
+			{
+				// Check if player is currently playing a game and add it as a search option.
+				Current_Game.Visibility = Android.Views.ViewStates.Visible;
+				Current_Game.Text = $"Currently Playing '{account.PlayingGameName}'";
+			}
 			// Download profile picture.
 			WebClient web = new WebClient();
             web.DownloadDataCompleted += new DownloadDataCompletedEventHandler(web_DownloadDataCompleted);

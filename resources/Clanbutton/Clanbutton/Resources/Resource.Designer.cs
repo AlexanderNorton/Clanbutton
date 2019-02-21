@@ -2199,6 +2199,9 @@ namespace Clanbutton
 			// aapt resource value: 0x7f09004a
 			public const int contentPanel = 2131296330;
 			
+			// aapt resource value: 0x7f090095
+			public const int current_game = 2131296405;
+			
 			// aapt resource value: 0x7f09008d
 			public const int current_game_button = 2131296397;
 			
@@ -2222,9 +2225,6 @@ namespace Clanbutton
 			
 			// aapt resource value: 0x7f090099
 			public const int discord_edit = 2131296409;
-			
-			// aapt resource value: 0x7f090096
-			public const int edit_profile_about = 2131296406;
 			
 			// aapt resource value: 0x7f0900a1
 			public const int edit_profile_savechanges = 2131296417;
@@ -2379,8 +2379,8 @@ namespace Clanbutton
 			// aapt resource value: 0x7f090094
 			public const int profile_username = 2131296404;
 			
-			// aapt resource value: 0x7f090095
-			public const int profile_visit_steam_button = 2131296405;
+			// aapt resource value: 0x7f090096
+			public const int profile_visit_steam_button = 2131296406;
 			
 			// aapt resource value: 0x7f090006
 			public const int progress_circular = 2131296262;
