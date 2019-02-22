@@ -28,6 +28,7 @@ namespace Clanbutton.Activities
         // Layout
         private ImageButton MainButton;
         private ImageButton ProfileButton;
+        private Button BeaconButton;
         private Button ChatroomButton;
         private Button CurrentGameButton;
         private Button SpecificGameButton;
@@ -38,7 +39,9 @@ namespace Clanbutton.Activities
         private ListView PlayerList;
         private List<UserActivity> lstActivities = new List<UserActivity>();
         private ListView lstActivityView;
+        private TextView ProfileName;
 
+        private ActivityListAdapter adapter;
         private UserAccount uaccount;
 
         protected async override void OnCreate(Bundle savedInstanceState)
@@ -58,6 +61,8 @@ namespace Clanbutton.Activities
             PlayerList = FindViewById<ListView>(Resource.Id.playerslist);
             ChatroomButton = FindViewById<Button>(Resource.Id.chatroom_button);
             lstActivityView = FindViewById<ListView>(Resource.Id.list_of_activities);
+            BeaconButton = FindViewById<Button>(Resource.Id.beacon_button);
+            ProfileName = FindViewById<TextView>(Resource.Id.profile_name);
 
             steam_client = new SteamClient();
             auth = FirebaseAuth.Instance;
@@ -65,6 +70,8 @@ namespace Clanbutton.Activities
 
             firebase_database = new DatabaseHandler();
             uaccount = await firebase_database.GetAccountAsync(user.Uid);
+
+            ProfileName.Text = uaccount.Username;
 
             CurrentGameButton.Click += delegate
             {
@@ -88,7 +95,24 @@ namespace Clanbutton.Activities
 
                 // Stop showing the specific game button and show the search bar.
                 SearchContent.Visibility = Android.Views.ViewStates.Visible;
+                BeaconButton.Visibility = Android.Views.ViewStates.Visible;
                 SpecificGameButton.Visibility = Android.Views.ViewStates.Gone;
+                lstActivityView.Visibility = Android.Views.ViewStates.Gone;
+
+            };
+
+            BeaconButton.Click += delegate
+            {
+                if (SearchContent.Text.Length == 0)
+                {
+                    Toast.MakeText(this, $"Enter a game title before deploying a beacon.", ToastLength.Short).Show();
+                    return;
+                }
+
+                ExtensionMethods.CreateBeacon(uaccount, SearchContent.Text);
+                BeaconButton.Visibility = Android.Views.ViewStates.Gone;
+                StartActivity(new Android.Content.Intent(this, typeof(SearchActivity)));
+                Finish();
             };
 
             MainButton.Click += delegate
@@ -129,7 +153,6 @@ namespace Clanbutton.Activities
 
             // Latest user activity section.
             FirebaseDatabase.Instance.GetReference("activities").AddValueEventListener(this);
-            DisplayActivities();
 
             // Open User Profile
             ProfileButton.Click += delegate
@@ -163,8 +186,10 @@ namespace Clanbutton.Activities
             SearchContent.Visibility = Android.Views.ViewStates.Gone;
             CurrentGameButton.Visibility = Android.Views.ViewStates.Gone;
             SpecificGameButton.Visibility = Android.Views.ViewStates.Gone;
+            lstActivityView.Visibility = Android.Views.ViewStates.Gone;
             ChatroomButton.Click += delegate
             {
+                MessagingActivity.account = uaccount;
                 StartActivity(new Android.Content.Intent(this, typeof(MessagingActivity)));
             };
 
@@ -190,7 +215,7 @@ namespace Clanbutton.Activities
             firebase_database.PostGameSearchAsync(game);
             
             // Create the game search activity.
-            new UserActivity(uaccount.UserId, $"Started searching for '{search_game}'").Create();
+            new UserActivity(uaccount.UserId, uaccount.Username, $"Started searching for '{search_game}'", uaccount.Avatar).Create();
 
             ArrayAdapter AddPlayerAdapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleExpandableListItem1, UserList);
 
@@ -220,18 +245,23 @@ namespace Clanbutton.Activities
         {
             lstActivities.Clear();
 
-            var UserActivities = await firebase_database.GetAllActivities();
-
-            foreach (var item in UserActivities)
+            var activities = await firebase_database.GetAllActivities();
+            var activitieslst = new List<Firebase.Xamarin.Database.FirebaseObject<UserActivity>>();
+            activitieslst.AddRange(activities);
+            activitieslst.Reverse();
+            var count = 0;
+            foreach (var item in activitieslst)
             {
                 // Check if the activity's user ID is in the current user's account followers.
-                if (uaccount.Following.Contains(item.Object.UserId) || uaccount.UserId == item.Object.UserId)
+                if ((uaccount.Following.Contains(item.Object.UserId) || uaccount.UserId == item.Object.UserId) && count <= 5)
                 {
+                    UserActivity useractivity = item.Object;
                     lstActivities.Add(item.Object);
-                    ActivityListAdapter adapter = new ActivityListAdapter(this, lstActivities);
-                    lstActivityView.Adapter = adapter;
+                    count += 1;
                 }
             }
+            adapter = new ActivityListAdapter(this, lstActivities);
+            lstActivityView.Adapter = adapter;
         }
 
         public void OnCancelled(DatabaseError error)

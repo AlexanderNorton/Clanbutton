@@ -20,7 +20,7 @@ namespace Clanbutton
     {
         private DatabaseHandler firebase_database;
         private FirebaseUser user;
-        private UserAccount account;
+        public static UserAccount account;
 
         private List<MessageContent> lstMessage = new List<MessageContent>();
         private ListView lstChat;
@@ -36,7 +36,6 @@ namespace Clanbutton
 
             FirebaseDatabase.Instance.GetReference("chats").AddValueEventListener(this);
             user = FirebaseAuth.Instance.CurrentUser;
-            account = await firebase_database.GetAccountAsync(user.Uid.ToString());
 
             sendButton = FindViewById<Button>(Resource.Id.sendbutton);
             edtChat = FindViewById<EditText>(Resource.Id.input);
@@ -89,7 +88,7 @@ namespace Clanbutton
             var GameSearches = await firebase_database.GetGameSearchesAsync();
 
             var CurrentGameSearch = "";
-            foreach(var game in GameSearches)
+            foreach (var game in GameSearches)
             {
                 if (game.Object.UserId == account.UserId)
                 {
@@ -104,12 +103,11 @@ namespace Clanbutton
                 if (CurrentGameSearch == item.Object.Game)
                 {
                     lstMessage.Add(item.Object);
-                    ListViewAdapter adapter = new ListViewAdapter(this, lstMessage);
+                    ListViewAdapter.ListViewAdapter adapter = new ListViewAdapter.ListViewAdapter(this, lstMessage);
                     lstChat.Adapter = adapter;
                 }
             }
         }
     }
 }
-
 
