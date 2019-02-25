@@ -187,6 +187,8 @@ namespace Clanbutton.Activities
             CurrentGameButton.Visibility = Android.Views.ViewStates.Gone;
             SpecificGameButton.Visibility = Android.Views.ViewStates.Gone;
             lstActivityView.Visibility = Android.Views.ViewStates.Gone;
+            BeaconButton.Visibility = Android.Views.ViewStates.Gone;
+ 
             ChatroomButton.Click += delegate
             {
                 MessagingActivity.account = uaccount;
