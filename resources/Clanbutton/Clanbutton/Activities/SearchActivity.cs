@@ -101,7 +101,7 @@ namespace Clanbutton.Activities
 
             };
 
-            BeaconButton.Click += delegate
+            BeaconButton.Click += async delegate
             {
                 if (SearchContent.Text.Length == 0)
                 {
@@ -109,7 +109,20 @@ namespace Clanbutton.Activities
                     return;
                 }
 
-                ExtensionMethods.CreateBeacon(uaccount, SearchContent.Text);
+                var current_beacon = await firebase_database.GetBeaconForUser(uaccount.UserId);
+
+                if (current_beacon != null && current_beacon.Object.CreationTime.AddMinutes(30) > DateTime.Now)
+                {
+                    Toast.MakeText(this, $"You just deployed a beacon for '{current_beacon.Object.GameName}'. Please wait a while before deploying another.", ToastLength.Long).Show();
+                    return;
+                }
+
+                // Create the beacon.
+                new Beacon(uaccount.UserId, SearchContent.Text, DateTime.Now).Create();
+                // Create the beacon activity.
+                new UserActivity(uaccount.UserId, uaccount.Username, $"Deployed a beacon and wants to play '{SearchContent.Text}'", uaccount.Avatar).Create();
+                // Send a beacon notification to all followers.
+
                 BeaconButton.Visibility = Android.Views.ViewStates.Gone;
                 StartActivity(new Android.Content.Intent(this, typeof(SearchActivity)));
                 Finish();

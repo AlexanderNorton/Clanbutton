@@ -18,12 +18,5 @@ namespace Clanbutton.Core
 
             context.StartActivity(new Android.Content.Intent(context, typeof(ProfileActivity)));
         }
-
-        internal static void CreateBeacon(UserAccount uaccount, string text)
-        {
-            // Create the beacon activity.
-            new UserActivity(uaccount.UserId, uaccount.Username, $"Deployed a beacon and wants to play '{text}'", uaccount.Avatar).Create();
-            // Send a notification to all followers.
-        }
     }
 }

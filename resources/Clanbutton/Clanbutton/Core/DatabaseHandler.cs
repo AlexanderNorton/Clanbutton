@@ -110,6 +110,35 @@ namespace Clanbutton.Core
             await firebase.Child("activities").PostAsync(activity);
         }
 
+        internal async void CreateBeacon(Beacon beacon)
+        {
+            var current_beacon = await GetBeaconForUser(beacon.UserId);
+            if (current_beacon != null)
+            {
+                await firebase.Child("beacons").Child(current_beacon.Key).DeleteAsync();
+            }
+            await firebase.Child("beacons").PostAsync(beacon);
+        }
+
+        internal async Task<IReadOnlyCollection<FirebaseObject<Beacon>>> GetAllBeacons()
+        {
+            var beacons = await firebase.Child("beacons").OnceAsync<Beacon>();
+            return beacons;
+        }
+
+        internal async Task<FirebaseObject<Beacon>>GetBeaconForUser(string userid)
+        {
+            var beacons = await GetAllBeacons();
+            foreach (var b in beacons)
+            {
+                if (b.Object.UserId == userid)
+                {
+                    return b;
+                }
+            }
+            return null;
+        }
+
         internal async Task<IReadOnlyCollection<FirebaseObject<MessageContent>>> GetAllChatMessages()
         {
             var chats = await firebase.Child("chats").OnceAsync<MessageContent>();

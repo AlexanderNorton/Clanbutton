@@ -184,6 +184,7 @@
     <Compile Include="Activities\ProfileActivity.cs" />
     <Compile Include="Activities\SearchActivity.cs" />
     <Compile Include="Builders\ActivityListAdapter.cs" />
+    <Compile Include="Builders\Beacon.cs" />
     <Compile Include="Builders\UserActivity.cs" />
     <Compile Include="Builders\ListViewAdapter.cs" />
     <Compile Include="Activities\MessagingActivity.cs" />
