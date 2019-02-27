@@ -17,12 +17,12 @@ namespace Clanbutton.Builders
     [Activity]
     internal class ActivityListAdapter : BaseAdapter
     {
-        private SearchActivity mainActivity;
+        private MainActivity mainActivity;
         public List<UserActivity> lstActivity;
 
-        public ActivityListAdapter(SearchActivity SearchingActivity, List<UserActivity> lstActivity)
+        public ActivityListAdapter(MainActivity MainActivity, List<UserActivity> lstActivity)
         {
-            this.mainActivity = SearchingActivity;
+            this.mainActivity = MainActivity;
             this.lstActivity = lstActivity;
         }
 
@@ -55,28 +55,16 @@ namespace Clanbutton.Builders
             activity_content = itemView.FindViewById<TextView>(Resource.Id.activity_message);
             profile_picture = itemView.FindViewById<ImageView>(Resource.Id.activity_avatar);
 
-            WebClient web = new WebClient();
-            web.DownloadDataCompleted += new DownloadDataCompletedEventHandler(web_DownloadDataCompleted);
-            web.DownloadDataAsync(new System.Uri(lstActivity[position].ProfilePicture));
-
-            void web_DownloadDataCompleted(object sender, DownloadDataCompletedEventArgs e)
-            {
-                // Set profile picture.
-                Android.Graphics.Bitmap bm = Android.Graphics.BitmapFactory.DecodeByteArray(e.Result, 0, e.Result.Length);
-
-                new AppCompatActivity().RunOnUiThread(() =>
-                {
-                    profile_picture.SetImageBitmap(bm);
-                });
-                
-            }
-
+            ExtensionMethods extensionMethods = new ExtensionMethods();
+            extensionMethods.DownloadPicture(lstActivity[position].ProfilePicture, profile_picture);
+            
             activity_user.Text = lstActivity[position].Username;
             activity_content.Text = lstActivity[position].ActivityMessage;
 
             profile_picture.Click += delegate
             {
                 OpenProfile(lstActivity[position].UserId);
+                mainActivity.activities_reference.RemoveEventListener(mainActivity);
             };
             return itemView;
         }

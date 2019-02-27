@@ -8,28 +8,6 @@
 		android:orientation="vertical"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent">
-		<RelativeLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:backgroundTint="#222428"
-			android:backgroundTintMode="src_in"
-			android:background="#24303d">
-			<ImageButton
-				android:id="@+id/profile_button"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_alignParentEnd="true"
-				android:visibility="visible"
-				android:background="#24303d"
-				android:padding="3dp"/>
-			<TextView
-				android:id="@+id/profile_name"
-				android:layout_width="wrap_content"
-				android:layout_toLeftOf="@id/profile_button"
-				android:layout_height="wrap_content"
-				android:textColor="#ffffff"
-				android:textSize="26dp"/>
-		</RelativeLayout>
 		<ImageButton
 			android:id="@+id/mainbutton"
 			android:src="@drawable/clanbutton"
@@ -49,30 +27,8 @@
 			android:textColor="#ffffff"
 			android:padding="10dp"
 			android:layout_marginBottom="10dp" />
-		<Button
-            android:id="@+id/specific_game_button"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_gravity="center"
-			android:textSize="40px"
-			android:visibility="visible"
-			android:padding="10dp"
-			android:background="#ff3939"
-			android:textColor="#ffffff"
-			android:layout_marginBottom="10dp"
-			android:text="Search for a game"/>
-		<ListView
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_alignParentTop="true"
-			android:layout_alignParentStart="true"
-			android:divider="@android:color/transparent"
-			android:dividerHeight="3dp"
-			android:id="@+id/list_of_activities"
-			android:layout_margin="8dp"/>
         <AutoCompleteTextView
             android:id="@+id/searchbar"
-			android:visibility="gone"
 			android:background="#ffffff"
 			android:textColorHint="@android:color/black"
 			android:paddingHorizontal="20dp"
@@ -86,7 +42,6 @@
 			android:layout_height="wrap_content"
 			android:layout_gravity="center"
 			android:textSize="40px"
-			android:visibility="gone"
 			android:padding="10dp"
 			android:background="#ff3939"
 			android:textColor="#ffffff"
@@ -107,8 +62,12 @@
         <ListView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-			android:background="#ff3939"
+			android:layout_alignParentTop="true"
+			android:layout_alignParentStart="true"
+			android:divider="@android:color/transparent"
+			android:dividerHeight="3dp"
 			android:visibility="gone"
-            android:id="@+id/playerslist" />
+            android:id="@+id/playerslist" 
+			android:layout_margin="8dp"/>
     </LinearLayout>
 </RelativeLayout>

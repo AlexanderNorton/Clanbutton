@@ -182,7 +182,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activities\ProfileActivity.cs" />
+    <Compile Include="Activities\MainActivity.cs" />
     <Compile Include="Activities\SearchActivity.cs" />
+    <Compile Include="Builders\GamesearchListAdapter.cs" />
     <Compile Include="Builders\ActivityListAdapter.cs" />
     <Compile Include="Builders\Beacon.cs" />
     <Compile Include="Builders\UserActivity.cs" />
@@ -248,6 +250,18 @@
     <AndroidResource Include="Resources\drawable\twitch.png" />
     <AndroidResource Include="Resources\drawable\Discord.png" />
     <AndroidResource Include="Resources\layout\Activity_ListItem.axml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\Home_Layout.axml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\Gamesearch_ListItem.axml">
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
       <SubType>Designer</SubType>
     </AndroidResource>

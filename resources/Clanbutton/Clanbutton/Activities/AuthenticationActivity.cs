@@ -40,8 +40,8 @@ namespace Clanbutton.Activities
             if (user != null)
             {
                 // If user already exists, they are already signed in.
-                // Start the SearchActivity.
-                StartActivity(new Android.Content.Intent(this, typeof(SearchActivity)));
+                // Start the MainActivity.
+                StartActivity(new Android.Content.Intent(this, typeof(MainActivity)));
 				Finish();
                 return;
             }
@@ -76,7 +76,7 @@ namespace Clanbutton.Activities
             {
                 // If the Steam user exists, sign them in with the Steam user ID appended to '@clanbutton.com'.
                 auth.SignInWithEmailAndPassword($"{SteamUserId.ToString()}@clanbutton.com", "nopass");
-				StartActivity(new Android.Content.Intent(this, typeof(SearchActivity)));
+				StartActivity(new Android.Content.Intent(this, typeof(MainActivity)));
 				Finish();
 			}
             else
@@ -99,7 +99,7 @@ namespace Clanbutton.Activities
                 Toast.MakeText(this, "Account created. Welcome to the Clanbutton.", ToastLength.Short).Show();
 
 				// Start the SearchActivity for the new user that was created.
-				StartActivity(new Android.Content.Intent(this, typeof(SearchActivity)));
+				StartActivity(new Android.Content.Intent(this, typeof(MainActivity)));
 				Finish();
 
 			}

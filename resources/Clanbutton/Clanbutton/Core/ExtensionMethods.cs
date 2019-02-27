@@ -5,6 +5,8 @@ using Android.Support.V7.App;
 using Clanbutton.Builders;
 using Clanbutton.Activities;
 using System;
+using System.Net;
+using Android.Widget;
 
 namespace Clanbutton.Core
 {
@@ -17,6 +19,24 @@ namespace Clanbutton.Core
             ProfileActivity.SetProfileAccount(Account);
 
             context.StartActivity(new Android.Content.Intent(context, typeof(ProfileActivity)));
+        }
+
+        public void DownloadPicture(string url, ImageView imageview)
+        {
+            // Download profile picture.
+            WebClient web = new WebClient();
+            web.DownloadDataCompleted += new DownloadDataCompletedEventHandler(web_DownloadDataCompleted);
+            web.DownloadDataAsync(new Uri(url));
+
+            void web_DownloadDataCompleted(object sender, DownloadDataCompletedEventArgs e)
+            {
+                Android.Graphics.Bitmap bm = Android.Graphics.BitmapFactory.DecodeByteArray(e.Result, 0, e.Result.Length);
+
+                RunOnUiThread(() =>
+                {
+                    imageview.SetImageBitmap(bm);
+                });
+            }
         }
     }
 }
