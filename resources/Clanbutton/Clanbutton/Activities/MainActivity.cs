@@ -31,7 +31,6 @@ namespace Clanbutton.Activities
         private Button StartMatchmakingButton;
         private List<UserActivity> lstActivities = new List<UserActivity>();
         private ListView lstActivityView;
-        private TextView ProfileName;
 
         private ActivityListAdapter adapter;
         private UserAccount uaccount;
@@ -45,7 +44,6 @@ namespace Clanbutton.Activities
             SetContentView(Resource.Layout.Home_Layout);
 
             // Get references to layout items.
-            ProfileName = FindViewById<TextView>(Resource.Id.profile_name);
             ProfileButton = FindViewById<ImageView>(Resource.Id.profile_button);
             StartMatchmakingButton = FindViewById<Button>(Resource.Id.start_matchmaking_button);
             lstActivityView = FindViewById<ListView>(Resource.Id.list_of_activities);
@@ -65,8 +63,6 @@ namespace Clanbutton.Activities
             activities_reference.AddValueEventListener(this);
 
             // Set layout information.
-            ProfileName.Text = uaccount.Username;
-
             ProfileButton.Click += delegate
             {
                 // Open the user's profile when the profile picture is clicked.
