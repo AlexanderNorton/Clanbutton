@@ -16,17 +16,6 @@
 			android:scaleType="fitCenter"
 			android:background="#24303d"
 			android:layout_height="200dp"/>
-		<Button
-			android:id="@+id/current_game_button"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_gravity="center"
-			android:textSize="40px"
-			android:visibility="gone"
-			android:background="#ff3939"
-			android:textColor="#ffffff"
-			android:padding="10dp"
-			android:layout_marginBottom="10dp" />
         <AutoCompleteTextView
             android:id="@+id/searchbar"
 			android:background="#ffffff"
@@ -37,6 +26,17 @@
 			android:layout_gravity="center"
             android:layout_height="wrap_content"/>
 		<Button
+			android:id="@+id/current_game_button"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:textSize="40px"
+			android:visibility="gone"
+			android:background="#ff3939"
+			android:textColor="#ffffff"
+			android:padding="10dp"
+			android:layout_marginTop="20dp" />
+		<Button
 			android:id="@+id/beacon_button"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
@@ -46,6 +46,7 @@
 			android:background="#ff3939"
 			android:textColor="#ffffff"
 			android:layout_marginTop="20dp"
+			android:visibility="gone"
             android:text="Deploy a Beacon" />
         <Button
             android:id="@+id/chatroom_button"
@@ -57,7 +58,7 @@
 			android:padding="10dp"
 			android:background="#ff3939"
 			android:textColor="#ffffff"
-			android:layout_marginBottom="10dp"
+			android:layout_marginTop="10dp"
             android:text="Enter chat room" />
         <ListView
             android:layout_width="match_parent"

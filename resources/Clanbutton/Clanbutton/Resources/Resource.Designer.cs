@@ -2214,8 +2214,8 @@ namespace Clanbutton
 			// aapt resource value: 0x7f09009b
 			public const int current_game = 2131296411;
 			
-			// aapt resource value: 0x7f090094
-			public const int current_game_button = 2131296404;
+			// aapt resource value: 0x7f090095
+			public const int current_game_button = 2131296405;
 			
 			// aapt resource value: 0x7f090051
 			public const int custom = 2131296337;
@@ -2469,8 +2469,8 @@ namespace Clanbutton
 			// aapt resource value: 0x7f09006d
 			public const int search_voice_btn = 2131296365;
 			
-			// aapt resource value: 0x7f090095
-			public const int searchbar = 2131296405;
+			// aapt resource value: 0x7f090094
+			public const int searchbar = 2131296404;
 			
 			// aapt resource value: 0x7f09006e
 			public const int select_dialog_listview = 2131296366;

@@ -76,6 +76,12 @@ namespace Clanbutton.Activities
             // Get the account of the current user (not the profile user)
             uaccount = await firebase_database.GetAccountAsync(FirebaseAuth.Instance.CurrentUser.Uid);
 
+            // Download profile picture.
+            ExtensionMethods extensionMethods = new ExtensionMethods();
+            extensionMethods.DownloadPicture(uaccount.Avatar, Profile_Avatar);
+
+            Profile_VisitSteamProfile.Visibility = Android.Views.ViewStates.Visible;
+            Profile_Follow.Visibility = Android.Views.ViewStates.Visible;
             //SET PROFILE DATA
             var followers = await firebase_database.GetUserFollowers(account);
             Profile_Username.Text = account.Username;
@@ -105,30 +111,6 @@ namespace Clanbutton.Activities
 				Current_Game.Visibility = Android.Views.ViewStates.Visible;
 				Current_Game.Text = $"Currently Playing '{account.PlayingGameName}'";
 			}
-			// Download profile picture.
-			WebClient web = new WebClient();
-            web.DownloadDataCompleted += new DownloadDataCompletedEventHandler(web_DownloadDataCompleted);
-            web.DownloadDataAsync(new Uri(account.Avatar));
-
-            void web_DownloadDataCompleted(object sender, DownloadDataCompletedEventArgs e)
-            {
-                // Set profile picture.
-                if (e.Error != null)
-                {
-                    RunOnUiThread(() =>
-                                  Toast.MakeText(this, e.Error.Message, ToastLength.Short).Show());
-                }
-                else
-                {
-
-                    Android.Graphics.Bitmap bm = Android.Graphics.BitmapFactory.DecodeByteArray(e.Result, 0, e.Result.Length);
-
-                    RunOnUiThread(() =>
-                    {
-                        Profile_Avatar.SetImageBitmap(bm);
-                    });
-                }
-            }
 
             if (uaccount.IsFollowing(account))
             {

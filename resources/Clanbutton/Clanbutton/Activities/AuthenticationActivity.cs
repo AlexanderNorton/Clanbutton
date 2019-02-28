@@ -13,6 +13,8 @@ using Clanbutton.Core;
 
 using Android.Webkit;
 using Android.Graphics;
+using Android.Runtime;
+using Android.Views;
 
 namespace Clanbutton.Activities
 {
@@ -25,6 +27,7 @@ namespace Clanbutton.Activities
         FirebaseAuth auth;
         FirebaseUser user;
         DatabaseHandler firebase_database;
+        WebView webView;
 
         protected override async void OnCreate(Bundle savedInstanceState)
         {
@@ -54,9 +57,8 @@ namespace Clanbutton.Activities
                 // On btnLogin click, open a WebView (with the Steam URL).
                 SetContentView(Resource.Layout.WebView_Layout);
                 string steam_url = "https://steamcommunity.com/openid/login?openid.claimed_id=http://specs.openid.net/auth/2.0/identifier_select&openid.identity=http://specs.openid.net/auth/2.0/identifier_select&openid.mode=checkid_setup&openid.ns=http://specs.openid.net/auth/2.0&openid.realm=https://clanbutton&openid.return_to=https://clanbutton/signin/";
-                WebView webView;
                 webView = FindViewById<WebView>(Resource.Id.webView);
-				webView.Visibility = Android.Views.ViewStates.Visible;
+                webView.Visibility = ViewStates.Visible;
                 ExtendedWebViewClient webClient = new ExtendedWebViewClient();
                 webClient.steamAuthentication = this;
                 webView.SetWebViewClient(webClient);
@@ -66,6 +68,22 @@ namespace Clanbutton.Activities
                 WebSettings webSettings = webView.Settings;
                 webSettings.JavaScriptEnabled = true;
             };
+        }
+
+        public override bool OnKeyDown([GeneratedEnum] Keycode keyCode, KeyEvent e)
+        {
+            if (webView != null)
+            {
+                if (e.Action == KeyEventActions.Down)
+                {
+                    if (keyCode == Keycode.Back)
+                    {
+                        StartActivity(new Android.Content.Intent(this, typeof(AuthenticationActivity)));
+                        Finish();
+                    }
+                }
+            }
+            return true;
         }
 
         public async void SteamAuth(ulong userid)

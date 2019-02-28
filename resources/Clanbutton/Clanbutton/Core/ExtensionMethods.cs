@@ -7,12 +7,14 @@ using Clanbutton.Activities;
 using System;
 using System.Net;
 using Android.Widget;
+using Android.Graphics;
 
 namespace Clanbutton.Core
 {
     public class ExtensionMethods : AppCompatActivity
     {
         public static List<UserAccount> accs = new List<UserAccount>();
+        public static CacheManager cache_manager;
 
         public static void OpenUserProfile(UserAccount Account, Android.Content.Context context)
         {
@@ -30,13 +32,30 @@ namespace Clanbutton.Core
 
             void web_DownloadDataCompleted(object sender, DownloadDataCompletedEventArgs e)
             {
-                Android.Graphics.Bitmap bm = Android.Graphics.BitmapFactory.DecodeByteArray(e.Result, 0, e.Result.Length);
+                Bitmap bm;
+
+                var cached_picture = cache_manager.Get<Bitmap>("profile_image_" + url);
+                if (cached_picture != null) 
+                {
+                    bm = cached_picture;
+                }
+                else
+                {
+                    bm = BitmapFactory.DecodeByteArray(e.Result, 0, e.Result.Length);
+                    cache_manager.Set("profile_image_" + url, bm, DateTime.Now.AddMinutes(30));
+                }
+
 
                 RunOnUiThread(() =>
                 {
                     imageview.SetImageBitmap(bm);
                 });
             }
+        }
+
+        public static void StartCacheManager()
+        {
+            cache_manager = new CacheManager();
         }
     }
 }

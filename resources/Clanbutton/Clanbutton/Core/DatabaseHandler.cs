@@ -47,6 +47,12 @@ namespace Clanbutton.Core
 
         public async Task<UserAccount> GetAccountAsync(string userId)
         {
+            var cached_account = ExtensionMethods.cache_manager.Get<UserAccount>("user_account_" + userId);
+            if (cached_account != null)
+            {
+                return cached_account;
+            }
+
             var accounts = await firebase.Child("accounts").OnceAsync<UserAccount>();
 
             foreach (var account in accounts)
@@ -63,6 +69,8 @@ namespace Clanbutton.Core
 					acc.Origin = account.Object.Origin;
                     if (account.Object.Following != null) { acc.Following.AddRange(account.Object.Following); } else { acc.Following = new ArrayList(); }
                     await acc.FillSteamData();
+
+                    ExtensionMethods.cache_manager.Set("user_account_" + userId, acc, DateTime.Now.AddSeconds(5));
 
                     return acc;
                 }

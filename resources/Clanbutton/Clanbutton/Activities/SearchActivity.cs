@@ -94,12 +94,6 @@ namespace Clanbutton.Activities
 
             BeaconButton.Click += async delegate
             {
-                if (SearchContent.Text.Length == 0)
-                {
-                    Toast.MakeText(this, $"Enter a game title before deploying a beacon.", ToastLength.Short).Show();
-                    return;
-                }
-
                 var current_beacon = await firebase_database.GetBeaconForUser(uaccount.UserId);
 
                 if (current_beacon != null && current_beacon.Object.CreationTime.AddMinutes(30) > DateTime.Now)
@@ -107,14 +101,14 @@ namespace Clanbutton.Activities
                     Toast.MakeText(this, $"You just deployed a beacon for '{current_beacon.Object.GameName}'. Please wait a while before deploying another.", ToastLength.Long).Show();
                     return;
                 }
-
                 // Create the beacon.
                 new Beacon(uaccount.UserId, SearchContent.Text, DateTime.Now).Create();
                 // Create the beacon activity.
                 new UserActivity(uaccount.UserId, uaccount.Username, $"Deployed a beacon and wants to play '{SearchContent.Text}'", uaccount.Avatar).Create();
+                // Response
+                Toast.MakeText(this, $"You have deployed a beacon for '{current_beacon.Object.GameName}'. Your followers have been notified.", ToastLength.Long).Show();
+                BeaconButton.Visibility = Android.Views.ViewStates.Gone;
                 // TODO: Send a beacon notification to all followers.
-                StartActivity(new Android.Content.Intent(this, typeof(MainActivity)));
-                Finish();
             };
         }
 
@@ -138,8 +132,8 @@ namespace Clanbutton.Activities
 
             SearchContent.Visibility = Android.Views.ViewStates.Gone;
             CurrentGameButton.Visibility = Android.Views.ViewStates.Gone;
-            BeaconButton.Visibility = Android.Views.ViewStates.Gone;
 
+            BeaconButton.Visibility = Android.Views.ViewStates.Visible;
             ChatroomButton.Visibility = Android.Views.ViewStates.Visible;
             PlayerList.Visibility = Android.Views.ViewStates.Visible;
 

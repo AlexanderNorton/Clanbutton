@@ -48,6 +48,8 @@ namespace Clanbutton.Activities
             StartMatchmakingButton = FindViewById<Button>(Resource.Id.start_matchmaking_button);
             lstActivityView = FindViewById<ListView>(Resource.Id.list_of_activities);
 
+            ExtensionMethods.StartCacheManager();
+
             steam_client = new SteamClient();
             auth = FirebaseAuth.Instance;
             user = auth.CurrentUser;
