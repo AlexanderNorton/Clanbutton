@@ -6,7 +6,8 @@ using Android.OS;
 using Android.Widget;
 using Android.Support.V7.App;
 using Android.Webkit;
-
+using Android.Runtime;
+using Android.Views;
 using Firebase.Auth;
 
 using Clanbutton.Builders;
@@ -41,6 +42,8 @@ namespace Clanbutton.Activities
 		private static ImageView Logo_Twitch;
 		private static ImageView Logo_Discord;
 		private static TextView Current_Game;
+
+        WebView webView;
 
         private UserAccount uaccount;
 
@@ -189,9 +192,8 @@ namespace Clanbutton.Activities
             {
 				// Open WebView with Steam profile.
 				SetContentView(Resource.Layout.WebView_Layout);
-                WebView webView;
                 webView = FindViewById<WebView>(Resource.Id.webViewProfile);
-				webView.Visibility = Android.Views.ViewStates.Visible;
+				webView.Visibility = ViewStates.Visible;
                 ExtendedWebViewClient webClient = new ExtendedWebViewClient();
                 webView.SetWebViewClient(webClient);
                 webView.LoadUrl("https://steamcommunity.com/profiles/" + account.SteamId);
@@ -200,6 +202,26 @@ namespace Clanbutton.Activities
                 webSettings.JavaScriptEnabled = true;
             };
 
+        }
+
+        public override bool OnKeyDown([GeneratedEnum] Keycode keyCode, KeyEvent e)
+        {
+            if (webView != null)
+            {
+                if (e.Action == KeyEventActions.Down)
+                {
+                    if (keyCode == Keycode.Back)
+                    {
+                        ExtensionMethods.OpenUserProfile(uaccount, this);
+                        Finish();
+                    }
+                }
+            }
+            else
+            {
+                Finish();
+            }
+            return true;
         }
 
         public static void SetProfileAccount(UserAccount Account)
