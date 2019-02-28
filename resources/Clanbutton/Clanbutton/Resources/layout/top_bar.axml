@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+		<RelativeLayout
+			android:layout_width="match_parent"
+			android:layout_height="40dp"
+			android:backgroundTint="#222428"
+			android:backgroundTintMode="src_in"
+			android:background="#24303d">
+			<ImageView
+				android:id="@+id/profile_button"
+				android:layout_width="wrap_content"
+				android:layout_height="match_parent"
+				android:scaleType="fitStart"
+				android:padding="4dp"
+				android:visibility="visible"/>
+			<TextView
+				android:id="@+id/profile_name"
+				android:layout_width="wrap_content"
+				android:layout_height="match_parent"
+				android:layout_marginLeft="40dp"
+				android:padding="5dp"
+				android:textColor="#ffffff"
+				android:textSize="20dp"/>
+			</RelativeLayout>
+</LinearLayout>
