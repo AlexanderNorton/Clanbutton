@@ -5,32 +5,20 @@
 	android:layout_margin="6dp"
 	android:background="#222428">
 	<ImageView
-        android:id="@+id/activity_avatar"
+        android:id="@+id/gamesearch_avatar"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_alignBottom="@+id/message_user"
-        android:layout_alignParentEnd="true"
-		android:layout_margin="10dp"/>
+        android:layout_alignParentEnd="true"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/activity_user"
+        android:id="@+id/gamesearch_user"
 		android:textColor="#ffffff"
-		android:layout_toLeftOf="@id/activity_avatar"
-		android:textSize="16dp"
+		android:layout_toLeftOf="@id/gamesearch_avatar"
+		android:textSize="35dp"
 		android:layout_marginLeft="5dp"
 		android:layout_alignParentEnd="true"
         android:textStyle="normal|bold"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-		android:layout_alignParentStart="true"
-		android:layout_marginLeft="5dp"
-		android:layout_toLeftOf="@id/activity_avatar"
-		android:textColor="#ffffff"
-        android:id="@+id/activity_message"
-		android:layout_marginTop="22dp"
-        android:textSize="16sp" />
 </RelativeLayout>
