@@ -21,26 +21,20 @@
 			android:scaleType="fitCenter"
 			android:background="#24303d"
 			android:layout_height="200dp"/>
-		<Button
+		<ImageView
             android:id="@+id/start_matchmaking_button"
+			android:layout_height="50dp"
 			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_gravity="center"
-			android:textSize="40px"
-			android:visibility="gone"
-			android:padding="10dp"
-			android:background="#ff3939"
-			android:textColor="#ffffff"
-			android:layout_marginBottom="10dp"
-			android:text="Search for a game"/>
+			android:src="@drawable/StartMatchmaking"
+			android:layout_gravity="center"/>
 		<TextView
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:text="Activity"
+			android:fontFamily="@font/agency"
 			android:textSize="23dp"
 			android:padding="8dp"
-			android:textColor="@android:color/white"
-		/>
+			android:textColor="@android:color/white"/>
 		<ListView
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
@@ -49,7 +43,6 @@
 			android:divider="@android:color/transparent"
 			android:dividerHeight="3dp"
 			android:id="@+id/list_of_activities"
-			android:layout_marginHorizontal="5dp"
-			/>
+			android:layout_marginHorizontal="5dp"/>
     </LinearLayout>
 </RelativeLayout>

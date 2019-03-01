@@ -19,18 +19,22 @@
         android:id="@+id/activity_user"
 		android:textColor="#ffffff"
 		android:layout_toLeftOf="@id/activity_avatar"
-		android:textSize="16dp"
-		android:layout_marginLeft="5dp"
+		android:textSize="24dp"
+		android:layout_marginLeft="15dp"
+		android:layout_marginTop="10dp"
+		android:layout_marginBottom="10dp"
 		android:layout_alignParentEnd="true"
+		android:fontFamily="@font/agency"
         android:textStyle="normal|bold"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 		android:layout_alignParentStart="true"
-		android:layout_marginLeft="5dp"
+		android:layout_marginLeft="15dp"
 		android:layout_toLeftOf="@id/activity_avatar"
 		android:textColor="#ffffff"
+		android:fontFamily="@font/agency"
         android:id="@+id/activity_message"
-		android:layout_marginTop="22dp"
-        android:textSize="16sp" />
+		android:layout_marginTop="45dp"
+        android:textSize="18sp" />
 </RelativeLayout>

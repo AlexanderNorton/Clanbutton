@@ -28,7 +28,7 @@ namespace Clanbutton.Activities
         // Layout
         private ImageView ProfileButton;
         private ImageView ClanbuttonLogo;
-        private Button StartMatchmakingButton;
+        private ImageView StartMatchmakingButton;
         private List<UserActivity> lstActivities = new List<UserActivity>();
         private ListView lstActivityView;
         private TextView Username;
@@ -48,7 +48,7 @@ namespace Clanbutton.Activities
             // Get references to layout items.
             ClanbuttonLogo = FindViewById<ImageView>(Resource.Id.mainbutton);
             ProfileButton = FindViewById<ImageView>(Resource.Id.profile_button);
-            StartMatchmakingButton = FindViewById<Button>(Resource.Id.start_matchmaking_button);
+            StartMatchmakingButton = FindViewById<ImageView>(Resource.Id.start_matchmaking_button);
             lstActivityView = FindViewById<ListView>(Resource.Id.list_of_activities);
             Username = FindViewById<TextView>(Resource.Id.profile_name);
             MainLayout = FindViewById<LinearLayout>(Resource.Id.main_layout);

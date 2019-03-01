@@ -15,6 +15,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:id="@+id/gamesearch_user"
+		android:fontFamily="@font/agency"
 		android:textColor="#ffffff"
 		android:layout_toLeftOf="@id/gamesearch_avatar"
 		android:textSize="35dp"
