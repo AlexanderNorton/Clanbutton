@@ -24,6 +24,7 @@
 			android:paddingHorizontal="20dp"
             android:layout_width="wrap_content"
             android:hint="Search for any game.."
+			android:fontFamily="@font/agency"
 			android:layout_gravity="center"
             android:layout_height="wrap_content"/>
 		<Button
@@ -35,6 +36,7 @@
 			android:visibility="gone"
 			android:background="#ff3939"
 			android:textColor="#ffffff"
+			android:fontFamily="@font/agency"
 			android:padding="10dp"
 			android:layout_marginTop="20dp" />
 		<ImageView
