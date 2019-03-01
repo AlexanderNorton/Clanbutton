@@ -44,7 +44,7 @@ namespace Clanbutton.Activities
             {
                 // If user already exists, they are already signed in.
                 // Start the MainActivity.
-                StartActivity(new Android.Content.Intent(this, typeof(MainActivity)));
+                StartActivity(new Android.Content.Intent(this, typeof(MainActivity)).SetFlags(Android.Content.ActivityFlags.NoAnimation));
 				Finish();
                 return;
             }

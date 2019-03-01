@@ -79,73 +79,74 @@ namespace Clanbutton.Activities
             // Get the account of the current user (not the profile user)
             uaccount = await firebase_database.GetAccountAsync(FirebaseAuth.Instance.CurrentUser.Uid);
 
+            Profile_VisitSteamProfile.Visibility = ViewStates.Visible;
+            Profile_Follow.Visibility = ViewStates.Visible;
+            //SET PROFILE DATA
+
             // Download profile picture.
             ExtensionMethods extensionMethods = new ExtensionMethods();
-            extensionMethods.DownloadPicture(uaccount.Avatar, Profile_Avatar);
+            extensionMethods.DownloadPicture(account.Avatar, Profile_Avatar);
 
-            Profile_VisitSteamProfile.Visibility = Android.Views.ViewStates.Visible;
-            Profile_Follow.Visibility = Android.Views.ViewStates.Visible;
-            //SET PROFILE DATA
             var followers = await firebase_database.GetUserFollowers(account);
             Profile_Username.Text = account.Username;
             Profile_Followers.Text = $"Followers: {followers.Count}";
 
             if (account.Discord?.Length > 0 ) {
 				Profile_Discord.Text = account.Discord;
-				Profile_Discord.Visibility = Android.Views.ViewStates.Visible;
-				Logo_Discord.Visibility = Android.Views.ViewStates.Visible;
+				Profile_Discord.Visibility = ViewStates.Visible;
+				Logo_Discord.Visibility = ViewStates.Visible;
 			}
 			if (account.Twitch?.Length > 0)
 			{
 				Profile_Twitch.Text = account.Twitch;
-				Profile_Twitch.Visibility = Android.Views.ViewStates.Visible;
-				Logo_Twitch.Visibility = Android.Views.ViewStates.Visible;
+				Profile_Twitch.Visibility = ViewStates.Visible;
+				Logo_Twitch.Visibility = ViewStates.Visible;
 			}
 			if (account.Origin?.Length > 0)
 			{
 				Profile_Origin.Text = account.Origin;
-				Profile_Origin.Visibility = Android.Views.ViewStates.Visible;
-				Logo_Origin.Visibility = Android.Views.ViewStates.Visible;
+				Profile_Origin.Visibility = ViewStates.Visible;
+				Logo_Origin.Visibility = ViewStates.Visible;
 			}
-			Current_Game.Visibility = Android.Views.ViewStates.Gone;
+			Current_Game.Visibility = ViewStates.Gone;
 			if (account.PlayingGameName != null && account.PlayingGameName != "")
 			{
 				// Check if player is currently playing a game and add it as a search option.
-				Current_Game.Visibility = Android.Views.ViewStates.Visible;
+				Current_Game.Visibility = ViewStates.Visible;
 				Current_Game.Text = $"Currently Playing '{account.PlayingGameName}'";
 			}
 
             if (uaccount.IsFollowing(account))
             {
-                Profile_Follow.Visibility = Android.Views.ViewStates.Gone;
-                Profile_Unfollow.Visibility = Android.Views.ViewStates.Visible;
+                Profile_Follow.Visibility = ViewStates.Gone;
+                Profile_Unfollow.Visibility = ViewStates.Visible;
             }
 
             if (account.UserId == FirebaseAuth.Instance.CurrentUser.Uid)
             {
                 // If the profile is owned by the user, show the edit and logout buttons.
-                Profile_EditButton.Visibility = Android.Views.ViewStates.Visible;
-                Profile_LogoutButton.Visibility = Android.Views.ViewStates.Visible;
-                Profile_Follow.Visibility = Android.Views.ViewStates.Gone;
-                Profile_Unfollow.Visibility = Android.Views.ViewStates.Gone;
+                Profile_EditButton.Visibility = ViewStates.Visible;
+                Profile_LogoutButton.Visibility = ViewStates.Visible;
+                Profile_Follow.Visibility = ViewStates.Gone;
+                Profile_Unfollow.Visibility = ViewStates.Gone;
             }
 
             Profile_EditButton.Click += delegate
             {
                 // Show the edit bar and save changes button.
-                Profile_Follow.Visibility = Android.Views.ViewStates.Gone;
-                Profile_Unfollow.Visibility = Android.Views.ViewStates.Gone;
-                Profile_Origin.Visibility = Android.Views.ViewStates.Gone;
-				Profile_Twitch.Visibility = Android.Views.ViewStates.Gone;
-				Profile_Discord.Visibility = Android.Views.ViewStates.Gone;
-				Logo_Origin.Visibility = Android.Views.ViewStates.Visible;
-				Logo_Twitch.Visibility = Android.Views.ViewStates.Visible;
-				Logo_Discord.Visibility = Android.Views.ViewStates.Visible;
-				Profile_EditOrigin.Visibility = Android.Views.ViewStates.Visible;
-				Profile_EditTwitch.Visibility = Android.Views.ViewStates.Visible;
-				Profile_EditDiscord.Visibility = Android.Views.ViewStates.Visible;
-				Profile_SaveChanges.Visibility = Android.Views.ViewStates.Visible;
-                Profile_EditButton.Visibility = Android.Views.ViewStates.Gone;
+                Profile_Follow.Visibility = ViewStates.Gone;
+                Profile_Unfollow.Visibility = ViewStates.Gone;
+                Profile_Origin.Visibility = ViewStates.Gone;
+				Profile_Twitch.Visibility = ViewStates.Gone;
+				Profile_Discord.Visibility = ViewStates.Gone;
+				Logo_Origin.Visibility = ViewStates.Visible;
+				Logo_Twitch.Visibility = ViewStates.Visible;
+				Logo_Discord.Visibility = ViewStates.Visible;
+				Profile_EditOrigin.Visibility = ViewStates.Visible;
+				Profile_EditTwitch.Visibility = ViewStates.Visible;
+				Profile_EditDiscord.Visibility = ViewStates.Visible;
+				Profile_SaveChanges.Visibility = ViewStates.Visible;
+                Profile_EditButton.Visibility = ViewStates.Gone;
 				Profile_EditDiscord.Text = account.Discord;
 				Profile_EditOrigin.Text = account.Origin;
 				Profile_EditTwitch.Text = account.Twitch;
@@ -166,8 +167,8 @@ namespace Clanbutton.Activities
             {
                 // Add the uid to the followers of the current account.
                 uaccount.Following.Add(account.UserId);
-                Profile_Follow.Visibility = Android.Views.ViewStates.Gone;
-                Profile_Unfollow.Visibility = Android.Views.ViewStates.Visible;
+                Profile_Follow.Visibility = ViewStates.Gone;
+                Profile_Unfollow.Visibility = ViewStates.Visible;
                 uaccount.Update();
                 Profile_Followers.Text = $"Followers: {followers.Count}";
             };
@@ -176,8 +177,8 @@ namespace Clanbutton.Activities
             {
                 // Remove the uid from the followers of the current account.
                 uaccount.Following.Remove(account.UserId);
-                Profile_Unfollow.Visibility = Android.Views.ViewStates.Gone;
-                Profile_Follow.Visibility = Android.Views.ViewStates.Visible;
+                Profile_Unfollow.Visibility = ViewStates.Gone;
+                Profile_Follow.Visibility = ViewStates.Visible;
                 uaccount.Update();
                 Profile_Followers.Text = $"Followers: {followers.Count - 1}";
             };

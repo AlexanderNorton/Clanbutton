@@ -26,6 +26,8 @@ namespace Clanbutton.Activities
         private SteamClient steam_client;
 
         // Layout
+        private ImageView ProfileButton;
+        private TextView Username;
         private ImageButton MainButton;
         private ImageView BeaconButton;
         private ImageView ChatroomButton;
@@ -55,6 +57,8 @@ namespace Clanbutton.Activities
             PlayerList = FindViewById<ListView>(Resource.Id.playerslist);
             ChatroomButton = FindViewById<ImageView>(Resource.Id.chatroom_button);
             BeaconButton = FindViewById<ImageView>(Resource.Id.beacon_button);
+            ProfileButton = FindViewById<ImageView>(Resource.Id.profile_button);
+            Username = FindViewById<TextView>(Resource.Id.profile_name);
 
             steam_client = new SteamClient();
             auth = FirebaseAuth.Instance;
@@ -62,6 +66,10 @@ namespace Clanbutton.Activities
 
             firebase_database = new DatabaseHandler();
             uaccount = await firebase_database.GetAccountAsync(user.Uid);
+
+            ExtensionMethods extensionMethods = new ExtensionMethods();
+            extensionMethods.DownloadPicture(uaccount.Avatar, ProfileButton);
+            Username.Text = uaccount.Username;
 
             var items = await steam_client.GetAllSteamGames();
 
