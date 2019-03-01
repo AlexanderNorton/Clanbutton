@@ -17,7 +17,7 @@ using System.Net;
 
 namespace Clanbutton.Activities
 {
-    [Activity(Label = "Clanbutton", Theme = "@style/Theme.AppCompat.Light.NoActionBar")]
+    [Activity(Label = "Clanbutton", MainLauncher = true, Icon = "@drawable/clanbutton", Theme = "@style/Theme.AppCompat.Light.NoActionBar")]
     public class MainActivity : AppCompatActivity, IValueEventListener
     {
         private DatabaseHandler firebase_database;
@@ -42,6 +42,19 @@ namespace Clanbutton.Activities
         protected async override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+
+            auth = FirebaseAuth.Instance;
+            user = auth.CurrentUser;
+
+            if (user == null)
+            {
+                // If user already exists, they are already signed in.
+                // Start the MainActivity.
+                StartActivity(new Android.Content.Intent(this, typeof(AuthenticationActivity)).SetFlags(Android.Content.ActivityFlags.NoAnimation));
+                Finish();
+                return;
+            }
+     
             // Start the Searching layout.
             SetContentView(Resource.Layout.Home_Layout);
 
@@ -56,8 +69,6 @@ namespace Clanbutton.Activities
             ExtensionMethods.StartCacheManager();
 
             steam_client = new SteamClient();
-            auth = FirebaseAuth.Instance;
-            user = auth.CurrentUser;
 
             firebase_database = new DatabaseHandler();
             uaccount = await firebase_database.GetAccountAsync(user.Uid);
@@ -89,6 +100,12 @@ namespace Clanbutton.Activities
                 activities_reference.RemoveEventListener(this);
                 StartActivity(new Android.Content.Intent(this, typeof(SearchActivity)).SetFlags(Android.Content.ActivityFlags.NoAnimation));
             };
+        }
+
+        protected override void OnRestart()
+        {
+            base.OnRestart();
+            activities_reference.AddValueEventListener(this);
         }
 
         private async void RefreshActivities()

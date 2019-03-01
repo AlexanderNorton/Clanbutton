@@ -22,8 +22,12 @@
 			android:paddingHorizontal="5dp"
             android:layout_width="wrap_content"
             android:hint="Search for any game.."
+			android:textSize="30dp"
+			android:textColor="#FF3939"
+			android:textColorHint="#FF3939"
 			android:fontFamily="@font/agency"
 			android:layout_gravity="center"
+			android:layout_marginTop="-15dp"
             android:layout_height="wrap_content"/>
 		<RelativeLayout
 			android:layout_width="match_parent"
@@ -33,12 +37,14 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:text="Steam Library"
+				android:fontFamily="@font/agency"
 				android:textSize="23dp"
 				android:padding="8dp"
 				android:textColor="@android:color/white"/>
 			<RelativeLayout
 				android:padding="16dp"
-				android:layout_marginTop="30dp"
+				android:layout_marginTop="40dp"
+				android:background="#222428"
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content">
 				<GridView
@@ -63,20 +69,18 @@
 		<ImageView
 			android:id="@+id/beacon_button"
 			android:layout_width="wrap_content"
-			android:layout_height="65dp"
+			android:layout_height="40dp"
 			android:layout_gravity="center"
-			android:padding="10dp"
-			android:layout_marginTop="20dp"
+			android:layout_marginTop="10dp"
 			android:src="@drawable/AddBeacon"			
 			android:visibility="gone"/>
         <ImageView
             android:id="@+id/chatroom_button"
 			android:layout_width="wrap_content"
-			android:layout_height="65dp"
+			android:layout_height="40dp"
 			android:src="@drawable/EnterChatroom"
 			android:layout_gravity="center"
 			android:visibility="gone"
-			android:padding="10dp"
 			android:layout_marginTop="10dp"/>
         <ListView
             android:layout_width="match_parent"

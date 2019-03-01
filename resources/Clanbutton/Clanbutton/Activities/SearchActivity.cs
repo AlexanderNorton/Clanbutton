@@ -108,6 +108,13 @@ namespace Clanbutton.Activities
                 CurrentGameButton.Text = $"Search for '{uaccount.PlayingGameName}'";
             }
 
+            ProfileButton.Click += delegate
+            {
+                // Open the user's profile when the profile picture is clicked.
+                gamesearches_reference?.RemoveEventListener(this);
+                ExtensionMethods.OpenUserProfile(uaccount, this);
+            };
+
             MainButton.Click += delegate
             {
                 StartSearching();
@@ -182,12 +189,15 @@ namespace Clanbutton.Activities
             // Create the game search activity.
             new UserActivity(uaccount.UserId, uaccount.Username, $"Started searching for '{search_game}'", uaccount.Avatar).Create();
 
+            gamesearches = await firebase_database.GetGameSearchesAsync();
+
             gamesearches_reference = FirebaseDatabase.Instance.GetReference("gamesearches");
             gamesearches_reference.AddValueEventListener(this);
 
             ChatroomButton.Click += delegate
             {
                 MessagingActivity.account = uaccount;
+                MessagingActivity.CurrentGameSearch = game;
                 StartActivity(new Android.Content.Intent(this, typeof(MessagingActivity)));
                 gamesearches_reference.RemoveEventListener(this);
             };

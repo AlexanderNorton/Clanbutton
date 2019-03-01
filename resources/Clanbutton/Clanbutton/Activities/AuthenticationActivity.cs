@@ -18,7 +18,7 @@ using Android.Views;
 
 namespace Clanbutton.Activities
 {
-    [Activity(Label = "Clanbutton", MainLauncher = true, Icon = "@drawable/clanbutton", Theme = "@style/Theme.AppCompat.Light.NoActionBar")]
+    [Activity(Label = "Clanbutton", Theme = "@style/Theme.AppCompat.Light.NoActionBar")]
     public class AuthenticationActivity : AppCompatActivity, IOnCompleteListener
     {
 

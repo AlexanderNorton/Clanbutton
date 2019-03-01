@@ -107,10 +107,9 @@ namespace Clanbutton.Core
             return gamesearch;
         }
 
-        internal async void PostChatMessage(string username, string text, string currentGameSearch)
+        internal async void PostChatMessage(MessageContent message)
         {
-            MessageContent message = new MessageContent(username, text, currentGameSearch);
-            await firebase.Child("chats").PostAsync(message);
+            await firebase.Child("chats").Child(message.Game).PostAsync(message);
         }
 
         internal async void CreateActivity(UserActivity activity)
@@ -147,9 +146,9 @@ namespace Clanbutton.Core
             return null;
         }
 
-        internal async Task<IReadOnlyCollection<FirebaseObject<MessageContent>>> GetAllChatMessages()
+        internal async Task<IReadOnlyCollection<FirebaseObject<MessageContent>>> GetAllChatMessages(string game)
         {
-            var chats = await firebase.Child("chats").OnceAsync<MessageContent>();
+            var chats = await firebase.Child("chats").Child(game).OnceAsync<MessageContent>();
             return chats;
         }
 

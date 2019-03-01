@@ -5,7 +5,7 @@
     android:layout_height="wrap_content">
 		<RelativeLayout
 			android:layout_width="match_parent"
-			android:layout_height="40dp"
+			android:layout_height="55dp"
 			android:backgroundTint="#222428"
 			android:backgroundTintMode="src_in"
 			android:background="#24303d">
@@ -20,10 +20,10 @@
 				android:id="@+id/profile_name"
 				android:layout_width="wrap_content"
 				android:layout_height="match_parent"
-				android:layout_marginLeft="40dp"
-				android:padding="5dp"
+				android:layout_marginLeft="50dp"
+				android:padding="4dp"
 				android:fontFamily="@font/agency"
 				android:textColor="#ffffff"
-				android:textSize="20dp"/>
+				android:textSize="25dp"/>
 			</RelativeLayout>
 </LinearLayout>

@@ -21,11 +21,14 @@ namespace Clanbutton
         private DatabaseHandler firebase_database;
         private FirebaseUser user;
         public static UserAccount account;
+        public static GameSearch CurrentGameSearch;
 
         private List<MessageContent> lstMessage = new List<MessageContent>();
         private ListView lstChat;
         private EditText edtChat;
         private Button sendButton;
+
+        public DatabaseReference messaging_reference;
 
         protected override async void OnCreate(Bundle bundle)
         {
@@ -34,19 +37,26 @@ namespace Clanbutton
 
             firebase_database = new DatabaseHandler();
 
-            FirebaseDatabase.Instance.GetReference("chats").AddValueEventListener(this);
+            FirebaseDatabase.Instance.GetReference("chats").Child(CurrentGameSearch.GameName).AddValueEventListener(this);
             user = FirebaseAuth.Instance.CurrentUser;
 
             sendButton = FindViewById<Button>(Resource.Id.sendbutton);
             edtChat = FindViewById<EditText>(Resource.Id.input);
             lstChat = FindViewById<ListView>(Resource.Id.list_of_messages);
 
+            messaging_reference = FirebaseDatabase.Instance.GetReference("chats").Child(CurrentGameSearch.GameName);
+            messaging_reference.AddValueEventListener(this);
+
             sendButton.Click += delegate
             {
                 PostMessage();
             };
+        }
 
-            DisplayChatMessage();
+        protected override void OnRestart()
+        {
+            base.OnRestart();
+            messaging_reference.AddValueEventListener(this);
         }
 
         protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
@@ -54,20 +64,10 @@ namespace Clanbutton
             base.OnActivityResult(requestCode, resultCode, data);
         }
 
-        private async void PostMessage()
+        private void PostMessage()
         {
-            var GameSearches = await firebase_database.GetGameSearchesAsync();
-
-            var CurrentGameSearch = "";
-            foreach (var game in GameSearches)
-            {
-                if (game.Object.UserId == account.UserId)
-                {
-                    CurrentGameSearch = game.Object.GameName;
-                }
-            }
-
-            firebase_database.PostChatMessage(account.Username, edtChat.Text, CurrentGameSearch);
+            MessageContent message = new MessageContent(CurrentGameSearch.Username, edtChat.Text, CurrentGameSearch.GameName, CurrentGameSearch.UserId, CurrentGameSearch.ProfilePicture);
+            firebase_database.PostChatMessage(message);
             edtChat.Text = "";
         }
 
@@ -84,23 +84,11 @@ namespace Clanbutton
         private async void DisplayChatMessage()
         {
             lstMessage.Clear();
-
-            var GameSearches = await firebase_database.GetGameSearchesAsync();
-
-            var CurrentGameSearch = "";
-            foreach (var game in GameSearches)
-            {
-                if (game.Object.UserId == account.UserId)
-                {
-                    CurrentGameSearch = game.Object.GameName;
-                }
-            }
-
-            var items = await firebase_database.GetAllChatMessages();
+            var items = await firebase_database.GetAllChatMessages(CurrentGameSearch.GameName);
 
             foreach (var item in items)
             {
-                if (CurrentGameSearch == item.Object.Game)
+                if (CurrentGameSearch.GameName == item.Object.Game)
                 {
                     lstMessage.Add(item.Object);
                     ListViewAdapter.ListViewAdapter adapter = new ListViewAdapter.ListViewAdapter(this, lstMessage);
