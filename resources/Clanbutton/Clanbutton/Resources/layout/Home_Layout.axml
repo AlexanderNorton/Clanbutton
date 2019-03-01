@@ -23,18 +23,12 @@
 			android:scaleType="fitCenter"
 			android:background="#24303d"
 			android:layout_height="200dp"/>
-		<Button
+		<ImageView
             android:id="@+id/start_matchmaking_button"
+			android:layout_height="50dp"
 			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
 			android:layout_gravity="center"
-			android:textSize="40px"
-			android:visibility="visible"
-			android:padding="10dp"
-			android:background="#ff3939"
-			android:textColor="#ffffff"
-			android:layout_marginBottom="10dp"
-			android:text="Search for a game"/>
+			android:src="@drawable/StartMatchmaking"/>
 		<ListView
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"

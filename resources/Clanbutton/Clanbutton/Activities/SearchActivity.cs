@@ -27,8 +27,8 @@ namespace Clanbutton.Activities
 
         // Layout
         private ImageButton MainButton;
-        private Button BeaconButton;
-        private Button ChatroomButton;
+        private ImageView BeaconButton;
+        private ImageView ChatroomButton;
         private Button CurrentGameButton;
         private AutoCompleteTextView SearchContent;
         private List<GameSearch> UserList = new List<GameSearch>();
@@ -53,8 +53,8 @@ namespace Clanbutton.Activities
             SearchContent = FindViewById<AutoCompleteTextView>(Resource.Id.searchbar);
             CurrentGameButton = FindViewById<Button>(Resource.Id.current_game_button);
             PlayerList = FindViewById<ListView>(Resource.Id.playerslist);
-            ChatroomButton = FindViewById<Button>(Resource.Id.chatroom_button);
-            BeaconButton = FindViewById<Button>(Resource.Id.beacon_button);
+            ChatroomButton = FindViewById<ImageView>(Resource.Id.chatroom_button);
+            BeaconButton = FindViewById<ImageView>(Resource.Id.beacon_button);
 
             steam_client = new SteamClient();
             auth = FirebaseAuth.Instance;

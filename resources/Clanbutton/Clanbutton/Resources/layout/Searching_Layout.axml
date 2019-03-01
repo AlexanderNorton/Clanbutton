@@ -36,30 +36,24 @@
 			android:textColor="#ffffff"
 			android:padding="10dp"
 			android:layout_marginTop="20dp" />
-		<Button
+		<ImageView
 			android:id="@+id/beacon_button"
 			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
+			android:layout_height="65dp"
 			android:layout_gravity="center"
-			android:textSize="40px"
 			android:padding="10dp"
-			android:background="#ff3939"
-			android:textColor="#ffffff"
 			android:layout_marginTop="20dp"
-			android:visibility="gone"
-            android:text="Deploy a Beacon" />
-        <Button
+			android:src="@drawable/AddBeacon"			
+			android:visibility="gone"/>
+        <ImageView
             android:id="@+id/chatroom_button"
 			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
+			android:layout_height="65dp"
+			android:src="@drawable/EnterChatroom"
 			android:layout_gravity="center"
-			android:textSize="40px"
 			android:visibility="gone"
 			android:padding="10dp"
-			android:background="#ff3939"
-			android:textColor="#ffffff"
-			android:layout_marginTop="10dp"
-            android:text="Enter chat room" />
+			android:layout_marginTop="10dp"/>
         <ListView
             android:layout_width="match_parent"
             android:layout_height="match_parent"

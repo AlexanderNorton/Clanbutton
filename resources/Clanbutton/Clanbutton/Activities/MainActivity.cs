@@ -28,7 +28,7 @@ namespace Clanbutton.Activities
         // Layout
         private ImageView ProfileButton;
         private Button CurrentGameButton;
-        private Button StartMatchmakingButton;
+        private ImageView StartMatchmakingButton;
         private List<UserActivity> lstActivities = new List<UserActivity>();
         private ListView lstActivityView;
 
@@ -45,7 +45,7 @@ namespace Clanbutton.Activities
 
             // Get references to layout items.
             ProfileButton = FindViewById<ImageView>(Resource.Id.profile_button);
-            StartMatchmakingButton = FindViewById<Button>(Resource.Id.start_matchmaking_button);
+            StartMatchmakingButton = FindViewById<ImageView>(Resource.Id.start_matchmaking_button);
             lstActivityView = FindViewById<ListView>(Resource.Id.list_of_activities);
 
             ExtensionMethods.StartCacheManager();

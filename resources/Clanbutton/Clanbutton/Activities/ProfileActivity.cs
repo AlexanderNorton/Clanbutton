@@ -25,12 +25,12 @@ namespace Clanbutton.Activities
         private static UserAccount account;
         private static TextView Profile_Username;
         private static TextView Profile_Followers;
-        private static Button Profile_EditButton;
-        private static Button Profile_LogoutButton;
-        private static Button Profile_VisitSteamProfile;
-        private static Button Profile_SaveChanges;
-        private static Button Profile_Follow;
-        private static Button Profile_Unfollow;
+        private static ImageView Profile_EditButton;
+        private static ImageView Profile_LogoutButton;
+        private static ImageView Profile_VisitSteamProfile;
+        private static ImageView Profile_SaveChanges;
+        private static ImageView Profile_Follow;
+        private static ImageView Profile_Unfollow;
         private static ImageView Profile_Avatar;
 		private static EditText Profile_EditDiscord;
 		private static EditText Profile_EditTwitch;
@@ -56,12 +56,12 @@ namespace Clanbutton.Activities
             // Add references to layout variables.
             Profile_Username = FindViewById<TextView>(Resource.Id.profile_username);
             Profile_Followers = FindViewById<TextView>(Resource.Id.profile_followers);
-            Profile_EditButton = FindViewById<Button>(Resource.Id.profile_edit_button);
-            Profile_LogoutButton = FindViewById<Button>(Resource.Id.profile_logout_button);
-            Profile_VisitSteamProfile = FindViewById<Button>(Resource.Id.profile_visit_steam_button);
-            Profile_SaveChanges = FindViewById<Button>(Resource.Id.edit_profile_savechanges);
-            Profile_Follow = FindViewById<Button>(Resource.Id.profile_follow_button);
-            Profile_Unfollow = FindViewById<Button>(Resource.Id.profile_unfollow_button);
+            Profile_EditButton = FindViewById<ImageView>(Resource.Id.profile_edit_button);
+            Profile_LogoutButton = FindViewById<ImageView>(Resource.Id.profile_logout_button);
+            Profile_VisitSteamProfile = FindViewById<ImageView>(Resource.Id.profile_visit_steam_button);
+            Profile_SaveChanges = FindViewById<ImageView>(Resource.Id.edit_profile_savechanges);
+            Profile_Follow = FindViewById<ImageView>(Resource.Id.profile_follow_button);
+            Profile_Unfollow = FindViewById<ImageView>(Resource.Id.profile_unfollow_button);
             Profile_Avatar = FindViewById<ImageView>(Resource.Id.profile_image);
 			Profile_EditOrigin = FindViewById<EditText>(Resource.Id.origin_edit);
 			Profile_EditTwitch = FindViewById<EditText>(Resource.Id.twitch_edit);
