@@ -14,6 +14,9 @@ using Firebase.Database;
 using Clanbutton.Builders;
 using Clanbutton.Core;
 using System.Net;
+using Android.Graphics;
+using System.Linq;
+using Steam.Models.SteamCommunity;
 
 namespace Clanbutton.Activities
 {
@@ -32,16 +35,20 @@ namespace Clanbutton.Activities
         private Button BeaconButton;
         private Button ChatroomButton;
         private Button CurrentGameButton;
-        private AutoCompleteTextView SearchContent;
+        public AutoCompleteTextView SearchContent;
         private List<GameSearch> UserList = new List<GameSearch>();
         private List<string> GameList = new List<string>();
+        private List<OwnedGameModel> GameLibrary = new List<OwnedGameModel>();
         private List<GameSearch> CurrentSearchers = new List<GameSearch>();
         private ListView PlayerList;
+        private RelativeLayout LibrarySection;
 
         private UserAccount uaccount;
         public DatabaseReference gamesearches_reference;
         private GamesearchListAdapter adapter;
         private GameSearch game;
+
+        GridView gridView;
 
         protected async override void OnCreate(Bundle savedInstanceState)
         {
@@ -59,6 +66,7 @@ namespace Clanbutton.Activities
             BeaconButton = FindViewById<Button>(Resource.Id.beacon_button);
             ProfileButton = FindViewById<ImageView>(Resource.Id.profile_button);
             Username = FindViewById<TextView>(Resource.Id.profile_name);
+            LibrarySection = FindViewById<RelativeLayout>(Resource.Id.library_section);
 
             steam_client = new SteamClient();
             auth = FirebaseAuth.Instance;
@@ -71,16 +79,27 @@ namespace Clanbutton.Activities
             extensionMethods.DownloadPicture(uaccount.Avatar, ProfileButton);
             Username.Text = uaccount.Username;
 
-            var items = await steam_client.GetAllSteamGames();
+            // Collect owned games from Steam API.
+            var owned_games = await steam_client.GetPlayerOwnedGamesAsync(uaccount.SteamId);
 
-            foreach (var game in items)
+            foreach (var game in owned_games.OwnedGames)
             {
                 GameList.Add(game.Name);
             }
 
-            // Fill the auto completer with the list of games.
+            // Fill the auto completer with the list of games the user owns.
             ArrayAdapter autoCompleteAdapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleDropDownItem1Line, GameList);
             SearchContent.Adapter = autoCompleteAdapter;
+
+            // Fill the games library list with the OwnedGame object.
+            foreach (var game in owned_games.OwnedGames)
+            {
+                GameLibrary.Add(game);
+            }
+
+            LibraryGridAdapter adapter = new LibraryGridAdapter(this, GameLibrary);
+            gridView = FindViewById<GridView>(Resource.Id.grid_view_image_text);
+            gridView.Adapter = adapter;
 
             if (uaccount.PlayingGameName != null && uaccount.PlayingGameName != "")
             {
@@ -122,12 +141,12 @@ namespace Clanbutton.Activities
 
         public async void StartSearching(string current_game = null)
         {
-            string search_game;
+            string search_game = "";
             if (current_game != null)
             {
                 search_game = current_game;
             }
-            else
+            if (search_game == "")
             {
                 search_game = SearchContent.Text;
             }
@@ -140,6 +159,7 @@ namespace Clanbutton.Activities
 
             SearchContent.Visibility = Android.Views.ViewStates.Gone;
             CurrentGameButton.Visibility = Android.Views.ViewStates.Gone;
+            LibrarySection.Visibility = Android.Views.ViewStates.Gone;
 
             BeaconButton.Visibility = Android.Views.ViewStates.Visible;
             ChatroomButton.Visibility = Android.Views.ViewStates.Visible;

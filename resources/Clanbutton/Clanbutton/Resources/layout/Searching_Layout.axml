@@ -19,13 +19,34 @@
 			android:layout_height="200dp"/>
         <AutoCompleteTextView
             android:id="@+id/searchbar"
-			android:background="#ffffff"
-			android:textColorHint="@android:color/black"
-			android:paddingHorizontal="20dp"
+			android:paddingHorizontal="5dp"
             android:layout_width="wrap_content"
             android:hint="Search for any game.."
 			android:layout_gravity="center"
             android:layout_height="wrap_content"/>
+		<RelativeLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:id="@+id/library_section">
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Steam Library"
+				android:textSize="23dp"
+				android:padding="8dp"
+				android:textColor="@android:color/white"/>
+			<RelativeLayout
+				android:padding="16dp"
+				android:layout_marginTop="30dp"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content">
+				<GridView
+					android:id="@+id/grid_view_image_text"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:numColumns="auto_fit"/>
+			</RelativeLayout>
+		</RelativeLayout>
 		<Button
 			android:id="@+id/current_game_button"
 			android:layout_width="wrap_content"

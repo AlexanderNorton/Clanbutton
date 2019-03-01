@@ -29,7 +29,7 @@ namespace Clanbutton.Activities
         DatabaseHandler firebase_database;
         WebView webView;
 
-        protected override async void OnCreate(Bundle savedInstanceState)
+        protected override void OnCreate(Bundle savedInstanceState)
         {
             // Authentication Activity is started (on app open).
             base.OnCreate(savedInstanceState);

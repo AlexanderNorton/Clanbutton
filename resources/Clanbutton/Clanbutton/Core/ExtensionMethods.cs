@@ -32,6 +32,11 @@ namespace Clanbutton.Core
 
             void web_DownloadDataCompleted(object sender, DownloadDataCompletedEventArgs e)
             {
+                if (e.Error != null)
+                {
+                    return;
+                }
+
                 Bitmap bm;
 
                 var cached_picture = cache_manager.Get<Bitmap>("profile_image_" + url);

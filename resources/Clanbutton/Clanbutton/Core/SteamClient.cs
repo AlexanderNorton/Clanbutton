@@ -30,6 +30,12 @@ namespace Clanbutton.Core
             return playerSummaryResponse.Data;
         }
 
+        public async Task<OwnedGamesResultModel> GetPlayerOwnedGamesAsync(ulong userId)
+        {
+            var playerOwnedGamesResponse = await SteamPlayerInterface.GetOwnedGamesAsync(userId, includeAppInfo:true, includeFreeGames:false);
+            return playerOwnedGamesResponse.Data;
+        }
+
         public async Task<IReadOnlyCollection<FriendModel>> GetFriendModels(ulong userId)
         {
             var userFriendsResponse = await SteamUserInterface.GetFriendsListAsync(userId);

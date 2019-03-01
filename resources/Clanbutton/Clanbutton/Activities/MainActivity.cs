@@ -42,7 +42,6 @@ namespace Clanbutton.Activities
         protected async override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-
             // Start the Searching layout.
             SetContentView(Resource.Layout.Home_Layout);
 
