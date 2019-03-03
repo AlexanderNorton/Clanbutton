@@ -41,8 +41,13 @@ namespace Clanbutton.ListViewAdapter
 
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
-            LayoutInflater inflater = (LayoutInflater)mainActivity.BaseContext.GetSystemService(Android.Content.Context.LayoutInflaterService);
-            View itemView = inflater.Inflate(Resource.Layout.List_Item, null);
+            View itemView = convertView;
+
+            if (convertView == null)
+            {
+                LayoutInflater inflater = (LayoutInflater)mainActivity.BaseContext.GetSystemService(Android.Content.Context.LayoutInflaterService);
+                itemView = inflater.Inflate(Resource.Layout.List_Item, null);
+            }
 
             TextView message_user, message_time, message_content;
             ImageView message_avatar;
@@ -62,7 +67,6 @@ namespace Clanbutton.ListViewAdapter
             {
                 OpenProfile(lstMessage[position].UserId);
             };
-
 
             return itemView;
         }

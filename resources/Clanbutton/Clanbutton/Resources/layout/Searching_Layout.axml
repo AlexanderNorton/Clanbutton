@@ -21,17 +21,49 @@
             android:id="@+id/searchbar"
 			android:paddingHorizontal="5dp"
             android:layout_width="wrap_content"
-            android:hint="Search for any game.."
-			android:textSize="30dp"
-			android:textColor="#FF3939"
-			android:textColorHint="#FF3939"
+            android:hint="SEARCH"
+			android:textSize="24dp"
+			android:textColor="@android:color/white"
+			android:textAllCaps="true"
+			android:textColorHint="@android:color/white"
 			android:fontFamily="@font/agency"
 			android:layout_gravity="center"
-			android:layout_marginTop="-15dp"
+			android:layout_marginTop="-25dp"
             android:layout_height="wrap_content"/>
+		<LinearLayout
+			android:orientation="vertical"
+			android:id="@+id/current_game_section"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:visibility="gone">
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Currently Playing"
+				android:fontFamily="@font/agency"
+				android:textSize="23dp"
+				android:padding="8dp"
+				android:textColor="@android:color/white"/>
+			<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:background="#222428">
+				<Button
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:src="@drawable/icon"
+					android:textStyle="bold"
+					android:gravity="center"
+					android:background="#222428"
+					android:textAlignment="center"
+					android:text="Tom Clancy's: Rainbow Six Siege"
+					android:id="@+id/current_game_text"/>
+			</RelativeLayout>
+		</LinearLayout>
 		<RelativeLayout
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
+			android:visibility="gone"
 			android:id="@+id/library_section">
 			<TextView
 				android:layout_width="wrap_content"
@@ -54,18 +86,17 @@
 					android:numColumns="auto_fit"/>
 			</RelativeLayout>
 		</RelativeLayout>
-		<Button
-			android:id="@+id/current_game_button"
-			android:layout_width="wrap_content"
+		<TextView
+			android:id="@+id/searching_text"
 			android:layout_height="wrap_content"
-			android:layout_gravity="center"
-			android:textSize="40px"
+			android:layout_width="match_parent"
+			android:gravity="center"
+			android:textSize="17dp"
 			android:visibility="gone"
-			android:background="#ff3939"
-			android:textColor="#ffffff"
-			android:fontFamily="@font/agency"
-			android:padding="10dp"
-			android:layout_marginTop="20dp" />
+			android:layout_marginTop="-15dp"
+			android:textColor="@android:color/white"
+			android:paddingHorizontal="80dp"
+			/>
 		<ImageView
 			android:id="@+id/beacon_button"
 			android:layout_width="wrap_content"

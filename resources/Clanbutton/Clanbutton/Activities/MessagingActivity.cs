@@ -37,7 +37,6 @@ namespace Clanbutton
 
             firebase_database = new DatabaseHandler();
 
-            FirebaseDatabase.Instance.GetReference("chats").Child(CurrentGameSearch.GameName).AddValueEventListener(this);
             user = FirebaseAuth.Instance.CurrentUser;
 
             sendButton = FindViewById<Button>(Resource.Id.sendbutton);
@@ -91,10 +90,12 @@ namespace Clanbutton
                 if (CurrentGameSearch.GameName == item.Object.Game)
                 {
                     lstMessage.Add(item.Object);
-                    ListViewAdapter.ListViewAdapter adapter = new ListViewAdapter.ListViewAdapter(this, lstMessage);
-                    lstChat.Adapter = adapter;
                 }
             }
+
+            ListViewAdapter.ListViewAdapter adapter = new ListViewAdapter.ListViewAdapter(this, lstMessage);
+            lstChat.Adapter = adapter;
+            lstChat.SetSelection(lstChat.Adapter.Count - 1);
         }
     }
 }

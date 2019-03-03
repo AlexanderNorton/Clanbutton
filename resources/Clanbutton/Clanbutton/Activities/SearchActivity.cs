@@ -37,7 +37,7 @@ namespace Clanbutton.Activities
         private ImageButton MainButton;
         private ImageView BeaconButton;
         private ImageView ChatroomButton;
-        private Button CurrentGameButton;
+        private Button CurrentGame;
         public AutoCompleteTextView SearchContent;
         private List<GameSearch> UserList = new List<GameSearch>();
         private List<string> GameList = new List<string>();
@@ -45,6 +45,8 @@ namespace Clanbutton.Activities
         private List<GameSearch> CurrentSearchers = new List<GameSearch>();
         private ListView PlayerList;
         private RelativeLayout LibrarySection;
+        private LinearLayout CurrentGameSection;
+        private TextView SearchingText;
 
         private UserAccount uaccount;
         public DatabaseReference gamesearches_reference;
@@ -64,10 +66,12 @@ namespace Clanbutton.Activities
             // Get references to layout items.
             MainButton = FindViewById<ImageButton>(Resource.Id.mainbutton);
             SearchContent = FindViewById<AutoCompleteTextView>(Resource.Id.searchbar);
-            CurrentGameButton = FindViewById<Button>(Resource.Id.current_game_button);
+            CurrentGame = FindViewById<Button>(Resource.Id.current_game_text);
+            CurrentGameSection = FindViewById<LinearLayout>(Resource.Id.current_game_section);
             PlayerList = FindViewById<ListView>(Resource.Id.playerslist);
             ChatroomButton = FindViewById<ImageView>(Resource.Id.chatroom_button);
             BeaconButton = FindViewById<ImageView>(Resource.Id.beacon_button);
+            SearchingText = FindViewById<TextView>(Resource.Id.searching_text);
             ProfileButton = FindViewById<ImageView>(Resource.Id.profile_button);
             Username = FindViewById<TextView>(Resource.Id.profile_name);
             LibrarySection = FindViewById<RelativeLayout>(Resource.Id.library_section);
@@ -104,12 +108,14 @@ namespace Clanbutton.Activities
             LibraryGridAdapter adapter = new LibraryGridAdapter(this, GameLibrary);
             gridView = FindViewById<GridView>(Resource.Id.grid_view_image_text);
             gridView.Adapter = adapter;
+            LibrarySection.Visibility = Android.Views.ViewStates.Visible;
 
             if (uaccount.PlayingGameName != null && uaccount.PlayingGameName != "")
             {
                 // Check if player is currently playing a game and add it as a search option.
-                CurrentGameButton.Visibility = Android.Views.ViewStates.Visible;
-                CurrentGameButton.Text = $"Search for '{uaccount.PlayingGameName}'";
+                CurrentGameSection.Visibility = Android.Views.ViewStates.Visible;
+                CurrentGame.Text = uaccount.PlayingGameName;
+
             }
 
             ProfileButton.Click += delegate
@@ -128,7 +134,7 @@ namespace Clanbutton.Activities
                 }
             };
 
-            CurrentGameButton.Click += delegate
+            CurrentGame.Click += delegate
             {
                 // Start the search for the current game.
                 StartSearching(uaccount.PlayingGameName);
@@ -173,14 +179,16 @@ namespace Clanbutton.Activities
             }
 
             SearchContent.Visibility = Android.Views.ViewStates.Gone;
-            CurrentGameButton.Visibility = Android.Views.ViewStates.Gone;
+            CurrentGameSection.Visibility = Android.Views.ViewStates.Gone;
             LibrarySection.Visibility = Android.Views.ViewStates.Gone;
 
             BeaconButton.Visibility = Android.Views.ViewStates.Visible;
+            SearchingText.Visibility = Android.Views.ViewStates.Visible;
             ChatroomButton.Visibility = Android.Views.ViewStates.Visible;
             PlayerList.Visibility = Android.Views.ViewStates.Visible;
 
-            game = new GameSearch(search_game, uaccount.UserId.ToString(), uaccount.Username, uaccount.Avatar);
+            SearchingText.Text = $"Finding players who want to play {search_game}";
+            game = new GameSearch(search_game, uaccount.UserId.ToString(), uaccount.Username, uaccount.Avatar, uaccount.CountryCode);
 
             var gamesearches = await firebase_database.GetGameSearchesAsync();
 

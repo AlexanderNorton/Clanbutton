@@ -79,8 +79,6 @@ namespace Clanbutton.Activities
             // Get the account of the current user (not the profile user)
             uaccount = await firebase_database.GetAccountAsync(FirebaseAuth.Instance.CurrentUser.Uid);
 
-            Profile_VisitSteamProfile.Visibility = ViewStates.Visible;
-            Profile_Follow.Visibility = ViewStates.Visible;
             //SET PROFILE DATA
 
             // Download profile picture.
@@ -90,6 +88,9 @@ namespace Clanbutton.Activities
             var followers = await firebase_database.GetUserFollowers(account);
             Profile_Username.Text = account.Username;
             Profile_Followers.Text = $"Followers: {followers.Count}";
+
+            Profile_VisitSteamProfile.Visibility = ViewStates.Visible;
+            Profile_Follow.Visibility = ViewStates.Visible;
 
             if (account.Discord?.Length > 0 ) {
 				Profile_Discord.Text = account.Discord;

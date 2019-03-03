@@ -50,13 +50,15 @@ namespace Clanbutton.Builders
             View itemView = inflater.Inflate(Resource.Layout.Gamesearch_ListItem, null);
 
             TextView gamesearch_user;
-            ImageView profile_picture;
+            ImageView profile_picture, country_picture;
             gamesearch_user = itemView.FindViewById<TextView>(Resource.Id.gamesearch_user);
             profile_picture = itemView.FindViewById<ImageView>(Resource.Id.gamesearch_avatar);
+            country_picture = itemView.FindViewById<ImageView>(Resource.Id.country_image);
 
             ExtensionMethods extensionMethods = new ExtensionMethods();
             extensionMethods.DownloadPicture(lstGamesearch[position].ProfilePicture, profile_picture);
-            
+            extensionMethods.DownloadPicture($"https://www.countryflags.io/{lstGamesearch[position].CountryPicture}/flat/64.png", country_picture);
+
             gamesearch_user.Text = lstGamesearch[position].Username;
 
             profile_picture.Click += delegate

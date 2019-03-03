@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
 	android:layout_margin="6dp"
 	android:background="#222428">
@@ -8,7 +8,9 @@
         android:id="@+id/gamesearch_avatar"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"/>
+		android:scaleType="fitStart"
+		android:padding="3dp"
+		android:layout_alignParentStart="true"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -17,9 +19,14 @@
         android:id="@+id/gamesearch_user"
 		android:fontFamily="@font/agency"
 		android:textColor="#ffffff"
-		android:layout_toLeftOf="@id/gamesearch_avatar"
 		android:textSize="35dp"
-		android:layout_marginLeft="5dp"
+		android:layout_marginLeft="80dp"
 		android:layout_alignParentEnd="true"
         android:textStyle="normal|bold"/>
+	<ImageView
+		android:id="@+id/country_image"
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:layout_alignParentEnd="true"
+		android:padding="3dp"/>
 </RelativeLayout>
