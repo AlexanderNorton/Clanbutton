@@ -271,7 +271,6 @@
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\drawable\origin.png" />
-    <AndroidResource Include="Resources\drawable\twitch.png" />
     <AndroidResource Include="Resources\drawable\Discord.png" />
     <AndroidResource Include="Resources\layout\Activity_ListItem.axml">
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
@@ -329,6 +328,9 @@
     <AndroidResource Include="Resources\layout\LibraryGrid_Layout.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\uplay.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Crosslight.Xamarin.Android.Support.Annotations.25.3.1\build\MonoAndroid70\Crosslight.Xamarin.Android.Support.Annotations.targets" Condition="Exists('..\packages\Crosslight.Xamarin.Android.Support.Annotations.25.3.1\build\MonoAndroid70\Crosslight.Xamarin.Android.Support.Annotations.targets')" />

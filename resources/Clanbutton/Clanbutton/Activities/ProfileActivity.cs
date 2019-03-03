@@ -39,7 +39,7 @@ namespace Clanbutton.Activities
 		private static TextView Profile_Twitch;
 		private static TextView Profile_Origin;
 		private static ImageView Logo_Origin;
-		private static ImageView Logo_Twitch;
+		private static ImageView Logo_Uplay;
 		private static ImageView Logo_Discord;
 		private static TextView Current_Game;
 
@@ -64,13 +64,13 @@ namespace Clanbutton.Activities
             Profile_Unfollow = FindViewById<ImageView>(Resource.Id.profile_unfollow_button);
             Profile_Avatar = FindViewById<ImageView>(Resource.Id.profile_image);
 			Profile_EditOrigin = FindViewById<EditText>(Resource.Id.origin_edit);
-			Profile_EditTwitch = FindViewById<EditText>(Resource.Id.twitch_edit);
+			Profile_EditTwitch = FindViewById<EditText>(Resource.Id.uplay_edit);
 			Profile_EditDiscord = FindViewById<EditText>(Resource.Id.discord_edit);
 			Profile_Discord = FindViewById<TextView>(Resource.Id.profile_discord);
-			Profile_Twitch = FindViewById<TextView>(Resource.Id.profile_twitch);
+			Profile_Twitch = FindViewById<TextView>(Resource.Id.profile_uplay);
 			Profile_Origin = FindViewById<TextView>(Resource.Id.profile_origin);
 			Logo_Discord = FindViewById<ImageView>(Resource.Id.Discord);
-			Logo_Twitch = FindViewById<ImageView>(Resource.Id.Twitch);
+			Logo_Uplay = FindViewById<ImageView>(Resource.Id.Uplay);
 			Logo_Origin = FindViewById<ImageView>(Resource.Id.Origin);
 			Current_Game = FindViewById<TextView>(Resource.Id.current_game);
 
@@ -100,7 +100,7 @@ namespace Clanbutton.Activities
 			{
 				Profile_Twitch.Text = account.Twitch;
 				Profile_Twitch.Visibility = ViewStates.Visible;
-				Logo_Twitch.Visibility = ViewStates.Visible;
+				Logo_Uplay.Visibility = ViewStates.Visible;
 			}
 			if (account.Origin?.Length > 0)
 			{
@@ -140,7 +140,7 @@ namespace Clanbutton.Activities
 				Profile_Twitch.Visibility = ViewStates.Gone;
 				Profile_Discord.Visibility = ViewStates.Gone;
 				Logo_Origin.Visibility = ViewStates.Visible;
-				Logo_Twitch.Visibility = ViewStates.Visible;
+				Logo_Uplay.Visibility = ViewStates.Visible;
 				Logo_Discord.Visibility = ViewStates.Visible;
 				Profile_EditOrigin.Visibility = ViewStates.Visible;
 				Profile_EditTwitch.Visibility = ViewStates.Visible;

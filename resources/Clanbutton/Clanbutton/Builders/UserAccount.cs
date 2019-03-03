@@ -42,6 +42,9 @@ namespace Clanbutton.Builders
             SteamId = steamid;
             Email = email;
             Username = "Guest";
+            Discord = "";
+            Twitch = "";
+            Origin = "";
             Following = new ArrayList();
         }
 

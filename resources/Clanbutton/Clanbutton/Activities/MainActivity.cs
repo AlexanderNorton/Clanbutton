@@ -46,10 +46,10 @@ namespace Clanbutton.Activities
             auth = FirebaseAuth.Instance;
             user = auth.CurrentUser;
 
+            ExtensionMethods.StartCacheManager();
+
             if (user == null)
             {
-                // If user already exists, they are already signed in.
-                // Start the MainActivity.
                 StartActivity(new Android.Content.Intent(this, typeof(AuthenticationActivity)).SetFlags(Android.Content.ActivityFlags.NoAnimation));
                 Finish();
                 return;
@@ -66,7 +66,6 @@ namespace Clanbutton.Activities
             Username = FindViewById<TextView>(Resource.Id.profile_name);
             MainLayout = FindViewById<LinearLayout>(Resource.Id.main_layout);
 
-            ExtensionMethods.StartCacheManager();
 
             steam_client = new SteamClient();
 

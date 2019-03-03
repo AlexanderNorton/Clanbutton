@@ -39,10 +39,11 @@ namespace Clanbutton.Core
             return false;
         }
 
-        public async void CreateAccount(string userId, ulong steamId, string userEmail)
+        public async Task<UserAccount> CreateAccount(string userId, ulong steamId, string userEmail)
         {
             UserAccount account = new UserAccount(userId, steamId, userEmail);
             var AccountCreation = await firebase.Child("accounts").PostAsync(account);
+            return account;
         }
 
         public async Task<UserAccount> GetAccountAsync(string userId)

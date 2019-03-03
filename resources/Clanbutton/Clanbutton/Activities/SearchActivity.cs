@@ -17,6 +17,9 @@ using System.Net;
 using Android.Graphics;
 using System.Linq;
 using Steam.Models.SteamCommunity;
+using System.Threading.Tasks;
+using Android.Media;
+using Android.Animation;
 
 namespace Clanbutton.Activities
 {
@@ -49,6 +52,7 @@ namespace Clanbutton.Activities
         private GameSearch game;
 
         GridView gridView;
+        private bool Searching;
 
         protected async override void OnCreate(Bundle savedInstanceState)
         {
@@ -117,7 +121,11 @@ namespace Clanbutton.Activities
 
             MainButton.Click += delegate
             {
-                StartSearching();
+                if (!Searching)
+                {
+                    StartSearching();
+                    Searching = true;
+                }
             };
 
             CurrentGameButton.Click += delegate
@@ -140,7 +148,7 @@ namespace Clanbutton.Activities
                 // Create the beacon activity.
                 new UserActivity(uaccount.UserId, uaccount.Username, $"Deployed a beacon and wants to play '{SearchContent.Text}'", uaccount.Avatar).Create();
                 // Response
-                Toast.MakeText(this, $"You have deployed a beacon for '{current_beacon.Object.GameName}'. Your followers have been notified.", ToastLength.Long).Show();
+                Toast.MakeText(this, $"Beacon deployed. Your followers have been notified.", ToastLength.Long).Show();
                 BeaconButton.Visibility = Android.Views.ViewStates.Gone;
                 // TODO: Send a beacon notification to all followers.
             };

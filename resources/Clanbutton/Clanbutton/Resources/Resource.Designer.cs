@@ -2064,10 +2064,10 @@ namespace Clanbutton
 			public const int tooltip_frame_light = 2130837634;
 			
 			// aapt resource value: 0x7f020083
-			public const int twitch = 2130837635;
+			public const int Unfollow = 2130837635;
 			
 			// aapt resource value: 0x7f020084
-			public const int Unfollow = 2130837636;
+			public const int uplay = 2130837636;
 			
 			// aapt resource value: 0x7f020085
 			public const int VisitSteamProfile = 2130837637;
@@ -2129,7 +2129,7 @@ namespace Clanbutton
 			public const int SYM = 2131361841;
 			
 			// aapt resource value: 0x7f0a00a8
-			public const int Twitch = 2131361960;
+			public const int Uplay = 2131361960;
 			
 			// aapt resource value: 0x7f0a0085
 			public const int action0 = 2131361925;
@@ -2461,11 +2461,11 @@ namespace Clanbutton
 			// aapt resource value: 0x7f0a00ac
 			public const int profile_origin = 2131361964;
 			
-			// aapt resource value: 0x7f0a00a9
-			public const int profile_twitch = 2131361961;
-			
 			// aapt resource value: 0x7f0a00a4
 			public const int profile_unfollow_button = 2131361956;
+			
+			// aapt resource value: 0x7f0a00a9
+			public const int profile_uplay = 2131361961;
 			
 			// aapt resource value: 0x7f0a009f
 			public const int profile_username = 2131361951;
@@ -2614,14 +2614,14 @@ namespace Clanbutton
 			// aapt resource value: 0x7f0a0052
 			public const int topPanel = 2131361874;
 			
-			// aapt resource value: 0x7f0a00aa
-			public const int twitch_edit = 2131361962;
-			
 			// aapt resource value: 0x7f0a0027
 			public const int uniform = 2131361831;
 			
 			// aapt resource value: 0x7f0a0009
 			public const int up = 2131361801;
+			
+			// aapt resource value: 0x7f0a00aa
+			public const int uplay_edit = 2131361962;
 			
 			// aapt resource value: 0x7f0a0020
 			public const int useLogo = 2131361824;

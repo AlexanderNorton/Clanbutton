@@ -27,7 +27,7 @@ namespace Clanbutton.Activities
         FirebaseAuth auth;
         FirebaseUser user;
         DatabaseHandler firebase_database;
-        WebView webView;
+        public WebView webView;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -56,8 +56,8 @@ namespace Clanbutton.Activities
             {
                 // On btnLogin click, open a WebView (with the Steam URL).
                 SetContentView(Resource.Layout.WebView_Layout);
-                string steam_url = "https://steamcommunity.com/openid/login?openid.claimed_id=http://specs.openid.net/auth/2.0/identifier_select&openid.identity=http://specs.openid.net/auth/2.0/identifier_select&openid.mode=checkid_setup&openid.ns=http://specs.openid.net/auth/2.0&openid.realm=https://clanbutton&openid.return_to=https://clanbutton/signin/";
                 webView = FindViewById<WebView>(Resource.Id.webView);
+                string steam_url = "https://steamcommunity.com/openid/login?openid.claimed_id=http://specs.openid.net/auth/2.0/identifier_select&openid.identity=http://specs.openid.net/auth/2.0/identifier_select&openid.mode=checkid_setup&openid.ns=http://specs.openid.net/auth/2.0&openid.realm=https://clanbutton&openid.return_to=https://clanbutton/signin/";
                 webView.Visibility = ViewStates.Visible;
                 ExtendedWebViewClient webClient = new ExtendedWebViewClient();
                 webClient.steamAuthentication = this;
@@ -113,9 +113,9 @@ namespace Clanbutton.Activities
                 user = auth.CurrentUser;
 
                 // Create an account in the Firebase realtime database.
-                firebase_database.CreateAccount(user.Uid.ToString(), SteamUserId, user.Email);
-                Toast.MakeText(this, "Account created. Welcome to the Clanbutton.", ToastLength.Short).Show();
-
+                await firebase_database.CreateAccount(user.Uid.ToString(), SteamUserId, user.Email);
+                var account = await firebase_database.GetAccountAsync(user.Uid.ToString());
+                account.Update();
 				// Start the SearchActivity for the new user that was created.
 				StartActivity(new Android.Content.Intent(this, typeof(MainActivity)));
 				Finish();
@@ -132,7 +132,7 @@ namespace Clanbutton.Activities
     internal class ExtendedWebViewClient : WebViewClient
     {
         public AuthenticationActivity steamAuthentication;
-
+        
         public override async void OnPageStarted(WebView view, string url, Bitmap favicon)
         {
             // Get the Steam URL and convert it to a URI.
@@ -140,6 +140,7 @@ namespace Clanbutton.Activities
 
             if (Url.Authority.Equals("clanbutton"))
             {
+                steamAuthentication.webView.Visibility = ViewStates.Gone;
                 // If the end of the URI is 'clanbutton', create a Firebase user (i.e authenticate).
                 Uri userAccountUrl = new Uri(HttpUtility.ParseQueryString(Url.Query).Get("openid.identity"));
                 ulong SteamUserId = ulong.Parse(userAccountUrl.Segments[userAccountUrl.Segments.Length - 1]);
