@@ -55,6 +55,7 @@ namespace Clanbutton.Activities
 
         GridView gridView;
         private bool Searching;
+        public static string SearchStarter;
 
         protected async override void OnCreate(Bundle savedInstanceState)
         {
@@ -118,6 +119,11 @@ namespace Clanbutton.Activities
 
             }
 
+            if (SearchStarter != null)
+            {
+                StartSearching(SearchStarter);
+            }
+
             ProfileButton.Click += delegate
             {
                 // Open the user's profile when the profile picture is clicked.
@@ -152,7 +158,7 @@ namespace Clanbutton.Activities
                 // Create the beacon.
                 new Beacon(uaccount.UserId, SearchContent.Text, DateTime.Now).Create();
                 // Create the beacon activity.
-                new UserActivity(uaccount.UserId, uaccount.Username, $"Deployed a beacon and wants to play '{SearchContent.Text}'", uaccount.Avatar).Create();
+                new UserActivity(uaccount.UserId, uaccount.Username, $"Deployed a beacon and wants to play '{SearchContent.Text}'", uaccount.Avatar, SearchContent.Text).Create();
                 // Response
                 Toast.MakeText(this, $"Beacon deployed. Your followers have been notified.", ToastLength.Long).Show();
                 BeaconButton.Visibility = Android.Views.ViewStates.Gone;
@@ -203,7 +209,7 @@ namespace Clanbutton.Activities
             firebase_database.PostGameSearchAsync(game);
 
             // Create the game search activity.
-            new UserActivity(uaccount.UserId, uaccount.Username, $"Started searching for '{search_game}'", uaccount.Avatar).Create();
+            new UserActivity(uaccount.UserId, uaccount.Username, $"Started searching for '{search_game}'", uaccount.Avatar, search_game).Create();
 
             gamesearches = await firebase_database.GetGameSearchesAsync();
 
@@ -245,6 +251,13 @@ namespace Clanbutton.Activities
         public void OnDataChange(DataSnapshot snapshot)
         {
             RefreshPlayers();
+        }
+
+        protected override void OnPause()
+        {
+            base.OnPause();
+            SearchStarter = null;
+            gamesearches_reference?.RemoveEventListener(this);
         }
     }
 }

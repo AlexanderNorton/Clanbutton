@@ -2110,8 +2110,8 @@ namespace Clanbutton
 			// aapt resource value: 0x7f0a002d
 			public const int CTRL = 2131361837;
 			
-			// aapt resource value: 0x7f0a00a8
-			public const int Discord = 2131361960;
+			// aapt resource value: 0x7f0a00a9
+			public const int Discord = 2131361961;
 			
 			// aapt resource value: 0x7f0a002e
 			public const int FUNCTION = 2131361838;
@@ -2119,8 +2119,8 @@ namespace Clanbutton
 			// aapt resource value: 0x7f0a002f
 			public const int META = 2131361839;
 			
-			// aapt resource value: 0x7f0a00ae
-			public const int Origin = 2131361966;
+			// aapt resource value: 0x7f0a00af
+			public const int Origin = 2131361967;
 			
 			// aapt resource value: 0x7f0a0030
 			public const int SHIFT = 2131361840;
@@ -2128,11 +2128,11 @@ namespace Clanbutton
 			// aapt resource value: 0x7f0a0031
 			public const int SYM = 2131361841;
 			
-			// aapt resource value: 0x7f0a00ab
-			public const int Uplay = 2131361963;
+			// aapt resource value: 0x7f0a00ac
+			public const int Uplay = 2131361964;
 			
-			// aapt resource value: 0x7f0a0086
-			public const int action0 = 2131361926;
+			// aapt resource value: 0x7f0a0087
+			public const int action0 = 2131361927;
 			
 			// aapt resource value: 0x7f0a0060
 			public const int action_bar = 2131361888;
@@ -2155,17 +2155,17 @@ namespace Clanbutton
 			// aapt resource value: 0x7f0a003e
 			public const int action_bar_title = 2131361854;
 			
-			// aapt resource value: 0x7f0a0083
-			public const int action_container = 2131361923;
+			// aapt resource value: 0x7f0a0084
+			public const int action_container = 2131361924;
 			
 			// aapt resource value: 0x7f0a0061
 			public const int action_context_bar = 2131361889;
 			
-			// aapt resource value: 0x7f0a008a
-			public const int action_divider = 2131361930;
+			// aapt resource value: 0x7f0a008b
+			public const int action_divider = 2131361931;
 			
-			// aapt resource value: 0x7f0a0084
-			public const int action_image = 2131361924;
+			// aapt resource value: 0x7f0a0085
+			public const int action_image = 2131361925;
 			
 			// aapt resource value: 0x7f0a0003
 			public const int action_menu_divider = 2131361795;
@@ -2182,23 +2182,26 @@ namespace Clanbutton
 			// aapt resource value: 0x7f0a0040
 			public const int action_mode_close_button = 2131361856;
 			
-			// aapt resource value: 0x7f0a0085
-			public const int action_text = 2131361925;
+			// aapt resource value: 0x7f0a0086
+			public const int action_text = 2131361926;
 			
-			// aapt resource value: 0x7f0a0093
-			public const int actions = 2131361939;
+			// aapt resource value: 0x7f0a0094
+			public const int actions = 2131361940;
 			
-			// aapt resource value: 0x7f0a006f
-			public const int activity_avatar = 2131361903;
+			// aapt resource value: 0x7f0a0070
+			public const int activity_avatar = 2131361904;
 			
 			// aapt resource value: 0x7f0a0041
 			public const int activity_chooser_view_content = 2131361857;
 			
-			// aapt resource value: 0x7f0a0072
-			public const int activity_message = 2131361906;
+			// aapt resource value: 0x7f0a006f
+			public const int activity_layout = 2131361903;
 			
-			// aapt resource value: 0x7f0a0071
-			public const int activity_user = 2131361905;
+			// aapt resource value: 0x7f0a0073
+			public const int activity_message = 2131361907;
+			
+			// aapt resource value: 0x7f0a0072
+			public const int activity_user = 2131361906;
 			
 			// aapt resource value: 0x7f0a0026
 			public const int add = 2131361830;
@@ -2221,8 +2224,8 @@ namespace Clanbutton
 			// aapt resource value: 0x7f0a0015
 			public const int auto = 2131361813;
 			
-			// aapt resource value: 0x7f0a009c
-			public const int beacon_button = 2131361948;
+			// aapt resource value: 0x7f0a009d
+			public const int beacon_button = 2131361949;
 			
 			// aapt resource value: 0x7f0a0029
 			public const int beginning = 2131361833;
@@ -2233,23 +2236,23 @@ namespace Clanbutton
 			// aapt resource value: 0x7f0a0037
 			public const int bottom = 2131361847;
 			
-			// aapt resource value: 0x7f0a0074
-			public const int btnLogin = 2131361908;
+			// aapt resource value: 0x7f0a0075
+			public const int btnLogin = 2131361909;
 			
 			// aapt resource value: 0x7f0a0047
 			public const int buttonPanel = 2131361863;
 			
-			// aapt resource value: 0x7f0a0087
-			public const int cancel_action = 2131361927;
+			// aapt resource value: 0x7f0a0088
+			public const int cancel_action = 2131361928;
 			
-			// aapt resource value: 0x7f0a009d
-			public const int chatroom_button = 2131361949;
+			// aapt resource value: 0x7f0a009e
+			public const int chatroom_button = 2131361950;
 			
 			// aapt resource value: 0x7f0a0057
 			public const int checkbox = 2131361879;
 			
-			// aapt resource value: 0x7f0a008f
-			public const int chronometer = 2131361935;
+			// aapt resource value: 0x7f0a0090
+			public const int chronometer = 2131361936;
 			
 			// aapt resource value: 0x7f0a0033
 			public const int collapseActionView = 2131361843;
@@ -2257,17 +2260,17 @@ namespace Clanbutton
 			// aapt resource value: 0x7f0a004a
 			public const int contentPanel = 2131361866;
 			
-			// aapt resource value: 0x7f0a0077
-			public const int country_image = 2131361911;
+			// aapt resource value: 0x7f0a0078
+			public const int country_image = 2131361912;
 			
-			// aapt resource value: 0x7f0a00a3
-			public const int current_game = 2131361955;
-			
-			// aapt resource value: 0x7f0a0097
-			public const int current_game_section = 2131361943;
+			// aapt resource value: 0x7f0a00a4
+			public const int current_game = 2131361956;
 			
 			// aapt resource value: 0x7f0a0098
-			public const int current_game_text = 2131361944;
+			public const int current_game_section = 2131361944;
+			
+			// aapt resource value: 0x7f0a0099
+			public const int current_game_text = 2131361945;
 			
 			// aapt resource value: 0x7f0a0051
 			public const int custom = 2131361873;
@@ -2287,11 +2290,11 @@ namespace Clanbutton
 			// aapt resource value: 0x7f0a001b
 			public const int disableHome = 2131361819;
 			
-			// aapt resource value: 0x7f0a00aa
-			public const int discord_edit = 2131361962;
+			// aapt resource value: 0x7f0a00ab
+			public const int discord_edit = 2131361963;
 			
-			// aapt resource value: 0x7f0a00b2
-			public const int edit_profile_savechanges = 2131361970;
+			// aapt resource value: 0x7f0a00b3
+			public const int edit_profile_savechanges = 2131361971;
 			
 			// aapt resource value: 0x7f0a0062
 			public const int edit_query = 2131361890;
@@ -2299,8 +2302,8 @@ namespace Clanbutton
 			// aapt resource value: 0x7f0a002a
 			public const int end = 2131361834;
 			
-			// aapt resource value: 0x7f0a0095
-			public const int end_padder = 2131361941;
+			// aapt resource value: 0x7f0a0096
+			public const int end_padder = 2131361942;
 			
 			// aapt resource value: 0x7f0a0042
 			public const int expand_activities_button = 2131361858;
@@ -2311,14 +2314,14 @@ namespace Clanbutton
 			// aapt resource value: 0x7f0a003b
 			public const int forever = 2131361851;
 			
-			// aapt resource value: 0x7f0a0075
-			public const int gamesearch_avatar = 2131361909;
-			
 			// aapt resource value: 0x7f0a0076
-			public const int gamesearch_user = 2131361910;
+			public const int gamesearch_avatar = 2131361910;
 			
-			// aapt resource value: 0x7f0a009a
-			public const int grid_view_image_text = 2131361946;
+			// aapt resource value: 0x7f0a0077
+			public const int gamesearch_user = 2131361911;
+			
+			// aapt resource value: 0x7f0a009b
+			public const int grid_view_image_text = 2131361947;
 			
 			// aapt resource value: 0x7f0a0005
 			public const int home = 2131361797;
@@ -2329,8 +2332,8 @@ namespace Clanbutton
 			// aapt resource value: 0x7f0a0046
 			public const int icon = 2131361862;
 			
-			// aapt resource value: 0x7f0a0094
-			public const int icon_group = 2131361940;
+			// aapt resource value: 0x7f0a0095
+			public const int icon_group = 2131361941;
 			
 			// aapt resource value: 0x7f0a0012
 			public const int icon_only = 2131361810;
@@ -2341,14 +2344,14 @@ namespace Clanbutton
 			// aapt resource value: 0x7f0a0043
 			public const int image = 2131361859;
 			
-			// aapt resource value: 0x7f0a007c
-			public const int imageView = 2131361916;
+			// aapt resource value: 0x7f0a007d
+			public const int imageView = 2131361917;
 			
-			// aapt resource value: 0x7f0a0090
-			public const int info = 2131361936;
+			// aapt resource value: 0x7f0a0091
+			public const int info = 2131361937;
 			
-			// aapt resource value: 0x7f0a0081
-			public const int input = 2131361921;
+			// aapt resource value: 0x7f0a0082
+			public const int input = 2131361922;
 			
 			// aapt resource value: 0x7f0a003c
 			public const int italic = 2131361852;
@@ -2356,8 +2359,8 @@ namespace Clanbutton
 			// aapt resource value: 0x7f0a0000
 			public const int item_touch_helper_previous_elevation = 2131361792;
 			
-			// aapt resource value: 0x7f0a0099
-			public const int library_section = 2131361945;
+			// aapt resource value: 0x7f0a009a
+			public const int library_section = 2131361946;
 			
 			// aapt resource value: 0x7f0a0017
 			public const int light = 2131361815;
@@ -2374,35 +2377,35 @@ namespace Clanbutton
 			// aapt resource value: 0x7f0a0045
 			public const int list_item = 2131361861;
 			
-			// aapt resource value: 0x7f0a007b
-			public const int list_of_activities = 2131361915;
+			// aapt resource value: 0x7f0a007c
+			public const int list_of_activities = 2131361916;
 			
-			// aapt resource value: 0x7f0a0082
-			public const int list_of_messages = 2131361922;
-			
-			// aapt resource value: 0x7f0a0078
-			public const int main_layout = 2131361912;
+			// aapt resource value: 0x7f0a0083
+			public const int list_of_messages = 2131361923;
 			
 			// aapt resource value: 0x7f0a0079
-			public const int mainbutton = 2131361913;
+			public const int main_layout = 2131361913;
 			
-			// aapt resource value: 0x7f0a0089
-			public const int media_actions = 2131361929;
+			// aapt resource value: 0x7f0a007a
+			public const int mainbutton = 2131361914;
 			
-			// aapt resource value: 0x7f0a009f
-			public const int message = 2131361951;
+			// aapt resource value: 0x7f0a008a
+			public const int media_actions = 2131361930;
 			
-			// aapt resource value: 0x7f0a007d
-			public const int message_avatar = 2131361917;
-			
-			// aapt resource value: 0x7f0a007f
-			public const int message_text = 2131361919;
+			// aapt resource value: 0x7f0a00a0
+			public const int message = 2131361952;
 			
 			// aapt resource value: 0x7f0a007e
-			public const int message_time = 2131361918;
+			public const int message_avatar = 2131361918;
 			
-			// aapt resource value: 0x7f0a0070
-			public const int message_user = 2131361904;
+			// aapt resource value: 0x7f0a0080
+			public const int message_text = 2131361920;
+			
+			// aapt resource value: 0x7f0a007f
+			public const int message_time = 2131361919;
+			
+			// aapt resource value: 0x7f0a0071
+			public const int message_user = 2131361905;
 			
 			// aapt resource value: 0x7f0a002b
 			public const int middle = 2131361835;
@@ -2422,62 +2425,62 @@ namespace Clanbutton
 			// aapt resource value: 0x7f0a0019
 			public const int normal = 2131361817;
 			
-			// aapt resource value: 0x7f0a0092
-			public const int notification_background = 2131361938;
+			// aapt resource value: 0x7f0a0093
+			public const int notification_background = 2131361939;
+			
+			// aapt resource value: 0x7f0a008d
+			public const int notification_main_column = 2131361933;
 			
 			// aapt resource value: 0x7f0a008c
-			public const int notification_main_column = 2131361932;
+			public const int notification_main_column_container = 2131361932;
 			
-			// aapt resource value: 0x7f0a008b
-			public const int notification_main_column_container = 2131361931;
-			
-			// aapt resource value: 0x7f0a00b0
-			public const int origin_edit = 2131361968;
+			// aapt resource value: 0x7f0a00b1
+			public const int origin_edit = 2131361969;
 			
 			// aapt resource value: 0x7f0a0049
 			public const int parentPanel = 2131361865;
 			
-			// aapt resource value: 0x7f0a009e
-			public const int playerslist = 2131361950;
-			
-			// aapt resource value: 0x7f0a00a0
-			public const int profile_button = 2131361952;
-			
-			// aapt resource value: 0x7f0a00a9
-			public const int profile_discord = 2131361961;
-			
-			// aapt resource value: 0x7f0a00b1
-			public const int profile_edit_button = 2131361969;
-			
-			// aapt resource value: 0x7f0a00a6
-			public const int profile_follow_button = 2131361958;
-			
-			// aapt resource value: 0x7f0a00a4
-			public const int profile_followers = 2131361956;
-			
-			// aapt resource value: 0x7f0a0073
-			public const int profile_image = 2131361907;
-			
-			// aapt resource value: 0x7f0a00b3
-			public const int profile_logout_button = 2131361971;
+			// aapt resource value: 0x7f0a009f
+			public const int playerslist = 2131361951;
 			
 			// aapt resource value: 0x7f0a00a1
-			public const int profile_name = 2131361953;
+			public const int profile_button = 2131361953;
 			
-			// aapt resource value: 0x7f0a00af
-			public const int profile_origin = 2131361967;
+			// aapt resource value: 0x7f0a00aa
+			public const int profile_discord = 2131361962;
+			
+			// aapt resource value: 0x7f0a00b2
+			public const int profile_edit_button = 2131361970;
 			
 			// aapt resource value: 0x7f0a00a7
-			public const int profile_unfollow_button = 2131361959;
-			
-			// aapt resource value: 0x7f0a00ac
-			public const int profile_uplay = 2131361964;
-			
-			// aapt resource value: 0x7f0a00a2
-			public const int profile_username = 2131361954;
+			public const int profile_follow_button = 2131361959;
 			
 			// aapt resource value: 0x7f0a00a5
-			public const int profile_visit_steam_button = 2131361957;
+			public const int profile_followers = 2131361957;
+			
+			// aapt resource value: 0x7f0a0074
+			public const int profile_image = 2131361908;
+			
+			// aapt resource value: 0x7f0a00b4
+			public const int profile_logout_button = 2131361972;
+			
+			// aapt resource value: 0x7f0a00a2
+			public const int profile_name = 2131361954;
+			
+			// aapt resource value: 0x7f0a00b0
+			public const int profile_origin = 2131361968;
+			
+			// aapt resource value: 0x7f0a00a8
+			public const int profile_unfollow_button = 2131361960;
+			
+			// aapt resource value: 0x7f0a00ad
+			public const int profile_uplay = 2131361965;
+			
+			// aapt resource value: 0x7f0a00a3
+			public const int profile_username = 2131361955;
+			
+			// aapt resource value: 0x7f0a00a6
+			public const int profile_visit_steam_button = 2131361958;
 			
 			// aapt resource value: 0x7f0a0006
 			public const int progress_circular = 2131361798;
@@ -2488,11 +2491,11 @@ namespace Clanbutton
 			// aapt resource value: 0x7f0a0059
 			public const int radio = 2131361881;
 			
-			// aapt resource value: 0x7f0a0091
-			public const int right_icon = 2131361937;
+			// aapt resource value: 0x7f0a0092
+			public const int right_icon = 2131361938;
 			
-			// aapt resource value: 0x7f0a008d
-			public const int right_side = 2131361933;
+			// aapt resource value: 0x7f0a008e
+			public const int right_side = 2131361934;
 			
 			// aapt resource value: 0x7f0a0022
 			public const int screen = 2131361826;
@@ -2536,17 +2539,17 @@ namespace Clanbutton
 			// aapt resource value: 0x7f0a006d
 			public const int search_voice_btn = 2131361901;
 			
-			// aapt resource value: 0x7f0a0096
-			public const int searchbar = 2131361942;
+			// aapt resource value: 0x7f0a0097
+			public const int searchbar = 2131361943;
 			
-			// aapt resource value: 0x7f0a009b
-			public const int searching_text = 2131361947;
+			// aapt resource value: 0x7f0a009c
+			public const int searching_text = 2131361948;
 			
 			// aapt resource value: 0x7f0a006e
 			public const int select_dialog_listview = 2131361902;
 			
-			// aapt resource value: 0x7f0a0080
-			public const int sendbutton = 2131361920;
+			// aapt resource value: 0x7f0a0081
+			public const int sendbutton = 2131361921;
 			
 			// aapt resource value: 0x7f0a0058
 			public const int shortcut = 2131361880;
@@ -2578,11 +2581,11 @@ namespace Clanbutton
 			// aapt resource value: 0x7f0a0013
 			public const int standard = 2131361811;
 			
-			// aapt resource value: 0x7f0a007a
-			public const int start_matchmaking_button = 2131361914;
+			// aapt resource value: 0x7f0a007b
+			public const int start_matchmaking_button = 2131361915;
 			
-			// aapt resource value: 0x7f0a0088
-			public const int status_bar_latest_event_content = 2131361928;
+			// aapt resource value: 0x7f0a0089
+			public const int status_bar_latest_event_content = 2131361929;
 			
 			// aapt resource value: 0x7f0a005a
 			public const int submenuarrow = 2131361882;
@@ -2605,8 +2608,8 @@ namespace Clanbutton
 			// aapt resource value: 0x7f0a004d
 			public const int textSpacerNoTitle = 2131361869;
 			
-			// aapt resource value: 0x7f0a008e
-			public const int time = 2131361934;
+			// aapt resource value: 0x7f0a008f
+			public const int time = 2131361935;
 			
 			// aapt resource value: 0x7f0a000e
 			public const int title = 2131361806;
@@ -2629,17 +2632,17 @@ namespace Clanbutton
 			// aapt resource value: 0x7f0a0009
 			public const int up = 2131361801;
 			
-			// aapt resource value: 0x7f0a00ad
-			public const int uplay_edit = 2131361965;
+			// aapt resource value: 0x7f0a00ae
+			public const int uplay_edit = 2131361966;
 			
 			// aapt resource value: 0x7f0a0020
 			public const int useLogo = 2131361824;
 			
-			// aapt resource value: 0x7f0a00b4
-			public const int webView = 2131361972;
-			
 			// aapt resource value: 0x7f0a00b5
-			public const int webViewProfile = 2131361973;
+			public const int webView = 2131361973;
+			
+			// aapt resource value: 0x7f0a00b6
+			public const int webViewProfile = 2131361974;
 			
 			// aapt resource value: 0x7f0a0014
 			public const int wide = 2131361812;

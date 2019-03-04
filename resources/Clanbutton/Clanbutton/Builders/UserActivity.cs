@@ -1,4 +1,5 @@
 ﻿using Clanbutton.Core;
+using System;
 
 namespace Clanbutton.Builders
 {
@@ -8,15 +9,20 @@ namespace Clanbutton.Builders
         public string Username { get; set; }
         public string ProfilePicture { get; set; }
         public string UserId { get; set; }
+        public string GameName { get; set; }
+        public DateTime CreationDate { get; set; }
 
         public UserActivity() { }
 
-        public UserActivity(string userid, string username, string activity_message, string profile_picture)
+        public UserActivity(string userid, string username, string activity_message, string profile_picture, string game_name)
         {
             Username = username;
             ActivityMessage = activity_message;
             ProfilePicture = profile_picture;
             UserId = userid;
+            GameName = game_name;
+            CreationDate = DateTime.Now;
+
         }
 
         public void Create()

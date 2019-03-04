@@ -62,5 +62,37 @@ namespace Clanbutton.Core
         {
             cache_manager = new CacheManager();
         }
+
+        public string GetTimeSince(DateTime dateFrom)
+        {
+            TimeSpan elapsed = DateTime.Now.Subtract(dateFrom);
+            string thing;
+            if (elapsed.Hours > 24)
+            {
+                var days = (int) elapsed.TotalDays;
+                if (days > 1)
+                {
+                    return $"{days} days ago";
+                }
+                return $"{days} day ago.";
+            }
+
+            var minutes = (int) elapsed.TotalMinutes;
+            if (minutes < 60)
+            {
+                if (minutes > 1)
+                {
+                    return $"{minutes} minutes ago.";
+                }
+                return $"{(int) elapsed.TotalSeconds} seconds ago.";
+            }
+
+            var hours = (int) elapsed.TotalHours;
+            if (hours > 1)
+            {
+                return $"{hours} hours ago.";
+            }
+            return $"{hours} hour ago.";
+        }
     }
 }

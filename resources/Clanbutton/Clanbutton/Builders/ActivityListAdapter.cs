@@ -51,21 +51,31 @@ namespace Clanbutton.Builders
 
             TextView activity_user, activity_content;
             ImageView profile_picture;
+            RelativeLayout activity_layout;
             activity_user = itemView.FindViewById<TextView>(Resource.Id.activity_user);
             activity_content = itemView.FindViewById<TextView>(Resource.Id.activity_message);
             profile_picture = itemView.FindViewById<ImageView>(Resource.Id.activity_avatar);
-
+            activity_layout = itemView.FindViewById<RelativeLayout>(Resource.Id.activity_layout);
+            
             ExtensionMethods extensionMethods = new ExtensionMethods();
             extensionMethods.DownloadPicture(lstActivity[position].ProfilePicture, profile_picture);
-            
+
+            string time_since = extensionMethods.GetTimeSince(lstActivity[position].CreationDate);
             activity_user.Text = lstActivity[position].Username;
-            activity_content.Text = lstActivity[position].ActivityMessage;
+            activity_content.Text = $"{lstActivity[position].ActivityMessage} ({time_since})";
 
             profile_picture.Click += delegate
             {
                 OpenProfile(lstActivity[position].UserId);
                 mainActivity.activities_reference.RemoveEventListener(mainActivity);
             };
+
+            activity_layout.Click += delegate
+            {
+                SearchActivity.SearchStarter = lstActivity[position].GameName;
+                mainActivity.StartActivity(new Android.Content.Intent(mainActivity, typeof(SearchActivity)).SetFlags(Android.Content.ActivityFlags.NoAnimation));
+            };
+
             return itemView;
         }
 
