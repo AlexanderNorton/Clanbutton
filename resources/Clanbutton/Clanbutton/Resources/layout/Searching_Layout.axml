@@ -21,10 +21,9 @@
             android:id="@+id/searchbar"
 			android:paddingHorizontal="5dp"
             android:layout_width="wrap_content"
-            android:hint="SEARCH FOR A GAME"
+            android:hint="SEARCH"
 			android:textSize="24dp"
 			android:textColor="@android:color/white"
-			android:textAllCaps="true"
 			android:textColorHint="@android:color/white"
 			android:fontFamily="@font/agency"
 			android:layout_gravity="center"
@@ -52,11 +51,10 @@
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:src="@drawable/icon"
-					android:textStyle="bold"
 					android:gravity="center"
+					android:textColor="@android:color/white"
 					android:background="#222428"
 					android:textAlignment="center"
-					android:text="Tom Clancy's: Rainbow Six Siege"
 					android:id="@+id/current_game_text"/>
 			</RelativeLayout>
 		</LinearLayout>

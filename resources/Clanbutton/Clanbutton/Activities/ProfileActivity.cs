@@ -171,7 +171,7 @@ namespace Clanbutton.Activities
                 Profile_Follow.Visibility = ViewStates.Gone;
                 Profile_Unfollow.Visibility = ViewStates.Visible;
                 uaccount.Update();
-                Profile_Followers.Text = $"Followers: {followers.Count}";
+                Profile_Followers.Text = $"Followers: {uaccount.Following.Count}";
             };
 
             Profile_Unfollow.Click += delegate

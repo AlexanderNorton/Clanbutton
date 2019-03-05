@@ -101,9 +101,10 @@ namespace Clanbutton.Activities
             };
         }
 
-        protected override void OnRestart()
+        protected override async void OnRestart()
         {
             base.OnRestart();
+            uaccount = await firebase_database.GetAccountAsync(uaccount.UserId);
             activities_reference.AddValueEventListener(this);
         }
 
