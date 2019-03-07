@@ -1,4 +1,4 @@
-# Clanbutton
+# About Clanbutton 
 www.clanbutton.com
 Android/iOS app that allows gamers to team-up at the touch of a button.
 To view this project's progress, feel free to check out our [Trello sprint board](https://trello.com/b/bvCITjii/sprint-board).
@@ -36,6 +36,13 @@ The following tools will be used for the development of the Clanbutton:
 * **C# programming language and .NET.** Programmed in C# we will be able to use Xamarin for Visual Studio and the .NET framework which is super powerful and has everything we need it to do to develop an Android or iOS application.
 * **[Xamarin for Visual Studio](https://visualstudio.microsoft.com/xamarin/)** allows us to develop our Android application but also port it over to iOS should we ever decide to, avoiding too many complications and re-invention of the wheel.
 * **[Visual Studio](https://visualstudio.microsoft.com/)** for our main IDE for this project (also allows a quick and easy use of Git)
+
+# Project
+## Video walk-through
+
+## User Guide
+
+### [Clanbutton User Guide](https://gitlab.computing.dcu.ie/nortona5/2019-ca326-clanbutton/blob/master/Documentation/Clanbutton%20User%20Guide.pdf)
 
 ## Development Blogs
 
