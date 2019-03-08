@@ -4,12 +4,19 @@ Android/iOS app that allows gamers to team-up at the touch of a button.
 To view this project's progress, feel free to check out our [Trello sprint board](https://trello.com/b/bvCITjii/sprint-board).
 
 **Table of contents**
-- [Clanbutton](#clanbutton)
+- [About Clanbutton](#about-clanbutton)
   * [Overview](#overview)
   * [Development](#development)
     + [Structure](#structure)
     + [Trello Sprint Board](#trello-sprint-board)
     + [Development Tools](#development-tools)
+- [Project](#project)
+  * [Project Spec](#project-spec)
+    + [[Clanbutton Project Spec](https://gitlab.computing.dcu.ie/nortona5/2019-ca326-clanbutton/blob/master/Documentation/Clanbutton%20Project%20Spec.pdf)](#-clanbutton-project-spec--https---gitlabcomputingdcuie-nortona5-2019-ca326-clanbutton-blob-master-documentation-clanbutton-20project-20specpdf-)
+  * [Video walk-through](#video-walk-through)
+    + [[Clanbutton walk-through video](https://youtu.be/StrEEltfjHM)](#-clanbutton-walk-through-video--https---youtube-streeltfjhm-)
+  * [User Guide](#user-guide)
+    + [[Clanbutton User Guide](https://gitlab.computing.dcu.ie/nortona5/2019-ca326-clanbutton/blob/master/Documentation/Clanbutton%20User%20Guide.pdf)](#-clanbutton-user-guide--https---gitlabcomputingdcuie-nortona5-2019-ca326-clanbutton-blob-master-documentation-clanbutton-20user-20guidepdf-)
   * [Development Blogs](#development-blogs)
     + [Alexander Norton](#alexander-norton)
     + [Ryan Byrne](#ryan-byrne)
@@ -38,10 +45,13 @@ The following tools will be used for the development of the Clanbutton:
 * **[Visual Studio](https://visualstudio.microsoft.com/)** for our main IDE for this project (also allows a quick and easy use of Git)
 
 # Project
-## Video walk-through
-https://youtu.be/StrEEltfjHM
-## User Guide
+## Project Spec
+### [Clanbutton Project Spec](https://gitlab.computing.dcu.ie/nortona5/2019-ca326-clanbutton/blob/master/Documentation/Clanbutton%20Project%20Spec.pdf)
 
+## Video walk-through
+### [Clanbutton walk-through video](https://youtu.be/StrEEltfjHM)
+
+## User Guide
 ### [Clanbutton User Guide](https://gitlab.computing.dcu.ie/nortona5/2019-ca326-clanbutton/blob/master/Documentation/Clanbutton%20User%20Guide.pdf)
 
 ## Development Blogs
