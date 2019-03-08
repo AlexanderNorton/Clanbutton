@@ -78,3 +78,27 @@ We also implemented a really nice library feature which collects the games from 
 We really enjoyed working on the project over the past couple of weeks and we're looking forward to placing it on the Google Play Store to get some feedback from a number of users.
 
 ### Ryan Byrne
+
+**Ryan Byrne, Blog.**
+(Monday 28th of January - Friday 1st of February):
+This week I focused on trying to get a working level of knowledge with the things we are using for our implemation of the app (e.g firebase, xamarin, C#) as I had never worked with them before and especially not on something of this scale.
+While it took a full week to get the basic understanding I required to be able to start implementing features, it has proved to be a valuable week as I believe I needed this to write clean concise code from the start as apposed to writing code which I will then have to re-do due to mistakes I may make.  
+
+(Monday 4th of February - Friday 8th of February):
+Once Alex had added the ability for the steam data to be pulled from the database as needed, I worked on how the initial iteration of the profile page would look like with regards to the spacing of the user data on screen.
+This formed the first base version of the profile which we can improve on as the weeks progress and as we add more features to the app which can be added to the profile page.
+
+(Monday 11th of February - Friday 15th of February):
+This week I added a 'Socials' section to the profile where the user can add their username on services other than than Steam Username which is already displayed via our gathering of data from the Steam API, there are three fields for the user to add to, Uplay, Origin and Discord. With the logo of each of the three platforms displayed beside the usernames entered by the user. If a user does not wish to display one or all of the usernames, then the ones left blank will have the text field and logo disappear for it.
+I believe this is a very important feature for our app to have so whether it be that two people want to play a new sports game from EA on Origin or they want to get into a voice call on Discord, all the information they need is there for them in one play, displayed cleanly on a user's profile.
+
+(Monday 18th of February - Friday 22nd of February):
+During this I did a visual overhaul of all the basic buttons we had made and replaced them with custom buttons which I made myself to improve the quality of a user's visual experience of the app and to make the different page which the users navigate through have a more consistent design.
+I also added the font that we agreed suited the overall theme of our design. This created some issues regarding the text sizing for some of the text overlapping onto other elements, which required some tweaking but is dealt with now. 
+
+(Monday 25th of February - Friday 1st of March):
+This week I added the ability for a user to follow another user, which will prove important for the activity section which we plan to implement on the main page and also on a Leveling system (which we will not have time to implement for the purpose of this project's deadline, where ranks would be gained based on the amount of users following you.)
+
+(Monday 4th of March - Friday 8th of March):
+For the final week we worked on some of the small bugs we identified and added the activity section containing the searches and deployed beacons for a user and also of the people that the user follows.
+I have really enjoyed working on this Project with Alex and I am looking forward to getting it onto the Google Play Store.
