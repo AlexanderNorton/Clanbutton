@@ -4,11 +4,11 @@ stages:
 job:
   stage: build
   script:
-  - echo "Restoring NuGet Packages..."
-  - '"c:\nuget\nuget.exe" restore "Project/resources/Clanbutton/Clanbutton.sln"'
-  - ''
-  - echo "Release build..."
-  - '"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\msbuild.exe" Project/resources/Clanbutton/Clanbutton.sln'
-  tags: 
-  except:
-  - tags
+  - echo "Would restoring NuGet Packages..."
+#  - '"c:\nuget\nuget.exe" restore "Project/resources/Clanbutton/Clanbutton.sln"'
+#  - ''
+  - echo "Would release build..."
+#  - '"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\msbuild.exe" Project/resources/Clanbutton/Clanbutton.sln'
+#  tags: 
+#  except:
+#  - tags
