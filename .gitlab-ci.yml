@@ -5,10 +5,10 @@ job:
   stage: build
   script:
   - echo "Restoring NuGet Packages..."
-  - '"c:\nuget\nuget.exe" restore "Project/resources/Clanbutton/Clanbutton.sln"'
+  - '"c:\nuget\nuget.exe" restore "C:\Users\alexn\Desktop\2019-ca326-clanbutton\Project\resources\Clanbutton\Clanbutton.sln"'
   - ''
   - echo "Release build..."
-  - '"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\msbuild.exe" Project/resources/Clanbutton/Clanbutton.sln'
+  - '"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\msbuild.exe" "C:\Users\alexn\Desktop\2019-ca326-clanbutton\Project\resources\Clanbutton\Clanbutton.sln"'
   tags: 
   except:
   - tags
