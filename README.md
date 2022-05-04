@@ -1,5 +1,4 @@
 # About Clanbutton 
-www.clanbutton.com
 Android/iOS app that allows gamers to team-up at the touch of a button.
 To view this project's progress, feel free to check out our [Trello sprint board](https://trello.com/b/bvCITjii/sprint-board).
 
